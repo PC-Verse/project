@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Visualization of Sorting Algorithms</title>
+    </head>
+    <body>
+        <div class="navigation flex">
+            <a href="index.html">Visualization</a>
+            <a href="Algorithms/index.html">Algorithms</a>
+            <a href="VisYourAlgor/index.html">Visualize Your Algorithm</a>
+        </div>
+        <div class="visualization box">
+            display visualization of sorting algorithms here
+        </div>
+        <div class="userInput box">
+            Stuff to get user input. Enter amount of rectangles to be sorted: 
+            <form>
+
+                <input type = "radio" id = "merge" name = "sort" value = "merge">
+                <label for="merge">Merge Sort</label><br>
+
+                <input type = "radio" id = "selection" name = "sort" value = "selection">
+                <label for="selection">Selection Sort</label><br>
+
+                <input type = "radio" id = "insertion" name = "sort" value = "insertion">
+                <label for="insertion">Insertion Sort</label><br>
+            
+                
+                <label for = "amountOfRectangles"> Amount of Rectangles to Sort:</label>
+                <input type = "text" id = "amountOfRectangles" name = "amountOfRectangles"><br>
+
+                <input type="submit" value = "Submit">
+            </form>
+
+        </div>
+    </body>
+</html>
