@@ -56,6 +56,7 @@ a:hover {
   flex-wrap: wrap;
   width : 200px;
   height : 10px;
+  box-sizing: border-box;
 }
 
 .box {
