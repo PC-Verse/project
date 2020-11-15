@@ -4,7 +4,8 @@
         <title>Visualization of Sorting Algorithms</title>
         <script src="scripts/scripts.js"></script>
     </head>
-    <body>
+    <body >
+        
         <div class="navigation flex">
             <div class="dropdown">
                 <button class="dropbtn navigation">ALGORITHMS</button>
@@ -23,10 +24,15 @@
             Sorting Visualization
         </p>
         <div class="visualization box">
+
+            <div id="Box-Container">
+              
+            </div>
+
             display visualization of sorting algorithms here
         </div>
         <div class="userInput box">
-            <form>
+            
 
                 <input type="radio" id = "merge" name="sort" value = "merge">
                 <label for="merge">Merge Sort</label><br>
@@ -39,10 +45,10 @@
             
                 
                 <label for="amountOfRectangles"> Enter Amount of Rectangles to Sort:</label>
-                <input type="text" id="amountOfRectangles" name="amountOfRectangles"><br>
-
-                <input type="submit" value="Submit" onclick="createRectangles()">
-            </form>
+                <input type="number" value="" id="amountOfRectangles" name="amountOfRectangles" onchange="createRectangles()"> <br>
+                 
+                <!-- <input type="submit" value="Submit" onclick="createRectangles()" > -->
+            
 
         </div>
     </body>

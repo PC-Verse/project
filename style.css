@@ -43,12 +43,25 @@ a:hover {
     flex-wrap: wrap;
 }
 
+.boxContainer{
+
+  display: flex;
+  justify-content: center;
+}
+
+.rectangle{
+  border: solid red;
+  border-width: 1px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width : 200px;
+  height : 10px;
+}
+
 .box {
     border: solid #e9d06d;
     padding: 0.8%;
-    min-width: 300px;
-    margin: 0 auto;
-    width: 65%;
+    margin: 0;
 }
 
 img {
