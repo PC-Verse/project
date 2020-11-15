@@ -14,7 +14,7 @@ function getRandHeight(){
 }
 
 function getY(){
-    return parseInt(70/numRects).toString() + "vh";
+    return parseFloat(70.0/numRects).toString() + "vh";
 }
 
 
