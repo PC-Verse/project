@@ -3,14 +3,14 @@
 body {
     /* color: teal; */
     /* color: rgb(0,0,0); */
-    background-color: rgb(84, 83, 87);
-    background-color: linear-gradient(#6cbcdb, #2938dd);
+    background-color: rgba(125, 137, 175, 0.185);
+    background-color: linear-gradient(#9dd7ee, #0015ff);
     height: 100%;
     width: 100%;
     min-height: 100vh;
     font-family: 'Work Sans', sans-serif;
     font-size: 1.5em;
-    color:  #f0f0f3;
+    /* color:  #f0f0f3; */
 }
 
 a {
@@ -18,10 +18,10 @@ a {
 }
 p{
     background-image: url(images/coding.jpg);
-    text-shadow: 4px 4px 4px #d9ff00;
+    text-shadow: 7px 7px 7px #000000;
 
-    color: #ffffff;
-    font-size: 20px;    
+    color: #fbff00;
+    font-size: 40px;    
     text-align: center;
     text-size-adjust: 20px;
     font-family: 'Work Sans', sans-serif;}
@@ -44,12 +44,18 @@ a:hover {
 }
 
 .boxContainer{
-  margin-left: auto;
-  margin-right: auto;
+  width: auto;
   display: inline-grid; 
   overflow-x: scroll;
   justify-content: center;
 }
+
+.container{
+  justify-content: center;
+  margin-left: auto;
+  /* margin-right: auto; */
+}
+
 
 .rectangle{
   border: solid red;

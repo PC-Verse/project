@@ -33,18 +33,26 @@ function createRectangles() {
     let N = document.getElementById("amountOfRectangles");
     N = parseInt(N.value);
     numRects = N;
-    //console.log(N);
-    for(let i =0 ; i<N; i++){
-        let box = document.createElement( "div" );
-        box.className = "rectangle";
-        box.style.backgroundColor= 'blue';
-        let x =  getRandHeight();
-        let y = x.toString() + "px";
-        box.style.height = y;
-        box.style.width = getY();
 
-        boxContainer.appendChild( box );
+    if(N < 800 && N>0){
+    //console.log(N);
+        for(let i =0 ; i<N; i++){
+            let box = document.createElement( "div" );
+            box.className = "rectangle";
+            box.style.backgroundColor= 'blue';
+            let x =  getRandHeight();
+            let y = x.toString() + "px";
+            box.style.height = y;
+            box.style.width = getY();
+
+            boxContainer.appendChild( box );
+        }
     }
+    else{
+        alert ("Must be less than 800 rectangles");
+        return -1;
+    }
+
 
 }
 
