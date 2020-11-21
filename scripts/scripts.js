@@ -44,7 +44,10 @@ function createRectangles() {
             let y = x.toString() + "px";
             box.style.height = y;
             box.style.width = getWidth();
-            box.setAttribute("BoxSize" , x.toString());
+            box.setAttribute("data-boxsize" , x.toString());
+            // to get value use {ELEMENT}.dataset.boxsize
+            //parseint(box.dataset.boxsize);
+            //box.dataset.boxsize= somevalue.toString();
 
             boxContainer.appendChild( box );
         }
@@ -54,10 +57,36 @@ function createRectangles() {
         return -1;
     }
 
+    selectionSort();
+
 
 }
 
 function selectionSort(){
+
+    let boxes = boxContainer.childNodes;
+    
+    console.log(boxes[0]);
+    for(let i = numRects; i>1; i--){
+        let max=0;
+        let index=1;
+        for(let j=1; j<=i; j++){
+            let x = parseInt(boxes[j].dataset.boxsize);
+            if(x > max){
+                max = x;
+                index=j;
+            }
+        }
+        //debugger;
+        let temp = parseInt(boxes[i].dataset.boxsize);
+        boxes[i].dataset.boxsize = max.toString();
+        boxes[index].dataset.boxsize =  temp;
+
+        boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
+        boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
+
+    }
+    
 
 }
 
