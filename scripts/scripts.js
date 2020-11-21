@@ -29,24 +29,33 @@ function createRectangles() {
 
     }
 
-
-
     //let NumRectangles = getElementById("amountOfRectangles");
     let N = document.getElementById("amountOfRectangles");
     N = parseInt(N.value);
     numRects = N;
     //console.log(N);
     for(let i =0 ; i<N; i++){
-        console.log(i);
         let box = document.createElement( "div" );
         box.className = "rectangle";
         box.style.backgroundColor= 'blue';
         let x =  getRandHeight();
         let y = x.toString() + "px";
-        box.style.width = y;
-        box.style.height = getY();
+        box.style.height = y;
+        box.style.width = getY();
 
         boxContainer.appendChild( box );
     }
+
+}
+
+function selectionSort(){
+
+}
+
+function insertionSort(){
+
+}
+
+function mergeSort(){
 
 }
