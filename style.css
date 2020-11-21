@@ -1,16 +1,12 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap'); */
 
 body {
-    /* color: teal; */
-    /* color: rgb(0,0,0); */
     background-color: rgba(125, 137, 175, 0.185);
-    background-color: linear-gradient(#9dd7ee, #0015ff);
     height: 100%;
     width: 100%;
     min-height: 100vh;
     font-family: 'Work Sans', sans-serif;
     font-size: 1.5em;
-    /* color:  #f0f0f3; */
 }
 
 a {
@@ -37,15 +33,15 @@ a:hover {
 }
 
 .flex {
-    color:blue;
     display:inline-block;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.boxContainer{
+#Box-Container{
   width: auto;
-  display: inline-grid; 
+  display: flex; 
+  align-items: baseline;
   overflow-x: scroll;
   justify-content: center;
 }
@@ -53,15 +49,14 @@ a:hover {
 .container{
   justify-content: center;
   margin-left: auto;
-  /* margin-right: auto; */
 }
 
 
 .rectangle{
+  color: #000000;
   border: solid red;
   border-width: 1px;
   justify-content: space-between;
-  /* flex-wrap: wrap; */
   display: inline-grid; 
   width : 200px;
   height : 10px;
@@ -88,7 +83,7 @@ img {
     color: white;
 }
 #linkToSource:hover {
-    color: #2b28d8;
+    color: #000000;
 }
 
 .cite {

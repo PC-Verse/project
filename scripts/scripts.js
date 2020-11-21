@@ -13,8 +13,8 @@ function getRandHeight(){
     return randH;
 }
 
-function getY(){
-    return parseFloat(70.0/numRects).toString() + "vh";
+function getWidth(){
+    return parseFloat(80.0/numRects).toString() + "vw";
 }
 
 
@@ -43,7 +43,8 @@ function createRectangles() {
             let x =  getRandHeight();
             let y = x.toString() + "px";
             box.style.height = y;
-            box.style.width = getY();
+            box.style.width = getWidth();
+            box.setAttribute("BoxSize" , x.toString());
 
             boxContainer.appendChild( box );
         }
