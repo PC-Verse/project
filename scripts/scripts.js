@@ -18,6 +18,7 @@ function getWidth(){
 }
 
 
+
 function createRectangles() {
     boxContainer = document.getElementById( "Box-Container" );
 
@@ -62,6 +63,14 @@ function createRectangles() {
 
 }
 
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+ }
+ async function Tutor() {
+    await sleep(30000);
+ }
+
 function selectionSort(){
 
     let boxes = boxContainer.childNodes;
@@ -76,9 +85,9 @@ function selectionSort(){
                 max = x;
                 index=j;
             }
+
         }
-        console.log("Hello");
-        setTimeout(() => {  console.log("World!"); }, 2000);
+
 
         //debugger;
         let temp = parseInt(boxes[i].dataset.boxsize);
@@ -87,6 +96,8 @@ function selectionSort(){
 
         boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
         boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
+        Tutor();
+
 
     }
     
