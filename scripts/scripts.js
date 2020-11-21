@@ -77,6 +77,9 @@ function selectionSort(){
                 index=j;
             }
         }
+        console.log("Hello");
+        setTimeout(() => {  console.log("World!"); }, 2000);
+
         //debugger;
         let temp = parseInt(boxes[i].dataset.boxsize);
         boxes[i].dataset.boxsize = max.toString();
