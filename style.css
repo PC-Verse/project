@@ -28,6 +28,7 @@ a:hover {
 .button{
   justify-content: center;
   color: #000000;
+  margin-left: 40vw;
 }
 
 .navigation {

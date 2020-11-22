@@ -68,7 +68,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
  }
  async function Tutor() {
-    await sleep(30000);
+    sleep(3000);
  }
 
 function selectionSort(){
@@ -96,7 +96,6 @@ function selectionSort(){
 
         boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
         boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
-        Tutor();
 
 
     }
