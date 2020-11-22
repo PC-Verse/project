@@ -25,6 +25,11 @@ a:hover {
     /* color:blue; */
 }
 
+.button{
+  justify-content: center;
+  color: #000000;
+}
+
 .navigation {
     border-bottom: solid black;
     border-width: 1px;

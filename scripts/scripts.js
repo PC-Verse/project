@@ -35,7 +35,7 @@ function createRectangles() {
     N = parseInt(N.value);
     numRects = N;
 
-    if(N < 800 && N>0){
+    if(N < 801 && N>9){
     //console.log(N);
         for(let i =0 ; i<N; i++){
             let box = document.createElement( "div" );
@@ -54,11 +54,11 @@ function createRectangles() {
         }
     }
     else{
-        alert ("Must be less than 800 rectangles");
+        alert ("Must be between 10 and 800 rectangles");
         return -1;
     }
 
-    selectionSort();
+    // selectionSort();
 
 
 }
