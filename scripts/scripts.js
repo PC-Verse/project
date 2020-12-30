@@ -71,11 +71,39 @@ function sleep(ms) {
     sleep(3000);
  }
 
+function selectionSortSlowed() {
+    let boxes = boxContainer.childNodes;
+    console.log("started sort");
+
+    for (let i = 1; i <= numRects; i++) {
+
+        setTimeout(() => {
+                // get min
+            let min = parseInt(boxes[i].dataset.boxsize);
+            let minIndex = i;
+            for (let j = i+1; j <= numRects; j++) {
+                let currentBoxSize = parseInt(boxes[j].dataset.boxsize);
+                if (currentBoxSize < min) {
+                    min = currentBoxSize;
+                    minIndex = j;
+                }
+            }
+    
+            // swap min
+            let temp = parseInt(boxes[i].dataset.boxsize);
+            boxes[i].dataset.boxsize = min.toString();
+            boxes[minIndex].dataset.boxsize = temp;
+    
+            boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 300 * i);
+            }
+ }
+
 function selectionSort(){
 
     let boxes = boxContainer.childNodes;
     
-    console.log(boxes[0]);
+    console.log(boxes[1]);
     for(let i = numRects; i>1; i--){
         let max=0;
         let index=1;
