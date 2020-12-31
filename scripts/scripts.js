@@ -87,6 +87,7 @@ function selectionSortSlowed() {
                     min = currentBoxSize;
                     minIndex = j;
                 }
+                boxContainer.removeChild(0);
             }
     
             // swap min
@@ -95,7 +96,7 @@ function selectionSortSlowed() {
             boxes[minIndex].dataset.boxsize = temp;
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 300 * i);
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 4000/(Math.pow(numRects,0.1)) * i );
             }
  }
 
@@ -131,7 +132,44 @@ function selectionSort(){
 
 }
 
-function insertionSort(){
+function insertionSortSlowed(){
+    let boxes = boxContainer.childNodes;
+    let shift = 0;
+    let value = 0;
+    for (let i = 1; i <= numRects; i++) {
+
+        setTimeout(() => {
+                
+            let boxSize = parseInt(boxes[i].dataset.boxsize);
+            //find the correct insertion point
+            for (let j = i-1; j >=0; j--) {
+                let currentBoxSize = parseInt(boxes[j].dataset.boxsize);
+                if(boxSize >= currentBoxSize || (j==1 && boxSize<=currentBoxSize)){
+                    if(j==1 && boxSize<currentBoxSize)
+                        shift=1;
+                    else
+                        shift=j+1;
+                    value = boxSize;
+                    break;
+                }
+            }
+
+            console.log(shift + " " + value);
+            //shift elements in front of insertion point one to the right
+            for(let x = i; x>shift; x--){
+                //shifting values
+                let prev = parseInt(boxes[x-1].dataset.boxsize);
+                boxes[x].dataset.boxsize = prev;
+                boxes[x].style.height = prev.toString() + "px";
+            }
+            //set value at insertion point to correct value
+            boxes[shift].dataset.boxsize = value;
+            boxes[shift].style.height =  value.toString() + "px";
+
+    
+            // swap min
+           }, 1000/numRects * i );
+    }
 
 }
 
