@@ -83,14 +83,26 @@ function sort() {
         }
     }
 }
-function selectionSortSlowed() {
-    createRectangles();
+
+function displayFinish(){
     let boxes = boxContainer.childNodes;
-    console.log("selection sort started");
     for (let i = 1; i <= numRects; i++) {
 
         setTimeout(() => {
                 // get min
+            boxes[i].style.backgroundColor = "#3cff00";
+            }, 2000/numRects * i );    
+    }
+}
+function selectionSortSlowed() {
+    createRectangles();
+    let boxes = boxContainer.childNodes;
+    console.log("selection sort started");
+
+    for (let i = 1; i <= numRects; i++) {
+
+        setTimeout(() => {
+            // get min
             let min = parseInt(boxes[i].dataset.boxsize);
             let minIndex = i;
             for (let j = i+1; j <= numRects; j++) {
@@ -99,7 +111,6 @@ function selectionSortSlowed() {
                     min = currentBoxSize;
                     minIndex = j;
                 }
-                // boxContainer.removeChild(0);
             }
     
             // swap min
@@ -108,9 +119,17 @@ function selectionSortSlowed() {
             boxes[minIndex].dataset.boxsize = temp;
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-            boxes[i].style.backgroundColor = "#3cff00";
-            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 2000/numRects * i );    
-        }
+            boxes[i].style.backgroundColor = "grey";
+            if(i==numRects)
+                displayFinish();
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 2000/numRects * i ); 
+
+
+
+
+
+    }
+    // displayFinish();
  }
 
 // function selectionSort() {
@@ -170,7 +189,6 @@ function insertionSortSlowed(){
                 }
             }
 
-            console.log(shift + " " + value);
             //shift elements in front of insertion point one to the right
             for(let x = i; x>shift; x--){
                 //shifting values
@@ -181,14 +199,18 @@ function insertionSortSlowed(){
             //set value at insertion point to correct value
             boxes[shift].dataset.boxsize = value;
             boxes[shift].style.height =  value.toString() + "px";
-
-            boxes[i].style.backgroundColor = "#3cff00";
+            
+            boxes[i].style.backgroundColor = "grey";
+            if(i==numRects)
+                displayFinish();
 
             // swap min
            }, 2000/numRects * i );
 
+
+
     }
-    boxes[1].style.backgroundColor = "#3cff00";
+    boxes[1].style.backgroundColor = "grey";
 
 }
 
