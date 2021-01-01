@@ -62,18 +62,33 @@ function createRectangles() {
 
 
 }
+function sort() {
+    let radioBtn = document.getElementsByName('sort');
+    for (let i = 0; i < radioBtn.length; i++) {
+        if (radioBtn[i].checked) {
+            if (radioBtn[i].value == "merge") {
+                mergeSort();
+            }
+            else if (radioBtn[i].value == "selection") {
+                selectionSortSlowed();
+            }
+            else if (radioBtn[i].value == "insertion") {
+                insertionSortSlowed();
+            }
+        }
+    }
+}
 
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
- }
- async function Tutor() {
-    sleep(3000);
- }
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+//  }
+//  async function Tutor() {
+//     sleep(3000);
+//  }
 
 function selectionSortSlowed() {
     let boxes = boxContainer.childNodes;
-    console.log("started sort");
+    console.log("selection sort started");
 
     for (let i = 1; i <= numRects; i++) {
 
@@ -87,7 +102,7 @@ function selectionSortSlowed() {
                     min = currentBoxSize;
                     minIndex = j;
                 }
-                boxContainer.removeChild(0);
+                // boxContainer.removeChild(0);
             }
     
             // swap min
@@ -96,43 +111,45 @@ function selectionSortSlowed() {
             boxes[minIndex].dataset.boxsize = temp;
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 4000/(Math.pow(numRects,0.1)) * i );
-            }
+            // boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 4000/(Math.pow(numRects,0.1)) * i );
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 250 * i );    
+        }
  }
 
-function selectionSort(){
+// function selectionSort() {
 
-    let boxes = boxContainer.childNodes;
+//     let boxes = boxContainer.childNodes;
     
-    console.log(boxes[1]);
-    for(let i = numRects; i>1; i--){
-        let max=0;
-        let index=1;
-        for(let j=1; j<=i; j++){
-            let x = parseInt(boxes[j].dataset.boxsize);
-            if(x > max){
-                max = x;
-                index=j;
-            }
+//     console.log(boxes[1]);
+//     for(let i = numRects; i>1; i--){
+//         let max=0;
+//         let index=1;
+//         for(let j=1; j<=i; j++){
+//             let x = parseInt(boxes[j].dataset.boxsize);
+//             if(x > max){
+//                 max = x;
+//                 index=j;
+//             }
 
-        }
-
-
-        //debugger;
-        let temp = parseInt(boxes[i].dataset.boxsize);
-        boxes[i].dataset.boxsize = max.toString();
-        boxes[index].dataset.boxsize =  temp;
-
-        boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-        boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
+//         }
 
 
-    }
+//         //debugger;
+//         let temp = parseInt(boxes[i].dataset.boxsize);
+//         boxes[i].dataset.boxsize = max.toString();
+//         boxes[index].dataset.boxsize =  temp;
+
+//         boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
+//         boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
+
+
+//     }
     
-
-}
+// }
 
 function insertionSortSlowed(){
+    console.log("insertion sort started");
+
     let boxes = boxContainer.childNodes;
     let shift = 0;
     let value = 0;
@@ -143,7 +160,7 @@ function insertionSortSlowed(){
             let boxSize = parseInt(boxes[i].dataset.boxsize);
             //find the correct insertion point
             for (let j = i-1; j >=0; j--) {
-                let currentBoxSize = parseInt(boxes[j].dataset.boxsize);
+                let currentBoxSize = parseInt(boxes[j].dataset.boxsize);    // error printed to console about this line (run insertion sort to see error)
                 if(boxSize >= currentBoxSize || (j==1 && boxSize<=currentBoxSize)){
                     if(j==1 && boxSize<currentBoxSize)
                         shift=1;
@@ -174,5 +191,5 @@ function insertionSortSlowed(){
 }
 
 function mergeSort(){
-
+    console.log("merge sort started");
 }
