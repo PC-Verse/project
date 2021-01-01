@@ -91,7 +91,7 @@ function displayFinish(){
         setTimeout(() => {
                 // get min
             boxes[i].style.backgroundColor = "#3cff00";
-            }, 2000/numRects * i );    
+            }, 1000/numRects * i );    
     }
 }
 function selectionSortSlowed() {
