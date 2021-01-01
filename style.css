@@ -12,6 +12,12 @@ body {
 a {
     text-decoration: none;
 }
+
+.visualization-box{
+  display: inline;
+  color: yellow;
+
+}
 p{
     background-image: url(images/coding.jpg);
     text-shadow: 7px 7px 7px #000000;
@@ -31,7 +37,7 @@ a:hover {
   margin-left: 40vw;
 }
 
-.navigation {
+.navigation{
     border-bottom: solid black;
     border-width: 1px;
     padding: 10px;
@@ -94,6 +100,14 @@ img {
 
 .cite {
     font-size: 12px;
+}
+
+.num{
+  width: 50%;
+  font-size: 30px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  margin-left: 40%;
+  display: flex;
 }
 
 .dropbtn {

@@ -1,5 +1,5 @@
 var boxContainer;
-var numRects;
+var numRects = 100;
 
 function initialize() {
     //boxContainer = document.getElementById( "Box-Container" );
@@ -66,6 +66,7 @@ function sort() {
     let radioBtn = document.getElementsByName('sort');
     for (let i = 0; i < radioBtn.length; i++) {
         if (radioBtn[i].checked) {
+
             if (radioBtn[i].value == "merge") {
                 mergeSort();
             }
@@ -87,9 +88,9 @@ function sort() {
 //  }
 
 function selectionSortSlowed() {
+    createRectangles();
     let boxes = boxContainer.childNodes;
     console.log("selection sort started");
-
     for (let i = 1; i <= numRects; i++) {
 
         setTimeout(() => {
@@ -112,7 +113,7 @@ function selectionSortSlowed() {
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
             // boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 4000/(Math.pow(numRects,0.1)) * i );
-            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 250 * i );    
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 1000/numRects * i );    
         }
  }
 
@@ -148,6 +149,8 @@ function selectionSortSlowed() {
 // }
 
 function insertionSortSlowed(){
+    createRectangles();
+
     console.log("insertion sort started");
 
     let boxes = boxContainer.childNodes;
@@ -162,7 +165,7 @@ function insertionSortSlowed(){
             for (let j = i-1; j >=0; j--) {
                 let currentBoxSize = parseInt(boxes[j].dataset.boxsize);    // error printed to console about this line (run insertion sort to see error)
                 if(boxSize >= currentBoxSize || (j==1 && boxSize<=currentBoxSize)){
-                    if(j==1 && boxSize<currentBoxSize)
+                    if(j<=1 && boxSize<currentBoxSize)
                         shift=1;
                     else
                         shift=j+1;

@@ -4,7 +4,7 @@
         <title>Visualization of Sorting Algorithms</title>
         <script src="scripts/scripts.js"></script>
     </head>
-    <body >
+    <body onload = "createRectangles()">
         
         <div class="navigation flex">
             <div class="dropdown">
@@ -23,7 +23,7 @@
         <p>
             Sorting Visualization
         </p>
-        <div class="visualization box">
+        <div class="visualization-box">
 
             <div class="container">
                 <div id="Box-Container">
@@ -32,28 +32,25 @@
 
             </div>
 
-            <button class = "button" type="button" onclick="sort()">Click To Start Sort!</button>
+
             
         </div>
-        <div class="userInput-box">
+        <div class="btns">
             
-
-                <input type="radio" name="sort" value = "merge">
-                <label for="merge">Merge Sort</label><br>
-
-                <input type="radio" name="sort" value="selection">
-                <label for="selection">Selection Sort</label><br>
-
-                <input type="radio" name="sort" value="insertion">
-                <label for="insertion">Insertion Sort</label><br>
-            
-                
-                <label for="amountOfRectangles"> Enter Amount of Rectangles to Sort:</label>
-                <input type="number" value="" id="amountOfRectangles" name="amountOfRectangles" onchange="createRectangles()"> <br>
-                 
+                <!-- <button class = "button" type="button" onclick="sort()">Click To Start Sort!</button> -->
+                <button class = "mergebtn" type="button" onclick="sort()">Merge Sort!</button>
+                <button class = "sbtn" type="button" onclick="selectionSortSlowed()">Selction Sort!</button>
+                <button class = "ibtn" type="button" onclick="insertionSortSlowed()">Insertion Sort!</button>
+              
                 <!-- <input type="submit" value="Submit" onclick="createRectangles()" > -->
             
-
         </div>
+
+        <div class="num">
+            <label for="amountOfRectangles"> Enter Amount of Rectangles to Sort:</label>
+            <input type="number" value="100" id="amountOfRectangles" name="amountOfRectangles" onchange="createRectangles()"> <br>
+        </div>
+       
+         
     </body>
 </html>
