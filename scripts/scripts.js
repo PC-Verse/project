@@ -109,7 +109,7 @@ function selectionSortSlowed() {
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
             boxes[i].style.backgroundColor = "#3cff00";
-            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 1000/numRects * i );    
+            boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 2000/numRects * i );    
         }
  }
 
@@ -185,7 +185,7 @@ function insertionSortSlowed(){
             boxes[i].style.backgroundColor = "#3cff00";
 
             // swap min
-           }, 1000/numRects * i );
+           }, 2000/numRects * i );
 
     }
     boxes[1].style.backgroundColor = "#3cff00";
