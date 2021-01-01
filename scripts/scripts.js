@@ -205,7 +205,7 @@ function insertionSortSlowed(){
                 displayFinish();
 
             // swap min
-           }, 2000/numRects * i );
+           }, 4000/numRects * i );
 
 
 
