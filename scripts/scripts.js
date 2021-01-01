@@ -40,7 +40,11 @@ function createRectangles() {
         for(let i =0 ; i<N; i++){
             let box = document.createElement( "div" );
             box.className = "rectangle";
-            box.style.backgroundColor= 'blue';
+            if(i%2==0)
+                box.style.backgroundColor= "red";
+            else
+                box.style.backgroundColor= "blue";
+
             let x =  getRandHeight();
             let y = x.toString() + "px";
             box.style.height = y;
@@ -79,14 +83,6 @@ function sort() {
         }
     }
 }
-
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-//  }
-//  async function Tutor() {
-//     sleep(3000);
-//  }
-
 function selectionSortSlowed() {
     createRectangles();
     let boxes = boxContainer.childNodes;
@@ -112,7 +108,7 @@ function selectionSortSlowed() {
             boxes[minIndex].dataset.boxsize = temp;
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-            // boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 4000/(Math.pow(numRects,0.1)) * i );
+            boxes[i].style.backgroundColor = "#3cff00";
             boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 1000/numRects * i );    
         }
  }
@@ -156,7 +152,7 @@ function insertionSortSlowed(){
     let boxes = boxContainer.childNodes;
     let shift = 0;
     let value = 0;
-    for (let i = 1; i <= numRects; i++) {
+    for (let i = 0; i <= numRects; i++) {
 
         setTimeout(() => {
                 
@@ -186,10 +182,13 @@ function insertionSortSlowed(){
             boxes[shift].dataset.boxsize = value;
             boxes[shift].style.height =  value.toString() + "px";
 
-    
+            boxes[i].style.backgroundColor = "#3cff00";
+
             // swap min
            }, 1000/numRects * i );
+
     }
+    boxes[1].style.backgroundColor = "#3cff00";
 
 }
 
