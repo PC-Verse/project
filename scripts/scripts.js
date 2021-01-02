@@ -1,6 +1,5 @@
 var boxContainer;
 var numRects = 100;
-var canSort = 0;
 
 function initialize() {
     //boxContainer = document.getElementById( "Box-Container" );
@@ -96,11 +95,6 @@ function displayFinish(){
     }
 }
 function selectionSortSlowed() {
-
-    if(canSort==1)
-        return;
-    
-    canSort=1;
     createRectangles();
     let boxes = boxContainer.childNodes;
     console.log("selection sort started");
@@ -126,11 +120,14 @@ function selectionSortSlowed() {
     
             boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
             boxes[i].style.backgroundColor = "grey";
-            if(i==numRects){
+            if(i==numRects)
                 displayFinish();
-                canSort=0;
-            }
             boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";}, 2000/numRects * i ); 
+
+
+
+
+
     }
     // displayFinish();
  }
@@ -167,9 +164,6 @@ function selectionSortSlowed() {
 // }
 
 function insertionSortSlowed(){
-    if(canSort==1)
-        return;
-    canSort=1;
     createRectangles();
 
     console.log("insertion sort started");
@@ -207,10 +201,8 @@ function insertionSortSlowed(){
             boxes[shift].style.height =  value.toString() + "px";
             
             boxes[i].style.backgroundColor = "grey";
-            if(i==numRects){
+            if(i==numRects)
                 displayFinish();
-                canSort=0;
-            }
 
             // swap min
            }, 4000/numRects * i );
