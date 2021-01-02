@@ -2,7 +2,7 @@ var boxContainer;
 var numRects = 100;
 // var sorting = {"insertionSort":false, "selectionSort":false, "mergeSort":false};
 var timeouts = [];
-var canSort =0;
+var canSort = true;
 function initialize() {
     //boxContainer = document.getElementById( "Box-Container" );
     createRectangles() ;
@@ -90,10 +90,11 @@ function displayFinish(){
     let boxes = boxContainer.childNodes;
     for (let i = 1; i <= numRects; i++) {
 
-        setTimeout(() => {
+        let timeout = setTimeout(() => {
                 // get min
             boxes[i].style.backgroundColor = "#3cff00";
-            }, 1000/numRects * i );    
+        }, 1000/numRects * i );
+        timeouts.push(timeout);
     }
 }
 
@@ -117,12 +118,12 @@ function killAllTimeouts() {
 }
 
 function selectionSortSlowed() {
-    //killAllTimeouts();
+    killAllTimeouts();
 
-    if(canSort==1)
-        return;
+    // if(!canSort)
+    //     return;
 
-    canSort=1;
+    // canSort = false;
     createRectangles();
     let boxes = boxContainer.childNodes;
     console.log("selection sort started");
@@ -149,7 +150,7 @@ function selectionSortSlowed() {
                 boxes[i].style.backgroundColor = "grey";
                 if(i==numRects){
                     displayFinish();
-                    canSort=0;
+                    // canSort = true;
                 }
                 boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";
             }, 2000/numRects * i );
@@ -159,12 +160,12 @@ function selectionSortSlowed() {
  }
 
 function insertionSortSlowed(){
-    //killAllTimeouts();
+    killAllTimeouts();
 
-    if(canSort!=0)
-        return;
+    // if(!canSort)
+    //     return;
 
-    canSort=1;
+    // canSort = false;
     createRectangles();
 
     console.log("insertion sort started");
@@ -173,7 +174,7 @@ function insertionSortSlowed(){
     let shift = 0;
     let value = 0;
     for (let i = 1; i <= numRects; i++) {
-            setTimeout(() => {
+            let timeout = setTimeout(() => {
                 
                 let boxSize = parseInt(boxes[i].dataset.boxsize);
                 //find the correct insertion point
@@ -203,16 +204,21 @@ function insertionSortSlowed(){
                 boxes[i].style.backgroundColor = "grey";
                 if(i==numRects){
                     displayFinish();
-                    canSort=0;
+                    // canSort = true;
                 }
                 // swap min
-               }, 2000/numRects * i );
+            }, 2000/numRects * i );
+            timeouts.push(timeout);
     }
         boxes[1].style.backgroundColor = "grey";
 }
 
 function runMergeSort(){
-    killAllTimeouts();
+    // killAllTimeouts();
+
+    // if(!canSort)
+    //     return;
+    // canSort = false;
 
     console.log("merge sort started");
 
@@ -224,6 +230,7 @@ function runMergeSort(){
     mergeSort(boxes, 1, numRects, iteration);
 
     displayFinish();
+    // canSort = true;
 }
 
 function mergeSort(boxes, leftIndex, rightIndex, iteration) {
