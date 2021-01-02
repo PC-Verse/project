@@ -1,6 +1,5 @@
 var boxContainer;
 var numRects = 100;
-var canSort=0;
 
 function initialize() {
     //boxContainer = document.getElementById( "Box-Container" );
@@ -68,8 +67,6 @@ function createRectangles() {
 
 }
 function sort() {
-    if(canSort==1)
-        return;
     let radioBtn = document.getElementsByName('sort');
     for (let i = 0; i < radioBtn.length; i++) {
         if (radioBtn[i].checked) {
