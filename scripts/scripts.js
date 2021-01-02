@@ -86,6 +86,7 @@ function createRectangles() {
 // }
 
 function displayFinish(){
+
     let boxes = boxContainer.childNodes;
     for (let i = 1; i <= numRects; i++) {
 
@@ -116,8 +117,12 @@ function killAllTimeouts() {
 }
 
 function selectionSortSlowed() {
-    killAllTimeouts();
+    //killAllTimeouts();
 
+    if(canSort==1)
+        return;
+
+    canSort=1;
     createRectangles();
     let boxes = boxContainer.childNodes;
     console.log("selection sort started");
@@ -142,8 +147,10 @@ function selectionSortSlowed() {
         
                 boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
                 boxes[i].style.backgroundColor = "grey";
-                if(i==numRects)
+                if(i==numRects){
                     displayFinish();
+                    canSort=0;
+                }
                 boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";
             }, 2000/numRects * i );
             timeouts.push(timeout);
@@ -151,40 +158,13 @@ function selectionSortSlowed() {
     // displayFinish();
  }
 
-// function selectionSort() {
-
-//     let boxes = boxContainer.childNodes;
-    
-//     console.log(boxes[1]);
-//     for(let i = numRects; i>1; i--){
-//         let max=0;
-//         let index=1;
-//         for(let j=1; j<=i; j++){
-//             let x = parseInt(boxes[j].dataset.boxsize);
-//             if(x > max){
-//                 max = x;
-//                 index=j;
-//             }
-
-//         }
-
-
-//         //debugger;
-//         let temp = parseInt(boxes[i].dataset.boxsize);
-//         boxes[i].dataset.boxsize = max.toString();
-//         boxes[index].dataset.boxsize =  temp;
-
-//         boxes[i].style.height = (boxes[i].dataset.boxsize) + "px";
-//         boxes[index].style.height = (boxes[index].dataset.boxsize) +"px";
-
-
-//     }
-    
-// }
-
 function insertionSortSlowed(){
-    killAllTimeouts();
+    //killAllTimeouts();
 
+    if(canSort!=0)
+        return;
+
+    canSort=1;
     createRectangles();
 
     console.log("insertion sort started");
@@ -221,9 +201,10 @@ function insertionSortSlowed(){
                 boxes[shift].style.height =  value.toString() + "px";
                 
                 boxes[i].style.backgroundColor = "grey";
-                if(i==numRects)
+                if(i==numRects){
                     displayFinish();
-    
+                    canSort=0;
+                }
                 // swap min
                }, 2000/numRects * i );
     }
