@@ -12,6 +12,13 @@ body {
 a {
     text-decoration: none;
 }
+h1 {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+ h2{
+   margin: 0 0 0 0;
+ }
 
 .visualization-box{
   display: inline;
@@ -47,15 +54,15 @@ a:hover {
 
 .navigation{
     /* border-bottom: solid black; */
-    margin-left: 35%;
-    align-items: center;
+    /* margin-left: 35%; */
+    /* align-items: center; */
     border-width: 1px;
     padding: 10px;
-    margin-bottom: 10%;
+    /* margin-bottom: 3%; */
 }
 
 .flex {
-    display:inline-block;
+    display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -190,4 +197,6 @@ img {
     margin-left: auto;
     margin-right: auto;
     align-items: center;
+    margin-top: 0;
+
   }
