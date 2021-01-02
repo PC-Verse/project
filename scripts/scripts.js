@@ -226,10 +226,9 @@ function runMergeSort(){
 
     let boxes = boxContainer.childNodes;
 
-    var iteration = {"value":0};    // make iteration an object so it gets passed by reference
+    var iteration = {"value":1};    // make iteration an object so it gets passed by reference
     mergeSort(boxes, 1, numRects, iteration);
-
-    displayFinish();
+    setTimeout(displayFinish, 2000/numRects * (numRects));
     // canSort = true;
 }
 
@@ -240,61 +239,50 @@ function mergeSort(boxes, leftIndex, rightIndex, iteration) {
         mergeSort(boxes, leftIndex, half, iteration);
         mergeSort(boxes, half+1, rightIndex, iteration);
         
-        // merge(boxes, leftIndex, half, rightIndex, iteration);
-        setTimeout(function() {merge(boxes, leftIndex, half, rightIndex, iteration)}, 200 * iteration.value);
-         
+        let timeout = setTimeout(merge, 2000/numRects * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
+        timeouts.push(timeout);
+        iteration.value = iteration.value +1;
     }
 }
 
-function merge(boxes, leftIndex, half, rightIndex, iteration) {
-    // setTimeout(() => {
-        iteration.value = iteration.value + 1;    
-        // console.log((typeof iteration) + iteration.value);
+function merge(boxes, leftIndex, half, rightIndex) {
+    let heights = [];
+    heights.length = parseInt((rightIndex - leftIndex) + 1);
+        
+    let l = leftIndex;
+    let r = half + 1;
+    let i = 0;
 
-        let heights = [];
-        heights.length = parseInt((rightIndex - leftIndex) + 1);
-            
-        let l = leftIndex;
-        let r = half + 1;
-        let i = 0;
-    
-        while (l < (half + 1) && r < (rightIndex + 1) && i < heights.length) {
-            let leftBoxSize = parseInt(boxes[l].dataset.boxsize);
-            let rightBoxSize = parseInt(boxes[r].dataset.boxsize);
-            if (leftBoxSize < rightBoxSize) {
-                heights[i] = leftBoxSize;
-                l++
-            }
-            else {  // rightBoxSize < leftBoxSize
-                heights[i] = rightBoxSize;
-                r++
-            }
+    while (l < (half + 1) && r < (rightIndex + 1) && i < heights.length) {
+        let leftBoxSize = parseInt(boxes[l].dataset.boxsize);
+        let rightBoxSize = parseInt(boxes[r].dataset.boxsize);
+        if (leftBoxSize < rightBoxSize) {
+            heights[i] = leftBoxSize;
+            l++
+        }
+        else {  // rightBoxSize < leftBoxSize
+            heights[i] = rightBoxSize;
+            r++
+        }
+        i++;
+    }
+    if (i < heights.length) {
+        while (l < half+1) {
+            heights[i] = parseInt(boxes[l].dataset.boxsize);
+            l++;
             i++;
         }
-        if (i < heights.length) {
-            while (l < half+1) {
-                heights[i] = parseInt(boxes[l].dataset.boxsize);
-                l++;
-                i++;
-            }
-            while (r < rightIndex+1) {
-                heights[i] = parseInt(boxes[r].dataset.boxsize);
-                r++;
-                i++;
-            }
+        while (r < rightIndex+1) {
+            heights[i] = parseInt(boxes[r].dataset.boxsize);
+            r++;
+            i++;
         }
-    
-        for (let j = leftIndex; j < (rightIndex + 1); j++) {
-            boxes[j].dataset.boxsize = "" + heights[j-leftIndex];
-            
-            boxes[j].style.height = (boxes[j].dataset.boxsize) + "px";
-            boxes[j].style.backgroundColor = "grey";
-        }
+    }
 
-        // let delayTime = 2000 * parseInt(iteration.value);
-        console.log("in merge: " + iteration.value);
-        // console.log ("delay time: "+ delayTime);
+    for (let j = leftIndex; j < (rightIndex + 1); j++) {
+        boxes[j].dataset.boxsize = "" + heights[j-leftIndex];
         
-    // }, 2000 * parseInt(iteration.value));
-
+        boxes[j].style.height = (boxes[j].dataset.boxsize) + "px";
+        boxes[j].style.backgroundColor = "grey";
+    }
 }
