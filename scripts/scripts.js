@@ -225,7 +225,7 @@ function insertionSortSlowed(){
                     displayFinish();
     
                 // swap min
-               }, 4000/numRects * i );
+               }, 2000/numRects * i );
     }
         boxes[1].style.backgroundColor = "grey";
 }
