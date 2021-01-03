@@ -22,6 +22,8 @@ function getWidth() {
 
 
 function createRectangles() {
+    killAllTimeouts();
+
     boxContainer = document.getElementById("Box-Container");
 
     let rects = document.getElementsByClassName("rectangle");
@@ -81,17 +83,6 @@ function displayFinish() {
     }
 }
 
-function turnOffOtherSorts(sortName) {  // i odn't use this (turns out it doesn't work)
-    for (var sortNameKey in sorting) {
-        if (sortNameKey != sortName) {
-            sorting[sortNameKey] = false;
-        }
-        else {
-            sorting[sortNameKey] = true;
-        }
-    }
-}
-
 function killAllTimeouts() {
     while (timeouts.length >= 1) {
         clearTimeout(timeouts[0]);
@@ -101,7 +92,7 @@ function killAllTimeouts() {
 }
 
 function selectionSortSlowed() {
-    killAllTimeouts();
+    // killAllTimeouts();
 
     // if(!canSort)
     //     return;
@@ -142,7 +133,7 @@ function selectionSortSlowed() {
 }
 
 function insertionSortSlowed() {
-    killAllTimeouts();
+    // killAllTimeouts();
 
     // if(!canSort)
     //     return;
@@ -188,7 +179,6 @@ function insertionSortSlowed() {
                 displayFinish();
                 // canSort = true;
             }
-            // swap min
         }, 2000 / numRects * i);
         timeouts.push(timeout);
     }
@@ -196,7 +186,7 @@ function insertionSortSlowed() {
 }
 
 function runMergeSort() {
-    killAllTimeouts();
+    // killAllTimeouts();
 
     // if(!canSort)
     //     return;
@@ -267,5 +257,44 @@ function merge(boxes, leftIndex, half, rightIndex) {
 
         boxes[j].style.height = (boxes[j].dataset.boxsize) + "px";
         boxes[j].style.backgroundColor = "grey";
+    }
+}
+
+function bubbleSortSlowed() {
+    // killAllTimeouts();
+    
+    createRectangles();
+    
+    let boxes = boxContainer.childNodes;
+    console.log("bubble sort started");
+
+    for (let i = numRects; i >= 1; i--) {
+
+        let timeout = setTimeout(() => {
+            for (let j = 2; j <= i; j++) {
+                let leftBoxSize = parseInt(boxes[j-1].dataset.boxsize);
+                let currentBoxSize = parseInt(boxes[j].dataset.boxsize);
+                if (leftBoxSize > currentBoxSize) {
+                    // swap them
+                    let temp = leftBoxSize;
+                    boxes[j-1].dataset.boxsize = currentBoxSize + "";
+                    boxes[j].dataset.boxsize = temp + "";
+
+                    boxes[j-1].style.height = (boxes[j-1].dataset.boxsize) + "px";
+                    boxes[j].style.height = (boxes[j].dataset.boxsize) + "px";
+
+                    // boxes[j-1].style.backgroundColor = "grey";
+                    // boxes[j].style.backgroundColor = "grey";
+
+                }
+            }
+            boxes[i].style.backgroundColor = "grey";
+            if (i == 1) {
+                displayFinish();
+            }
+        }, 4000/numRects * (numRects-i));
+        timeouts.push(timeout);
+        
+
     }
 }
