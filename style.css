@@ -26,8 +26,12 @@ h1 {
 
 }
 
-.slidecontainer{
+.textSpeed{
+  font-size: 20px;
   margin-top: 20px;
+  margin-left: 40%;
+}
+.slider{
   margin-bottom: 20px;
   width: 50%; /* Full-width */
   margin-left: 25% ;
