@@ -203,12 +203,20 @@ function Quicksort(boxes, low, high, iteration){
         console.log(low + " " + high);
         var index = partition(boxes, low, high, iteration);
 
-        // let timeout = setTimeout(partition, 2000 / numRects*iteration.value);
-        // timeouts.push(timeout);
-        // iteration.value++;
+        // var index;
 
-        Quicksort(boxes, low, index-1)        
-        Quicksort(boxes, index+1, high);
+        // let timeout = setTimeout(() => {index = partition(boxes, low, high, iteration);}, 2000 / numRects*iteration.value);
+        // console.log("index: " +index + ", iteration: " + iteration.value);
+        // timeouts.push(timeout);
+        // iteration.value = iteration.value + 1;
+
+        // let timeout2 = setTimeout(Quicksort, 2000 / numRects*iteration.value, low, index-1, iteration);
+        // let timeout3 = setTimeout(Quicksort, 200/numRects * iteration.value, index+1, high, iteration);
+        // timeouts.push(timeout2);
+        // timeouts.push(timeout3);
+
+        Quicksort(boxes, low, index-1, iteration);        
+        Quicksort(boxes, index+1, high, iteration);
     }
 }
 
