@@ -11,7 +11,7 @@ function initialize() {
 }
 
 function getRandHeight() {
-    let randH = Math.floor(300 * Math.random(0));
+    let randH = Math.floor(299 * Math.random(0))+1;
     return randH;
 }
 
@@ -192,31 +192,63 @@ function runQuickSort(){
     createRectangles();
     let boxes = boxContainer.childNodes;
     var iteration = { "value": 1 };
+    // let timeout = setTimeout(() => {
+    //     Quicksort(boxes, 1, numRects, iteration);
+    //     displayFinish();
+    // }, 0);
+    
     Quicksort(boxes, 1, numRects, iteration);
 
-    let timeout = setTimeout(displayFinish, 2000 / numRects * (numRects));
+    let delayT = 2000 / numRects * Math.pow(numRects, 1.32)
+    console.log("display finish delay time multiplier: "+2*numRects + ", delay time: " + delayT);
+    let timeout = setTimeout(displayFinish, delayT);
     timeouts.push(timeout);
 }
 
 function Quicksort(boxes, low, high, iteration){
     if(low < high){
         console.log(low + " " + high);
-        var index = partition(boxes, low, high, iteration);
+        // var index = partition(boxes, low, high, iteration);
 
-        // var index;
+        let index;
+        let timeout = setTimeout(() => {
+            index = partition(boxes, low, high);
+            Quicksort(boxes, low, index-1, iteration);        
+            Quicksort(boxes, index+1, high, iteration);
+        }, 2000 / numRects * iteration.value);
+        console.log("index: " +index + ", iteration: " + iteration.value+ ", delay time: "+2000 / numRects * iteration.value);
+        timeouts.push(timeout);
+        iteration.value = iteration.value + 1;
 
-        // let timeout = setTimeout(() => {index = partition(boxes, low, high, iteration);}, 2000 / numRects*iteration.value);
-        // console.log("index: " +index + ", iteration: " + iteration.value);
-        // timeouts.push(timeout);
-        // iteration.value = iteration.value + 1;
-
-        // let timeout2 = setTimeout(Quicksort, 2000 / numRects*iteration.value, low, index-1, iteration);
-        // let timeout3 = setTimeout(Quicksort, 200/numRects * iteration.value, index+1, high, iteration);
+        // let timeout2 = setTimeout(Quicksort, 2000 / numRects*(iteration.value+0.5), low, index-1, iteration);
+        // let timeout3 = setTimeout(Quicksort, 200/numRects * (iteration.value+0.5), index+1, high, iteration);
         // timeouts.push(timeout2);
         // timeouts.push(timeout3);
 
-        Quicksort(boxes, low, index-1, iteration);        
-        Quicksort(boxes, index+1, high, iteration);
+        // let index;
+        // let promise = new Promise(function(myResolve, myReject) {
+        //     let timeout = setTimeout(() => {
+        //         index = partition(boxes, low, high);
+        //     }, 2000/numRects * iteration.value);
+        //     timeouts.push(timeout);
+        //     console.log("index: " +index + ", iteration: " + iteration.value+ ", delay time: "+2000 / numRects * iteration.value);
+        //     iteration.value = iteration.value + 1;
+        //     if (index != "undefined") {
+        //         myResolve("OK");
+        //     }
+        //     else {
+        //         myReject("Error");
+        //     }
+        // })
+        // promise.then(
+        //     function(value) {
+        //         Quicksort(boxes, low, index-1, iteration);        
+        //         Quicksort(boxes, index+1, high, iteration);
+        //     }
+        // );
+
+        // Quicksort(boxes, low, index-1, iteration);        
+        // Quicksort(boxes, index+1, high, iteration);
     }
 }
 
@@ -227,6 +259,35 @@ function Quicksort(boxes, low, high, iteration){
         iteration.value = iteration.value + 1; */
 
 function partition( boxes, low, high){
+    // setTimeout(() => {
+        // var pivot = parseInt(boxes[high].dataset.boxsize);
+        // var i = low-1;
+
+        // for(var j =low; j<high; j++){
+        //     var curr = parseInt(boxes[j].dataset.boxsize);
+        //     if(curr<pivot){
+        //         i++;
+        //         // swap boxes[i] and boxes[j]
+        //         var temp = parseInt(boxes[j].dataset.boxsize);
+
+        //         boxes[j].dataset.boxsize = boxes[i].dataset.boxsize;
+        //         boxes[j].style.boxsize = boxes[i].dataset.boxsize + "px";
+                
+        //         boxes[i].dataset.boxsize = temp;
+        //         boxes[i].style.height = temp.toString()+"px";
+        //     }
+        // }
+        // // swap boxes[i+1] and boxes[high]
+        // var temp1 = boxes[i+1].dataset.boxsize;
+        // boxes[i+1].dataset.boxsize = boxes[high].dataset.boxsize;
+        // boxes[i+1].style.height = boxes[high].dataset.boxsize.toString() + "px";
+        // boxes[i+1].style.backgroundColor = "grey";
+        // boxes[high].style.backgroundColor = "grey";
+        // boxes[high].dataset.boxsize = temp1;
+        // boxes[high].style.height = temp1.toString() + "px";
+
+        // return i+1;
+    // }, 2000/numRects*iteration.value);
     var pivot = parseInt(boxes[high].dataset.boxsize);
     var i = low-1;
 
@@ -234,6 +295,7 @@ function partition( boxes, low, high){
         var curr = parseInt(boxes[j].dataset.boxsize);
         if(curr<pivot){
             i++;
+            // swap boxes[i] and boxes[j]
             var temp = parseInt(boxes[j].dataset.boxsize);
 
             boxes[j].dataset.boxsize = boxes[i].dataset.boxsize;
@@ -243,11 +305,12 @@ function partition( boxes, low, high){
             boxes[i].style.height = temp.toString()+"px";
         }
     }
+    // swap boxes[i+1] and boxes[high]
     var temp1 = boxes[i+1].dataset.boxsize;
     boxes[i+1].dataset.boxsize = boxes[high].dataset.boxsize;
     boxes[i+1].style.height = boxes[high].dataset.boxsize.toString() + "px";
     boxes[i+1].style.backgroundColor = "grey";
-    boxes[i+2].style.backgroundColor = "grey";
+    boxes[high].style.backgroundColor = "grey";
     boxes[high].dataset.boxsize = temp1;
     boxes[high].style.height = temp1.toString() + "px";
 
