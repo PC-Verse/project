@@ -207,7 +207,7 @@ function Quicksort(boxes, low, high, iteration){
         // timeouts.push(timeout);
         // iteration.value++;
 
-        Quicksort(boxes, low, index-1);
+        Quicksort(boxes, low, index-1)        
         Quicksort(boxes, index+1, high);
     }
 }
