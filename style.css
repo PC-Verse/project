@@ -25,6 +25,19 @@ h1 {
   color: yellow;
 
 }
+
+.slider{
+  width: 50%; /* Full-width */
+  margin-left: 25% ;
+  justify-content: center;
+  align-items: center;
+  height: 25px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+}
 p{
     background-image: url(images/coding.jpg);
     text-shadow: 7px 7px 7px #000000;

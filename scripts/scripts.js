@@ -1,5 +1,6 @@
 var boxContainer;
 var numRects = 100;
+var sliderSpeed = 50;
 var timeouts = [];
 var canSort = true;
 
@@ -35,8 +36,11 @@ function createRectangles() {
 
     //let NumRectangles = getElementById("amountOfRectangles");
     let N = document.getElementById("amountOfRectangles");
+    let S = document.getElementById("myRange");
+    sliderSpeed = parseInt(S.value)/100;
     N = parseInt(N.value);
     numRects = N;
+    console.log(sliderSpeed);
 
     if (N < 801 && N > 9) {
         //console.log(N);
@@ -128,7 +132,7 @@ function selectionSortSlowed() {
                 // canSort = true;
             }
             boxes[minIndex].style.height = (boxes[minIndex].dataset.boxsize) + "px";
-        }, 2000 / numRects * i);
+        }, 1000 / sliderSpeed /numRects  * i);
         timeouts.push(timeout);
     }
 }
@@ -180,7 +184,7 @@ function insertionSortSlowed() {
                 displayFinish();
                 // canSort = true;
             }
-        }, 2000 / numRects * i);
+        }, 1000 / sliderSpeed /numRects  * i);
         timeouts.push(timeout);
     }
     boxes[1].style.backgroundColor = "grey";
@@ -215,7 +219,7 @@ function Quicksort(boxes, low, high, iteration){
             index = partition(boxes, low, high);
             Quicksort(boxes, low, index-1, iteration);        
             Quicksort(boxes, index+1, high, iteration);
-        }, 2000 / numRects * iteration.value);
+        }, 1000 / sliderSpeed /numRects  * iteration.value);
         console.log("index: " +index + ", iteration: " + iteration.value+ ", delay time: "+2000 / numRects * iteration.value);
         timeouts.push(timeout);
         iteration.value = iteration.value + 1;
@@ -349,7 +353,7 @@ function mergeSort(boxes, leftIndex, rightIndex, iteration) {
         mergeSort(boxes, leftIndex, half, iteration);
         mergeSort(boxes, half + 1, rightIndex, iteration);
 
-        let timeout = setTimeout(merge, 2000 / numRects * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
+        let timeout = setTimeout(merge, 1000 / numRects / sliderSpeed * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
         timeouts.push(timeout);
 
         iteration.value = iteration.value + 1;
@@ -430,7 +434,7 @@ function bubbleSortSlowed() {
             if (i == 1) {
                 displayFinish();
             }
-        }, 4000/numRects * (numRects-i));
+        }, 4000/numRects/sliderSpeed * (numRects-i));
         timeouts.push(timeout);
         
 
