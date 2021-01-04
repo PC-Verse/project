@@ -194,8 +194,8 @@ function runQuickSort(){
     var iteration = { "value": 1 };
     Quicksort(boxes, 1, numRects, iteration);
 
-    // let timeout = setTimeout(displayFinish, 2000 / numRects * (numRects));
-    // timeouts.push(timeout);
+    let timeout = setTimeout(displayFinish, 2000 / numRects * (numRects));
+    timeouts.push(timeout);
 }
 
 function Quicksort(boxes, low, high, iteration){
@@ -239,6 +239,7 @@ function partition( boxes, low, high){
     boxes[i+1].dataset.boxsize = boxes[high].dataset.boxsize;
     boxes[i+1].style.height = boxes[high].dataset.boxsize.toString() + "px";
     boxes[i+1].style.backgroundColor = "grey";
+    boxes[i+2].style.backgroundColor = "grey";
     boxes[high].dataset.boxsize = temp1;
     boxes[high].style.height = temp1.toString() + "px";
 
