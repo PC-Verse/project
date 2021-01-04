@@ -91,6 +91,7 @@ function killAllTimeouts() {
 
 }
 
+
 function selectionSortSlowed() {
     // killAllTimeouts();
 
@@ -185,6 +186,67 @@ function insertionSortSlowed() {
     boxes[1].style.backgroundColor = "grey";
 }
 
+function runQuickSort(){
+
+    console.log("quick sort started");
+    createRectangles();
+    let boxes = boxContainer.childNodes;
+    var iteration = { "value": 1 };
+    Quicksort(boxes, 1, numRects, iteration);
+
+    // let timeout = setTimeout(displayFinish, 2000 / numRects * (numRects));
+    // timeouts.push(timeout);
+}
+
+function Quicksort(boxes, low, high, iteration){
+    if(low < high){
+        console.log(low + " " + high);
+        var index = partition(boxes, low, high, iteration);
+
+        // let timeout = setTimeout(partition, 2000 / numRects*iteration.value);
+        // timeouts.push(timeout);
+        // iteration.value++;
+
+        Quicksort(boxes, low, index-1);
+        Quicksort(boxes, index+1, high);
+    }
+}
+
+/*
+        let timeout = setTimeout(merge, 2000 / numRects * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
+        timeouts.push(timeout);
+
+        iteration.value = iteration.value + 1; */
+
+function partition( boxes, low, high){
+    var pivot = parseInt(boxes[high].dataset.boxsize);
+    var i = low-1;
+
+    for(var j =low; j<high; j++){
+        var curr = parseInt(boxes[j].dataset.boxsize);
+        if(curr<pivot){
+            i++;
+            var temp = parseInt(boxes[j].dataset.boxsize);
+
+            boxes[j].dataset.boxsize = boxes[i].dataset.boxsize;
+            boxes[j].style.boxsize = boxes[i].dataset.boxsize + "px";
+            
+            boxes[i].dataset.boxsize = temp;
+            boxes[i].style.height = temp.toString()+"px";
+        }
+    }
+    var temp1 = boxes[i+1].dataset.boxsize;
+    boxes[i+1].dataset.boxsize = boxes[high].dataset.boxsize;
+    boxes[i+1].style.height = boxes[high].dataset.boxsize.toString() + "px";
+    boxes[i+1].style.backgroundColor = "grey";
+    boxes[high].dataset.boxsize = temp1;
+    boxes[high].style.height = temp1.toString() + "px";
+
+    return i+1;
+}
+
+
+
 function runMergeSort() {
     // killAllTimeouts();
 
@@ -205,6 +267,9 @@ function runMergeSort() {
     // canSort = true;
 }
 
+
+
+
 function mergeSort(boxes, leftIndex, rightIndex, iteration) {
     if (leftIndex < rightIndex) {
         let half = parseInt(leftIndex + (rightIndex - leftIndex) / 2);
@@ -214,6 +279,7 @@ function mergeSort(boxes, leftIndex, rightIndex, iteration) {
 
         let timeout = setTimeout(merge, 2000 / numRects * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
         timeouts.push(timeout);
+
         iteration.value = iteration.value + 1;
     }
 }
