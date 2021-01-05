@@ -20,8 +20,6 @@ function getWidth() {
     return parseFloat(80.0 / numRects).toString() + "vw";
 }
 
-
-
 function createRectangles() {
     killAllTimeouts();
 
@@ -92,7 +90,6 @@ function killAllTimeouts() {
         clearTimeout(timeouts[0]);
         timeouts.shift();   // deletes first element in array
     }
-
 }
 
 
@@ -203,7 +200,7 @@ function runQuickSort(){
     
     Quicksort(boxes, 1, numRects, iteration);
 
-    let delayT = 2000 / numRects * Math.pow(numRects, 1.32)
+    let delayT = 1000 / numRects / sliderSpeed * Math.pow(numRects, 1.325)
     console.log("display finish delay time multiplier: "+2*numRects + ", delay time: " + delayT);
     let timeout = setTimeout(displayFinish, delayT);
     timeouts.push(timeout);
@@ -338,7 +335,7 @@ function runMergeSort() {
 
     var iteration = { "value": 1 };    // make iteration an object so it gets passed by reference
     mergeSort(boxes, 1, numRects, iteration);
-    let timeout = setTimeout(displayFinish, 2000 / numRects * (numRects));
+    let timeout = setTimeout(displayFinish, 1000 / numRects / sliderSpeed * (numRects));
     timeouts.push(timeout);
     // canSort = true;
 }
