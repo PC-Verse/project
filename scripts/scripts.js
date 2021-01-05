@@ -80,7 +80,7 @@ function displayFinish() {
         let timeout = setTimeout(() => {
             // get min
             boxes[i].style.backgroundColor = "#3cff00";
-        }, 1000 / numRects * i);
+        }, 500 / numRects * i);
         timeouts.push(timeout);
     }
 }
@@ -301,7 +301,8 @@ function partition( boxes, low, high){
 
             boxes[j].dataset.boxsize = boxes[i].dataset.boxsize;
             boxes[j].style.boxsize = boxes[i].dataset.boxsize + "px";
-            
+            boxes[j].style.backgroundColor = "grey";
+
             boxes[i].dataset.boxsize = temp;
             boxes[i].style.height = temp.toString()+"px";
         }
@@ -312,6 +313,7 @@ function partition( boxes, low, high){
     boxes[i+1].style.height = boxes[high].dataset.boxsize.toString() + "px";
     boxes[i+1].style.backgroundColor = "grey";
     boxes[high].style.backgroundColor = "grey";
+
     boxes[high].dataset.boxsize = temp1;
     boxes[high].style.height = temp1.toString() + "px";
 
