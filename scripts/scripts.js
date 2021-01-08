@@ -352,7 +352,7 @@ function mergeSort(boxes, leftIndex, rightIndex, iteration) {
         mergeSort(boxes, leftIndex, half, iteration);
         mergeSort(boxes, half + 1, rightIndex, iteration);
 
-        let timeout = setTimeout(merge, 1000 / numRects / sliderSpeed * iteration.value, boxes, leftIndex, half, rightIndex, iteration);
+        let timeout = setTimeout(merge, 1000 / numRects / sliderSpeed * iteration.value, boxes, leftIndex, half, rightIndex);
         timeouts.push(timeout);
 
         iteration.value = iteration.value + 1;
