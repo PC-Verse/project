@@ -36,3 +36,46 @@
     transform: rotate(360deg);
   }
 }
+
+#NavBar {
+  width: 100vw;
+  border-bottom: solid black;
+  background-color: rgb(67, 116, 172);
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  font-size: 30px;
+}
+
+#postButton {
+  border-radius: 40%;
+  color: white;
+}
+#logoName {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+}
+
+.headerStuff {
+  border: solid rgb(186, 198, 211);
+  background-color: rgb(4, 30, 59);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: transform .3s;
+}
+.headerStuff:hover {
+  cursor: pointer;
+  transform: scale( 1.2 );
+}
+
+
+
+/* .body {
+  padding: 0px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 0 0 0 0;
+} */

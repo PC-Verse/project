@@ -3,33 +3,35 @@ import './App.css';
 import Greet from './components/Greet'
 import Button from './components/Button'
 import Welcome from './components/Welcome'
+import NavBar from './components/NavBar'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="body">      
+      {/* <header className="App-header"> */}
+        <NavBar/>
+        {/* <img src={logo} className="App-logo" alt="logo" /> */}
         
-        <Greet name="Kevin">
+        {/* <Greet name="Kevin">
           Child of Greet
         </Greet>
-        <Welcome/>
+        <Welcome/> */}
 
         
           {/* <br/> */}
-          <Button name="kevin"/>
+          {/* <Button name-="kevin"/> */}
           {/* <br/> */}
-          <Button name="benjamin"/>
+          {/* <Button name="benjamin"/> */}
 
-        <a
+        {/* <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-      </header>
+        </a> */}
+      {/* </header> */}
     </div>
   );
 }
