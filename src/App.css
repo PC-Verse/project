@@ -50,6 +50,7 @@
 #postButton {
   border-radius: 40%;
   color: white;
+  outline: 0;
 }
 #logoName {
   padding-left: 5px;
