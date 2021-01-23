@@ -24,44 +24,29 @@
         <p>
             Sorting Visualization
         </p>
-        <div class="visualization-box">
-
+        <div class="mainContent">
             <div class="container">
                 <div id="Box-Container">
-              
+            
                 </div>
 
             </div>
-
-
-            
-        </div>
-
-        <a class = "textSpeed">Change your Sorting Speed </a>
-        
-        <div class="slidecontainer">
-           
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-          </div>
-
-        <div class="btns flex">
-            
-                <!-- <button class = "button" type="button" onclick="sort()">Click To Start Sort!</button> -->
-                <button class = "btn" type="button" onclick="selectionSortSlowed()">Selection Sort!</button>
-                <button class = "btn" type="button" onclick="insertionSortSlowed()">Insertion Sort!</button>
-                <button class = "btn" type="button" onclick="bubbleSortSlowed()">Bubble Sort!</button>
-                <button class = "btn" type="button" onclick="runQuickSort()">Quick Sort!</button>
-                <button class = "btn" type="button" onclick="runMergeSort()">Merge Sort!</button>
-              
-                <!-- <input type="submit" value="Submit" onclick="createRectangles()" > -->
-            
-        </div>
-
-        <div class="num">
-            <label for="amountOfRectangles"> Enter Amount of Rectangles to Sort:</label>
-            <input type="number" value="100" id="amountOfRectangles" name="amountOfRectangles" onchange="createRectangles()"> <br>
-        </div>
-       
+            <a class = "textSpeed">Change your Sorting Speed </a>
+            <div class="slidecontainer">   
+                <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+            </div>
+            <div class="btns flex"> 
+                    <button class = "btn" type="button" onclick="selectionSortSlowed()">Selection Sort!</button>
+                    <button class = "btn" type="button" onclick="insertionSortSlowed()">Insertion Sort!</button>
+                    <button class = "btn" type="button" onclick="bubbleSortSlowed()">Bubble Sort!</button>
+                    <button class = "btn" type="button" onclick="runQuickSort()">Quick Sort!</button>
+                    <button class = "btn" type="button" onclick="runMergeSort()">Merge Sort!</button>            
+            </div>
+            <div class="num">
+                <label for="amountOfRectangles"> Enter Amount of Rectangles to Sort:</label>
+                <input type="number" value="100" id="amountOfRectangles" name="amountOfRectangles" onchange="createRectangles()"> <br>
+            </div>
+       </div>
          
     </body>
 </html>
