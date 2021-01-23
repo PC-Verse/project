@@ -1,12 +1,12 @@
-# [Sorting Visualization Website](webdevieee.github.io)
+# [Sorting Visualization Website](https://webdevieee.github.io)
 
-We built a website that has *visual demonstrationsf* of many sorting algorithms, such as:
+We built a website that has *visual demonstrations* of many sorting algorithms, such as:
 - bubble sort
 - selection sort
 - insertion sort
 - merge sort
 - quick sort
 
-Link to website: <webdevieee.github.iof>
+Link to website: <https://webdevieee.github.io>
 
 Developed by: Benjamin Yang and Kevin Zhang
