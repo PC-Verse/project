@@ -11,7 +11,7 @@ class Posts extends Component {
     }
     createPost = (newTitle, newContent) => {
         let newPosts = this.state.posts
-        newPosts.push(<Post title={newTitle} content={newContent}/>)
+        newPosts.unshift(<Post title={newTitle} content={newContent}/>)
         this.setState({
             posts: newPosts
         })
