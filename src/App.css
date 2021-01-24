@@ -19,6 +19,16 @@
   padding: None;
 }
 
+.Posting-Button{
+  justify-content: center;
+  display: flex;
+  color: #00c8ff;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(78, 75, 75);
+  align-items: center;
+  margin:auto;
+}
+
 .card{
   font-family: 'Courier New', Courier, monospace;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

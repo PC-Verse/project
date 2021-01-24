@@ -42,7 +42,7 @@ class AddPost extends Component {
 
         return(
             <div class = "card">
-            <button onClick={() => this.hideComponent("showPost")}>
+            <button class = "Posting-Button" onClick={() => this.hideComponent("showPost")}>
                     Click to Post or Hide Form!
             </button>
 
