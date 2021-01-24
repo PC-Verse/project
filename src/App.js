@@ -13,13 +13,16 @@ function App() {
 
   // const AddedElement = () => <div><input placeholder='text box' /></div>
   const [count, setCount] = useState(0)
+  const [value, setValue] = useState("Initial");
+  const [body, setBody] = useState("Bodyy here");
+
 
   return (
     <div className="body">      
       {/* <header className="App-header"> */}
         <NavBar/>
         <button onClick={() => setCount(count + 1)}>Click me</button>
-        { Array(count).fill(<Post title = "test ps" body = "Body is here"/>) }
+        { Array(count).fill(<Post title = {value} body = {body}/>) }
         <AddPost/>
 
 
