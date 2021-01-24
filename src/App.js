@@ -19,7 +19,7 @@ function App() {
       {/* <header className="App-header"> */}
         <NavBar/>
         <button onClick={() => setCount(count + 1)}>Click me</button>
-        { Array(count).fill(<Post title = "test posts" body = "Body is here"/>) }
+        { Array(count).fill(<Post title = "test ps" body = "Body is here"/>) }
         <AddPost/>
 
 
