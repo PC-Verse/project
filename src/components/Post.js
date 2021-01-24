@@ -4,9 +4,9 @@ import '../App.css'
 const Post = (props) => {
 
     return (
-        <div class = "card">
+        <div className = "card">
             <p>{props.title}</p>
-            <p>{props.body}</p>
+            <p>{props.content}</p>
         </div>
     )
 }

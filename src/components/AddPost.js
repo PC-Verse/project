@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
 import '../App.css'
 
-class AddPost extends Component{
+class AddPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {content: '', title: ''};
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleChangeInContent = this.handleChangeInContent.bind(this);
+    this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
 
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    handleChangeInContent(event) {
+        this.setState({
+            content: event.target.value
+        })
     }
     handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
+        alert('Title: ' + this.state.title + ' Content: ' + this.state.content);
         event.preventDefault();
+    }
+    handleChangeInTitle(event) {
+        this.setState({
+            title: event.target.value
+        })
     }
 
     render = () => {
@@ -29,12 +37,14 @@ class AddPost extends Component{
             <p>Your Post Here:</p>
                 <form class = "container" onSubmit={this.handleSubmit} >
                     <div>
-                        <input type="text" id="fname" class="title" placeholder="Your title.."></input>
+                        <span>Title: </span>
+                        <input type="text" value={this.state.title} onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title.."></input>
                     </div>
                     <div>
-                        <input type="text" value={this.state.value} onChange={this.handleChange} class="description" placeholder="Description..."></input>
+                        <span>Content: </span>
+                        <input type="text" value={this.state.content} onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
                     </div>
-                    <button class = "post">Post!</button>
+                    <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content)}}>Post!</button>
                 </form>
              {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
             </div>

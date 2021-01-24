@@ -16,6 +16,7 @@
 .container{
   height: 300px;
   margin:auto;
+  padding: None;
 }
 
 .card{
@@ -38,10 +39,11 @@
   box-sizing: border-box;
 }
 
-.post{
+.postBtn{
   float: bottom;
   background-color: green;
   color: white;
+  margin: 0;
 }
 
 .description{
@@ -102,7 +104,7 @@ input[type=text], select {
   font-size: 30px;
 }
 
-#postButton {
+#postButton {   /* don't think this exists */
   border-radius: 40%;
   color: white;
   outline: 0;
