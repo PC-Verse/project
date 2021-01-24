@@ -113,10 +113,13 @@ input[type=text], select {
 
 #NavBar {
   font-family: 'Courier New', Courier, monospace;
-
+  background-image: url("images/RGB.png");
   width: 100vw;
+  background-size: auto;
+  background-size: 100vw;
+  background-repeat: no-repeat;
   border-bottom: solid black;
-  background-color: rgb(67, 116, 172);
+  /* background-color: rgb(67, 116, 172); */
   display: flex;
   justify-content: space-around;
   color: white;
@@ -145,6 +148,7 @@ input[type=text], select {
   cursor: pointer;
   transform: scale( 1.2 );
 }
+
 
 
 
