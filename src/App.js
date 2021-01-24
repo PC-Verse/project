@@ -4,12 +4,15 @@ import Greet from './components/Greet'
 import Button from './components/Button'
 import Welcome from './components/Welcome'
 import NavBar from './components/NavBar'
+import Post from './components/Post'
+
 
 function App() {
   return (
     <div className="body">      
       {/* <header className="App-header"> */}
         <NavBar/>
+        <Post/>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         
         {/* <Greet name="Kevin">
