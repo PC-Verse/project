@@ -23,7 +23,9 @@ class Posts extends Component {
         this.setState({
             posts: newPosts,
         })
-
+        this.setState({
+            showPost: false
+        })
         this.setState({shouldClear: true});
     }
     render = ()=>{
