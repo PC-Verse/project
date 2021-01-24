@@ -27,6 +27,10 @@
   background-color: rgb(78, 75, 75);
   align-items: center;
   margin:auto;
+  padding: .2%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+
 }
 .text-card{
   max-width: 70%;
