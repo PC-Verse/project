@@ -8,7 +8,7 @@ class Posts extends Component {
         this.state ={
             posts: [<Post title="First Post" content="Hello there!" />],
             shouldClear : false,
-            showPost: true
+            showPost: false
         }
     }
     hideCard = () => {
