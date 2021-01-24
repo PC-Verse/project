@@ -19,7 +19,7 @@ class Posts extends Component {
     render = ()=>{
         return(
             <div>
-                <AddPost createPost={this.createPost}/>
+                <AddPost showPost = {this.state.showPost} createPost={this.createPost}/>
                 {this.state.posts.map((x) => {
                         return x;
                     })

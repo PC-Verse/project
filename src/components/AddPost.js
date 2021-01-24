@@ -5,12 +5,21 @@ class AddPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {content: '', title: ''};
+    this.state = {content: '', title: '', showPost: false};
 
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+    hideComponent(name) {
+        console.log(name);
+        switch (name) {
+        case "showPost":
+            this.setState({ showPost: !this.state.showPost });
+            break;
+        }
+    }
 
 
 
@@ -33,10 +42,17 @@ class AddPost extends Component {
 
         return(
             <div class = "card">
+            <button onClick={() => this.hideComponent("showPost")}>
+                    Click to Post or Hide Form!
+            </button>
 
-            <p>Your Post Here:</p>
-                <form class = "container" onSubmit={this.handleSubmit} >
+            
+                {   this.state.showPost &&
+
+                
+                    <form class = "container" onSubmit={this.handleSubmit} >
                     <div>
+                        <p>Your Post Here:</p>
                         <span>Title: </span>
                         <input type="text" value={this.state.title} onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title.."></input>
                     </div>
@@ -45,7 +61,7 @@ class AddPost extends Component {
                         <input type="text" value={this.state.content} onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
                     </div>
                     <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content)}}>Post!</button>
-                </form>
+                </form>}
              {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
             </div>
 
