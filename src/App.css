@@ -28,7 +28,10 @@
   align-items: center;
   margin:auto;
 }
-
+.text-card{
+  max-width: 70%;
+  word-break: break-all;
+}
 .card{
   font-family: 'Courier New', Courier, monospace;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);

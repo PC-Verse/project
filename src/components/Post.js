@@ -5,8 +5,11 @@ const Post = (props) => {
 
     return (
         <div className = "card">
-            <p>{props.title}</p>
-            <p>{props.content}</p>
+            <p class = "text-card">
+                <p>{props.title}</p>
+                <p>{props.content}</p>
+            </p>
+
         </div>
     )
 }
