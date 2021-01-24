@@ -22,7 +22,7 @@
 .Posting-Button{
   justify-content: center;
   display: flex;
-  color: #00c8ff;
+  color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
   background-color: rgb(78, 75, 75);
   align-items: center;
@@ -112,6 +112,8 @@ input[type=text], select {
 }
 
 #NavBar {
+  font-family: 'Courier New', Courier, monospace;
+
   width: 100vw;
   border-bottom: solid black;
   background-color: rgb(67, 116, 172);
