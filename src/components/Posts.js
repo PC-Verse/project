@@ -10,9 +10,17 @@ class Posts extends Component {
             posts: [<Post title="First Post" content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()}/>],
             ids: [0],
             availableId: 0
+            shouldClear : false,
+            showPost: false
         }
     }
+    hideCard = () => {
+        this.setState({
+            showPost: !this.state.showPost
+        })
+    }
     createPost = (newTitle, newContent) => {
+        
         let newPosts = this.state.posts
         let updatedIds = this.state.ids
         let date = new Date()
@@ -24,8 +32,10 @@ class Posts extends Component {
         updatedIds.unshift(this.state.availableId)
         this.setState({
             posts: newPosts,
-            ids: updatedIds
+            ids: updatedIds,
+            showPost: false
         })
+        this.setState({shouldClear: true});
     }
     removePost = (postId) => {
         let updatedIds = this.state.ids
@@ -46,7 +56,7 @@ class Posts extends Component {
     render = ()=>{
         return(
             <div>
-                <AddPost showPost = {this.state.showPost} createPost={this.createPost}/>
+                <AddPost hideCard = {this.hideCard} showPost = {this.state.showPost} createPost={this.createPost}/>
                 {this.state.posts.map((x) => {
                         return x;
                     })

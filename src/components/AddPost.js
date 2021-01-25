@@ -16,7 +16,7 @@ class AddPost extends Component {
         console.log(name);
         switch (name) {
         case "showPost":
-            this.setState({ showPost: !this.state.showPost });
+            this.props.hideCard();
             break;
         }
     }
@@ -50,7 +50,7 @@ class AddPost extends Component {
             <button class = "Posting-Button" onClick={() => this.hideComponent("showPost")}>
                     Click to Post or Hide Form!
             </button>
-            {   this.state.showPost &&
+            {   this.props.showPost &&
             <div class = "card">
                 
 
@@ -58,11 +58,13 @@ class AddPost extends Component {
                     <div>
                         <p>Your Post Here:</p>
                         <span>Title: </span>
-                        <input type="text" value={this.state.title} onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title.."></input>
+                        <input type="text"  onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title..">
+                            {/* {this.props.shouldClear && this.state.title} */}
+                        </input>
                     </div>
                     <div>
                         <span>Content: </span>
-                        <input type="text" value={this.state.content} onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
+                        <input type="text"  onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
                     </div>
                     <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content)}}>Post!</button>
                 </form>
