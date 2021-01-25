@@ -9,7 +9,7 @@ class Posts extends Component {
         this.state ={
             posts: [<Post title="First Post" content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()}/>],
             ids: [0],
-            availableId: 0
+            availableId: 0,
             shouldClear : false,
             showPost: false
         }
