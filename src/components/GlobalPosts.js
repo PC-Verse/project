@@ -8,7 +8,7 @@ class GlobalPosts extends Component {
     render = () => {
         return (
             <div>
-                <div id="globalPostTitle">Global Posts</div>
+                <div id="globalPostTitle">COMMUNITY</div>
                 {this.props.posts.map((x) => {
                             return x;
                     })

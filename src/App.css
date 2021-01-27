@@ -12,7 +12,12 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+#globalPostTitle{
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 30px;
+  color: blue;
+  text-shadow: 1px 1px #00a2ff;
+}
 body {
   font-family: 'Work Sans', sans-serif;
 }
@@ -146,19 +151,23 @@ input[type=text], select {
   border-bottom: solid black;
   /* background-color: rgb(67, 116, 172); */
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   color: white;
   font-size: 30px;
 }
 
 #postButton {   /* don't think this exists */
   border-radius: 40%;
+  padding: 5px;
+  margin-left: 2%;
+  align-self: left;
   color: white;
   outline: 0;
 }
 #logoName {
-  padding-left: 5px;
-  padding-right: 5px;
+  margin-left: 40%;
+  background-position-x: absolute;
+  left:0;
   border-radius: 10px;
 }
 
