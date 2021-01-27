@@ -174,7 +174,12 @@ input[type=text], select {
   transform: scale( 1.2 );
 }
 
-
+button:hover {
+  cursor: pointer;
+}
+#globalPostTitle {
+  text-align: center;
+}
 
 
 /* .body {

@@ -5,7 +5,7 @@ class AddPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {content: '', title: '', showPost: false};
+    this.state = {content: '', title: '', showAddPost: false};
 
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
@@ -15,7 +15,7 @@ class AddPost extends Component {
     hideComponent(name) {
         console.log(name);
         switch (name) {
-        case "showPost":
+        case "showAddPost":
             this.props.hideCard();
             break;
         }
@@ -41,7 +41,7 @@ class AddPost extends Component {
     render = () => {
         return(
             <div>
-                <button class = "Posting-Button" onClick={() => this.hideComponent("showPost")}>
+                <button class = "Posting-Button" onClick={() => this.hideComponent("showAddPost")}>
                         Click to Post or Hide Form!
                 </button>
                 {   this.props.showPost &&

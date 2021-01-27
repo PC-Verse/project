@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import AddPost from './AddPost'
 import Post from './Post'
 
-class Posts extends Component {
+class UserPosts extends Component {
     constructor() {
         super()
         let date = new Date()
@@ -11,12 +11,12 @@ class Posts extends Component {
             ids: [0],
             availableId: 0,
             shouldClear : false,
-            showPost: false
+            showAddPost: false
         }
     }
     hideCard = () => {
         this.setState({
-            showPost: !this.state.showPost
+            showAddPost: !this.state.showAddPost
         })
     }
     createPost = (newTitle, newContent) => {
@@ -56,7 +56,7 @@ class Posts extends Component {
     render = ()=>{
         return(
             <div>
-                <AddPost hideCard = {this.hideCard} showPost = {this.state.showPost} createPost={this.createPost}/>
+                <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
                 {this.state.posts.map((x) => {
                         return x;
                     })
@@ -66,4 +66,4 @@ class Posts extends Component {
     }
 }
 
-export default Posts
+export default UserPosts
