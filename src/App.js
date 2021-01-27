@@ -24,6 +24,8 @@ class App extends Component {
     };
     this.toggleComponent = this.toggleComponent.bind(this);
   }
+
+
   toggleComponent(name) {
     console.log(name);
     switch (name) {
@@ -36,7 +38,7 @@ class App extends Component {
         break
       case "showGlobalPosts":
         this.setState({showGlobalPosts: true})
-        this.setState({showUserPosts: false})
+        this.setState({showUserPosts: true})
         break
     }
   }
@@ -50,8 +52,14 @@ class App extends Component {
 
         <NavBar toggleComponent={this.toggleComponent}/>
 
-        {this.state.showUserPosts && <div><UserPosts showPost= {this.state.showAddPost, this.state.posts}/></div>}
-        {this.state.showGlobalPosts && <div><GlobalPosts posts={this.state.posts}/></div>}
+        {this.state.showGlobalPosts && 
+          <div>
+          <GlobalPosts posts={this.state.posts}/>
+          </div>
+        }
+
+        {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost= {this.state.showAddPost, this.state.posts}/></div>}
+
         
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}

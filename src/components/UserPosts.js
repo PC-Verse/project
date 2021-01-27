@@ -7,7 +7,7 @@ class UserPosts extends Component {
         super()
         let date = new Date()
         this.state ={
-            posts: [<Post title="First Post" content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()}/>],
+            posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()}/>],
             ids: [0],
             availableId: 0,
             shouldClear : false,
@@ -56,7 +56,12 @@ class UserPosts extends Component {
     render = ()=>{
         return(
             <div>
-                <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
+
+
+                {this.props.showAddPostBTN &&
+                    <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
+                }
+
                 {this.state.posts.map((x) => {
                         return x;
                     })
