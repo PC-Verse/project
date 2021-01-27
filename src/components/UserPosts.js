@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AddPost from './AddPost'
+import Picture from './Picture'
 import Post from './Post'
 
 class UserPosts extends Component {
@@ -17,7 +18,7 @@ class UserPosts extends Component {
             showAddPost: !this.state.showAddPost
         })
     }
-    createPost = (newTitle, newContent) => {
+    createPost = (newTitle, newContent, Picture) => {
         
         let newPosts = this.props.userPosts
         let updatedIds = this.props.userIds

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import '../App.css'
-
+import Picture from './Picture'
 class Post extends Component {
     constructor() {
         super()
@@ -39,7 +39,13 @@ class Post extends Component {
                         </div>
                     </div>
                 }
-                {!(this.props.isGlobalPost) && <button onClick={() => {this.props.removePost(this.props.id)}} className="removeBtn">Remove Post</button>}
+
+               
+                {!(this.props.isGlobalPost) && 
+
+                <div> 
+                                    <button onClick={() => {this.props.removePost(this.props.id)}} className="removeBtn">Remove Post</button>
+                </div>}
 
             </div>
         )
