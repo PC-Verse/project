@@ -28,7 +28,7 @@ body {
 }
 
 .Posting-Button{
-  justify-content: center;
+  align-self: center;
   display: flex;
   color: #ffffff;
   font-family: 'Courier New', Courier, monospace;
@@ -38,7 +38,8 @@ body {
   padding: .2%;
   margin-top: 86px; /* bc navBar is 81px tall*/
   margin-bottom: 5px;
-
+  border-radius: 8px;
+  outline: 0;
 }
 .text-card{
   /* max-width: 70%; */
@@ -160,7 +161,9 @@ input[type=text], select {
   outline: 0;
 }
 #logoName {
-  margin-left: 40%;
+  margin-left: 39%;
+  display: flex;
+  align-self: center;
   background-position-x: absolute;
   left:0;
   border-radius: 10px;
