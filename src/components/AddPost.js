@@ -60,7 +60,7 @@ class AddPost extends Component {
                             <div>
                                 <span>Content: </span>
                                 <input type="text"  onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
-                                <Picture Picture = {this.state.Picture} />
+                                <Picture/>
                             </div>
 
                             

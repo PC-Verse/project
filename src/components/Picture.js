@@ -17,7 +17,7 @@ function Picture(props) {
         };
 
         //try to set props Picture varibale to the file ???
-        Object.assign(props.Picture, current.file);
+        // Object.assign(this.props.Picture, file);
         reader.readAsDataURL(file);
       }
     };

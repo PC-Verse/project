@@ -10,7 +10,8 @@ class UserPosts extends Component {
         this.state = {
             // posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>],
             shouldClear : false,
-            showAddPost: false
+            showAddPost: false,
+            Picture: null
         }
     }
     hideCard = () => {
@@ -18,8 +19,9 @@ class UserPosts extends Component {
             showAddPost: !this.state.showAddPost
         })
     }
-    createPost = (newTitle, newContent, Picture) => {
+    createPost = (newTitle, newContent, Picture1) => {
         
+        this.state.Picture = Picture1
         let newPosts = this.props.userPosts
         let updatedIds = this.props.userIds
         let date = new Date()
@@ -41,7 +43,7 @@ class UserPosts extends Component {
         // add it to global posts
         let globalPosts = this.props.globalPosts;
         let globalIds = this.props.globalIds;
-        globalPosts.unshift(<Post title={newTitle} content={newContent} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>)
+        globalPosts.unshift(<Post title={newTitle} content={newContent} Picture = {this.state.Picture} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>)
         globalIds.unshift(this.state.availableId)
         this.props.globalSetState({
             posts: globalPosts,

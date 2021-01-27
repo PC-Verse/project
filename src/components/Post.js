@@ -39,7 +39,7 @@ class Post extends Component {
                         </div>
                     </div>
                 }
-
+                {this.props.Picture}
                
                 {!(this.props.isGlobalPost) && 
 
