@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -11,7 +11,7 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 #globalPostTitle{
   font-family: 'Courier New', Courier, monospace;
   font-size: 30px;
@@ -132,14 +132,6 @@ input[type=text], select {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 #NavBar {
   font-family: 'Courier New', Courier, monospace;
@@ -157,7 +149,7 @@ input[type=text], select {
 }
 
 #postButton {   /* don't think this exists */
-  border-radius: 40%;
+  border-radius: 20%;
   padding: 5px;
   margin-left: 2%;
   align-self: left;
@@ -180,16 +172,46 @@ input[type=text], select {
 }
 .headerStuff:hover {
   cursor: pointer;
-  transform: scale( 1.2 );
+  transform: scale( 1.12 );
+}
+button {
+  transition: transform .3s;
 }
 
 button:hover {
   cursor: pointer;
+  transform: scale( 1.1 );
 }
 #globalPostTitle {
   text-align: center;
 }
 
+.swipeBtnContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+.swipeBtn {
+  border-radius: 8px;
+  outline: 0;
+}
+#swipeLeftBtn {
+  background-color: rgba(230, 47, 47, 0.6);
+}
+#swipeRightBtn {
+  background-color: rgba(41, 187, 65, 0.6);
+  margin-right: right;
+}
+
+.numSwipes {
+  padding-left: 85%;
+  font-weight: 700;
+  color: darkblue;
+}
+#noPostYetMsg {
+  margin-top: 30vh;
+  font-size: 50px;
+  text-align: center;
+}
 
 /* .body {
   padding: 0px;

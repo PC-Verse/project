@@ -29,7 +29,7 @@ class AddPost extends Component {
         })
     }
     handleSubmit(event) {
-        alert('Title: ' + this.state.title + ' Content: ' + this.state.content);
+        // alert('Title: ' + this.state.title + ' Content: ' + this.state.content);
         event.preventDefault();
     }
     handleChangeInTitle(event) {
@@ -44,26 +44,27 @@ class AddPost extends Component {
                 <button class = "Posting-Button" onClick={() => this.hideComponent("showAddPost")}>
                         Click to Post or Hide Form!
                 </button>
-                {   this.props.showPost &&
-                <div class = "card">
-                    
+                {this.props.showPost &&
+                    <div class = "card">
+                        
 
-                        <form class = "container" onSubmit={this.handleSubmit} >
-                        <div>
-                            <p>Your Post Here:</p>
-                            <span>Title: </span>
-                            <input type="text"  onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title..">
-                                {/* {this.props.shouldClear && this.state.title} */}
-                            </input>
-                        </div>
-                        <div>
-                            <span>Content: </span>
-                            <input type="text"  onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
-                        </div>
-                        <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content)}}>Post!</button>
-                    </form>
-                {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
-                </div>}
+                            <form class = "container" onSubmit={this.handleSubmit} >
+                            <div>
+                                <p>Your Post Here:</p>
+                                <span>Title: </span>
+                                <input type="text"  onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title..">
+                                    {/* {this.props.shouldClear && this.state.title} */}
+                                </input>
+                            </div>
+                            <div>
+                                <span>Content: </span>
+                                <input type="text"  onChange={this.handleChangeInContent} className="description" placeholder="Description..."></input>
+                            </div>
+                            <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content)}}>Post!</button>
+                        </form>
+                    {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
+                    </div>
+                }
             </div>
         )
     }
