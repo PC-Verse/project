@@ -8,9 +8,6 @@ class UserPosts extends Component {
         let date = new Date()
         this.state = {
             // posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>],
-            posts: [],
-            ids: [0],
-            availableId: -1,
             shouldClear : false,
             showAddPost: false
         }
@@ -22,21 +19,23 @@ class UserPosts extends Component {
     }
     createPost = (newTitle, newContent) => {
         
-        let newPosts = this.state.posts
-        let updatedIds = this.state.ids
+        let newPosts = this.props.userPosts
+        let updatedIds = this.props.userIds
         let date = new Date()
-        this.setState((prevState, props) => ({
+        this.props.globalSetState((prevState, props) => ({
             availableId: prevState.availableId+1
         }))
 
         newPosts.unshift(<Post title={newTitle} content={newContent} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>)
         updatedIds.unshift(this.state.availableId)
-        this.setState({
-            posts: newPosts,
-            ids: updatedIds,
-            showPost: false
+        this.props.globalSetState({
+            userPosts: newPosts,
+            userIds: updatedIds,
         })
-        this.setState({shouldClear: true});
+        this.setState({
+            showPost: false,
+            shouldClear: true
+        });
 
         // add it to global posts
         let globalPosts = this.props.globalPosts;
@@ -49,17 +48,17 @@ class UserPosts extends Component {
         })
     }
     removePost = (postId) => {
-        let updatedIds = this.state.ids
-        let updatedPosts = this.state.posts
-        for (let i = 0; i < this.state.ids.length; i++) {
-            if (this.state.ids[i] == postId) {
+        let updatedIds = this.props.userIds
+        let updatedPosts = this.props.userPosts
+        for (let i = 0; i < this.props.userIds.length; i++) {
+            if (this.props.userIds[i] == postId) {
                 // remove the post and remove the id
                 updatedIds.splice(i,1);
                 updatedPosts.splice(i,1);
 
-                this.setState({
-                    posts: updatedPosts,
-                    ids: updatedIds
+                this.props.globalSetState({
+                    userPosts: updatedPosts,
+                    userIds: updatedIds
                 })
                 break
             }
@@ -86,11 +85,11 @@ class UserPosts extends Component {
                     <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
                 {/* } */}
 
-                {this.state.posts.map((x) => {
+                {this.props.userPosts.map((x) => {
                         return x;
                     })
                 }
-                {this.state.availableId==-1 && <div id="noPostYetMsg">No Posts Yet!</div>}
+                {this.props.availableId==-1 && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
     }

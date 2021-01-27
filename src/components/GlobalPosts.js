@@ -9,7 +9,7 @@ class GlobalPosts extends Component {
         return (
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
-                {this.props.posts.map((x) => {
+                {this.props.globalPosts.map((x) => {
                             return x;
                     })
                 }
