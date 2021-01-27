@@ -32,6 +32,7 @@ class AddPost extends Component {
     handleSubmit(event) {
         // alert('Title: ' + this.state.title + ' Content: ' + this.state.content);
         event.preventDefault();
+        this.hideComponent("showAddPost")
     }
     handleChangeInTitle(event) {
         this.setState({

@@ -75,7 +75,7 @@ class UserPosts extends Component {
         let globalPosts = this.props.globalPosts;
         let globalIds = this.props.globalIds;
         for (let i = 0; i < this.props.globalIds.length; i++) {
-            if (this.props.id[i] == postId) {
+            if (this.props.globalIds[i] == postId) {
                 globalIds.splice(i,1)
                 globalPosts.splice(i,1)
             }
@@ -96,7 +96,7 @@ class UserPosts extends Component {
                         return x;
                     })
                 }
-                {this.props.availableId==-1 && <div id="noPostYetMsg">No Posts Yet!</div>}
+                {this.props.userPosts.length==0 && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
     }
