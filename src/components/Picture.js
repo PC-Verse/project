@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 function Picture(props) {
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
-  
+
     const handleImageUpload = e => {
       const [file] = e.target.files;
       if (file) {
@@ -15,9 +15,9 @@ function Picture(props) {
         reader.onload = e => {
           current.src = e.target.result;
         };
+        //this.props.setPicture("NEW STATE");
 
         //try to set props Picture varibale to the file ???
-        Object.assign(this.props.Picture, file);
         reader.readAsDataURL(file);
       }
     };
