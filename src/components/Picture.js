@@ -15,7 +15,9 @@ function Picture(props) {
         reader.onload = e => {
           current.src = e.target.result;
         };
-        props.Picture = e.target.files;
+
+        //try to set props Picture varibale to the file ???
+        Object.assign(props.Picture, current.file);
         reader.readAsDataURL(file);
       }
     };
