@@ -10,7 +10,7 @@ export function PostPicture(props) {
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
     //Try to set the prop as the image list
-    this.props.image = imageList;
+    // this.props.image = imageList;
   };
  
   return (

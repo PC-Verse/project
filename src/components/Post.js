@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import '../App.css'
 import Picture from './Picture'
+import PostPicture from './PostPicture'
+
 class Post extends Component {
     constructor() {
         super()
@@ -39,8 +41,9 @@ class Post extends Component {
                         </div>
                     </div>
                 }
-                {this.props.image}
-               
+                
+                <PostPicture/>
+
                 {!(this.props.isGlobalPost) && 
 
                 <div> 

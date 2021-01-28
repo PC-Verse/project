@@ -91,6 +91,10 @@ class UserPosts extends Component {
                     <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
                 {/* } */}
 
+                {this.props.userPosts.map((x) => {
+                        return x;
+                    })
+                }
                 {this.props.userPosts.length==0 && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
