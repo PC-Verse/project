@@ -7,6 +7,7 @@ import Post from './components/Post'
 import UserPosts from './components/UserPosts'
 import GlobalPosts from './components/GlobalPosts'
 
+
 class App extends Component {
 
   // const AddedElement = () => <div><input placeholder='text box' /></div>
