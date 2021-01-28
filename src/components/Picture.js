@@ -15,11 +15,13 @@ function Picture(props) {
         reader.onload = e => {
           current.src = e.target.result;
         };
-        //this.props.setPicture("NEW STATE");
 
+        props.setPicture("NEW STATE");
         //try to set props Picture varibale to the file ???
         reader.readAsDataURL(file);
       }
+
+     
     };
   
     return (
