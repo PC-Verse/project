@@ -14,7 +14,7 @@ class AddPost extends Component {
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.setImages = this.setImages.bind(this);
+    // this.setImages = this.setImages.bind(this);
   }
 
   setImagesP(imageList){
