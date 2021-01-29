@@ -88,10 +88,11 @@ class App extends Component {
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}
         {/* <AddPost/> */}
-        <div style={{}}>
+
+        {/* <div style={{}}>
         <Login loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
         {this.state.loggedIn ? <p>Hello {this.state.name}</p>: <p>Not logged in</p> }
-        <Logout loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)}/>
+        <Logout loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)}/> */}
       </div>
 
 
