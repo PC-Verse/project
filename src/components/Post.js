@@ -52,7 +52,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                                    <button onClick={() => {this.props.removePost(this.props.id)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.props.removePost(this.props.id)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>

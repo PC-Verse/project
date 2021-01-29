@@ -9,7 +9,7 @@ class UserPosts extends Component {
         let date = new Date()
         this.state = {
             // posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>],
-            shouldClear : false,
+            shouldClear: false,
             showAddPost: false,
         }
     }
@@ -18,23 +18,23 @@ class UserPosts extends Component {
             showAddPost: !this.state.showAddPost
         })
     }
-    setPicture = (s) =>{
+    setPicture = (s) => {
         this.setState({
             Picture: s
         })
     }
     createPost = (newTitle, newContent, newImageList) => {
-        
+
         let newPosts = this.props.userPosts
         let newImagesList = this.props.userImageLists
         let updatedIds = this.props.userIds
         let date = new Date()
         this.props.globalSetState((prevState, props) => ({
-            availableId: prevState.availableId+1
+            availableId: prevState.availableId + 1
         }))
 
-        newPosts.unshift(<Post imageList = {newImageList} title={newTitle} Picture = {this.state.Picture} setPicture = {this.setPicture} content={newContent} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>)
-        updatedIds.unshift(this.state.availableId)
+        newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} />)
+        updatedIds.unshift(this.props.availableId)
         this.props.globalSetState({
             userPosts: newPosts,
             userIds: updatedIds,
@@ -47,8 +47,8 @@ class UserPosts extends Component {
         // add it to global posts
         let globalPosts = this.props.globalPosts;
         let globalIds = this.props.globalIds;
-        globalPosts.unshift(<Post imageList = {newImageList} title={newTitle} setPicture = {this.setPicture}content={newContent} Picture = {this.state.Picture} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>)
-        globalIds.unshift(this.state.availableId)
+        globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} />)
+        globalIds.unshift(this.props.availableId)
         this.props.globalSetState({
             posts: globalPosts,
             ids: globalIds
@@ -60,8 +60,8 @@ class UserPosts extends Component {
         for (let i = 0; i < this.props.userIds.length; i++) {
             if (this.props.userIds[i] == postId) {
                 // remove the post and remove the id
-                updatedIds.splice(i,1);
-                updatedPosts.splice(i,1);
+                updatedIds.splice(i, 1);
+                updatedPosts.splice(i, 1);
 
                 this.props.globalSetState({
                     userPosts: updatedPosts,
@@ -76,8 +76,8 @@ class UserPosts extends Component {
         let globalIds = this.props.globalIds;
         for (let i = 0; i < this.props.globalIds.length; i++) {
             if (this.props.globalIds[i] == postId) {
-                globalIds.splice(i,1)
-                globalPosts.splice(i,1)
+                globalIds.splice(i, 1)
+                globalPosts.splice(i, 1)
             }
             this.props.globalSetState({
                 posts: globalPosts,
@@ -85,18 +85,18 @@ class UserPosts extends Component {
             })
         }
     }
-    render = ()=>{
-        return(
+    render = () => {
+        return (
             <div>
                 {/* {this.props.showAddPostBTN && */}
-                    <AddPost hideCard = {this.hideCard} showPost = {this.state.showAddPost} createPost={this.createPost}/>
+                <AddPost hideCard={this.hideCard} showPost={this.state.showAddPost} createPost={this.createPost} />
                 {/* } */}
 
                 {this.props.userPosts.map((x) => {
-                        return x;
-                    })
+                    return x;
+                })
                 }
-                {this.props.userPosts.length==0 && <div id="noPostYetMsg">No Posts Yet!</div>}
+                {this.props.userPosts.length == 0 && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
     }

@@ -21,11 +21,11 @@ class App extends Component {
       showAddPost: true,
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true, // set this to true later
-      globalPosts:[<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>],
+      globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} />],
       globalIds: [0],
-      globalImageLists: [],
+      // globalImageLists: [],
       userPosts: [],
-      userImageLists: [],
+      //userImageLists: [],
       userIds: [],
       availableId: 0,
       loggedIn: false,
@@ -46,46 +46,46 @@ class App extends Component {
         this.setState({ showPost: !this.state.showAddPost });
         break;
       case "showUserPosts":
-        this.setState({showUserPosts: true})
-        this.setState({showGlobalPosts: false})
+        this.setState({ showUserPosts: true })
+        this.setState({ showGlobalPosts: false })
         break
       case "showGlobalPosts":
-        this.setState({showGlobalPosts: true})
-        this.setState({showUserPosts: false}) // changed this to false, bc will be hiding the userPosts stuff
+        this.setState({ showGlobalPosts: true })
+        this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
         break
     }
   }
 
-  setLoggedIn(logged){
+  setLoggedIn(logged) {
     this.setState({
-      loggedIn : logged
+      loggedIn: logged
     })
   }
-  setName(name){
+  setName(name) {
     this.setState({
-      name : name
+      name: name
     })
-}
+  }
 
-  render(){
-  return (
-    <div className="body">      
-      {/* <header className="App-header"> */}
+  render() {
+    return (
+      <div className="body">
+        {/* <header className="App-header"> */}
 
 
 
-        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
+        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} />
 
-        {this.state.showGlobalPosts && 
+        {this.state.showGlobalPosts &&
           <div>
-          <GlobalPosts globalPosts={this.state.globalPosts}/>
+            <GlobalPosts globalPosts={this.state.globalPosts} />
           </div>
         }
 
         {/* {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost={this.state.showAddPost, this.state.posts} globalPosts={this.state.posts} globalIds={this.state.ids} globalSetState={this.setState}/></div>} */}
-        {this.state.showUserPosts && <div><UserPosts 
-            globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId}/></div>}
-        
+        {this.state.showUserPosts && <div><UserPosts
+          globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId} /></div>}
+
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}
         {/* <AddPost/> */}
@@ -94,12 +94,13 @@ class App extends Component {
         <Login loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
         {this.state.loggedIn ? <p>Hello {this.state.name}</p>: <p>Not logged in</p> }
         <Logout loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)}/> */}
-      {/* </div> */}
+        {/* </div> */}
 
 
 
-    </div>
-  )}
+      </div>
+    )
+  }
 }
 
 export default App;
