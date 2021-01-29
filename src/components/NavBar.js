@@ -12,8 +12,7 @@ const NavBar = (props) => {
         <div id="NavBar">
             <button id="postButton" className="headerStuff" onClick={() => {props.toggleComponent("showUserPosts")}}>My Posts</button>
             <div id="logoName" className="headerStuff" onClick={() => {props.toggleComponent("showGlobalPosts")}}>PC Verse</div>
-            <button onMouseEnter={()=>setDisplayGoogleStuff(true)}
-                    onMouseLeave={()=>setDisplayGoogleStuff(false)}
+            <button onClick={()=>setDisplayGoogleStuff(!displayGoogleStuff)}
                     id="loginBtn"
                     className="headerStuff">
                 {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
