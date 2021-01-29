@@ -6,6 +6,8 @@ import AddPost from './components/AddPost'
 import Post from './components/Post'
 import UserPosts from './components/UserPosts'
 import GlobalPosts from './components/GlobalPosts'
+import Login from './components/Login'
+import Logout from './components/Logout'
 
 
 class App extends Component {
@@ -23,7 +25,9 @@ class App extends Component {
       globalIds: [0],
       userPosts: [],
       userIds: [],
-      availableId: -1
+      availableId: -1,
+      loggedIn: false,
+      name: ""
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -69,6 +73,11 @@ class App extends Component {
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}
         {/* <AddPost/> */}
+        <div style={{}}>
+        <Login loggedIn={loggedIn} setLoggedIn = {(bool) => setLoggedIn(bool)} setName={(name) => setName(name)}/>
+        {loggedIn ? <p>Hello {name}</p>: <p>Not logged in</p> }
+        <Logout loggedIn={loggedIn} setLoggedIn = {(bool) => setLoggedIn(bool)}/>
+      </div>
 
 
 
