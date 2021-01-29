@@ -93,7 +93,7 @@ class App extends Component {
         <Login loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
         {this.state.loggedIn ? <p>Hello {this.state.name}</p>: <p>Not logged in</p> }
         <Logout loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)}/> */}
-      </div>
+      {/* </div> */}
 
 
 
