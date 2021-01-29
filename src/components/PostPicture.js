@@ -8,9 +8,9 @@ export function PostPicture(props) {
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    // setImages(imageList);
+    setImages(imageList);
     //Try to set the prop as the image list
-    props.setImagesP(imageList);
+    props.setImages(imageList);
   };
 
   return (

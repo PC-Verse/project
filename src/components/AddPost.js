@@ -9,15 +9,20 @@ class AddPost extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {content: '', title: '', showAddPost: false, image: []};
+    this.state = {
+        content: '',
+        title: '',
+        showAddPost: false,
+        images: []
+    };
 
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.setImages = this.setImages.bind(this);
+    this.setImages = this.setImages.bind(this);
   }
 
-  setImagesP(imageList){
+  setImages(imageList){
     this.setState({
         images: imageList
     })
@@ -75,9 +80,9 @@ class AddPost extends Component {
                                 
                             </div>
 
-                            {/* <PostPicture setImagesP = {(imageList) => this.setImagesP(imageList)}/> */}
+                            <PostPicture setImages = {this.setImages}/>
 
-                            <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.image)}}>Post!</button>
+                            <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.images)}}>Post!</button>
                         </form>
                     {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
                     </div>

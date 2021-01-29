@@ -30,6 +30,11 @@ class Post extends Component {
                     <div className="postTitle">{this.props.title}</div>
                     <span className="timeStamp">{this.props.dateDay} {this.props.dateTime}</span>
                     <div className="postContent">{this.props.content}</div>
+                    <div className="pictureContainer">
+                        {this.props.imageList.map((image, index) => (
+                            <img src={image['data_url']} className="picture"/>
+                        ))}
+                    </div>
                 </p>
                 <br/>
                 {this.props.isGlobalPost &&
@@ -42,7 +47,7 @@ class Post extends Component {
                     </div>
                 }
                 
-                <PostPicture/>
+                {/* <PostPicture/> */}
 
                 {!(this.props.isGlobalPost) && 
 

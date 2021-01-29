@@ -21,12 +21,13 @@ class App extends Component {
       showAddPost: true,
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true, // set this to true later
-      globalPosts:[<Post title="First Post" content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>],
-      imageLists: [],
+      globalPosts:[<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>],
       globalIds: [0],
+      globalImageLists: [],
       userPosts: [],
+      userImageLists: [],
       userIds: [],
-      availableId: -1,
+      availableId: 0,
       loggedIn: false,
       name: ""
     };
@@ -83,7 +84,7 @@ class App extends Component {
 
         {/* {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost={this.state.showAddPost, this.state.posts} globalPosts={this.state.posts} globalIds={this.state.ids} globalSetState={this.setState}/></div>} */}
         {this.state.showUserPosts && <div><UserPosts 
-            globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} availableId={this.state.availableId}/></div>}
+            globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId}/></div>}
         
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}

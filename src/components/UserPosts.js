@@ -23,16 +23,17 @@ class UserPosts extends Component {
             Picture: s
         })
     }
-    createPost = (newTitle, newContent, image) => {
+    createPost = (newTitle, newContent, newImageList) => {
         
         let newPosts = this.props.userPosts
+        let newImagesList = this.props.userImageLists
         let updatedIds = this.props.userIds
         let date = new Date()
         this.props.globalSetState((prevState, props) => ({
             availableId: prevState.availableId+1
         }))
 
-        newPosts.unshift(<Post image = {image} title={newTitle} Picture = {this.state.Picture} setPicture = {this.setPicture} content={newContent} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>)
+        newPosts.unshift(<Post imageList = {newImageList} title={newTitle} Picture = {this.state.Picture} setPicture = {this.setPicture} content={newContent} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>)
         updatedIds.unshift(this.state.availableId)
         this.props.globalSetState({
             userPosts: newPosts,
@@ -46,7 +47,7 @@ class UserPosts extends Component {
         // add it to global posts
         let globalPosts = this.props.globalPosts;
         let globalIds = this.props.globalIds;
-        globalPosts.unshift(<Post image = {image} title={newTitle} setPicture = {this.setPicture}content={newContent} Picture = {this.state.Picture} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>)
+        globalPosts.unshift(<Post imageList = {newImageList} title={newTitle} setPicture = {this.setPicture}content={newContent} Picture = {this.state.Picture} removePost ={this.removePost} id={this.state.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>)
         globalIds.unshift(this.state.availableId)
         this.props.globalSetState({
             posts: globalPosts,

@@ -74,6 +74,13 @@ body {
   width: 100%;
   column-fill: inherit;
 }
+.pictureContainer {
+  display: flex;
+  justify-content: center;
+}
+.picture {
+  width:25vw;
+}
 .removeBtn {
   background-color:rgba(230, 47, 47, 0.6);
 }
