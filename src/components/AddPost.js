@@ -12,7 +12,7 @@ class AddPost extends Component {
     this.state = {
         content: '',
         title: '',
-        showAddPost: false,
+        showAddPost: true,
         images: []
     };
 
@@ -20,6 +20,7 @@ class AddPost extends Component {
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
+    this.toggleCard = this.toggleCard.bind(this);
   }
 
   setImages(imageList){
@@ -32,9 +33,11 @@ class AddPost extends Component {
         console.log(name);
         switch (name) {
         case "showAddPost":
-            this.props.hideCard();
             break;
         }
+    }
+    toggleCard(){
+        this.setState({showAddPost: !this.state.showAddPost})
     }
 
 
@@ -58,11 +61,11 @@ class AddPost extends Component {
     render = () => {
         return(
             <div>
-                <button class = "Posting-Button" onClick={() => this.hideComponent("showAddPost")}>
+                <button class = "Posting-Button" onClick={() => this.toggleCard()}>
                         Click to Post or Hide Form!
                 </button>
 
-                {  
+                {  this.state.showAddPost && 
                     <div class = "card">
                         
 
