@@ -1,12 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../App.css'
-import AddPost from './AddPost'
+import Login from './Login'
+import Logout from './Logout'
 
 const NavBar = (props) => {
+
+    const [displayGoogleStuff, setDisplayGoogleStuff] = useState(false) // set a state called displayGoogleStuff, and create a function setDisplayGoogleStuff (similar to this.setState)
+
+
     return (
         <div id="NavBar">
             <button id="postButton" className="headerStuff" onClick={() => {props.toggleComponent("showUserPosts")}}>My Posts</button>
             <div id="logoName" className="headerStuff" onClick={() => {props.toggleComponent("showGlobalPosts")}}>PC Verse</div>
+            <button onMouseEnter={()=>setDisplayGoogleStuff(true)}
+                    onMouseLeave={()=>setDisplayGoogleStuff(false)}
+                    id="loginBtn"
+                    className="headerStuff">
+                {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
+            </button>
+            {displayGoogleStuff &&
+                <div>
+                    <Login loggedIn={props.loggedIn} setLoggedIn = {(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)}/>
+                    {props.loggedIn ? <div>Hello {props.name}</div> : <div>Not logged in</div> }
+                    <Logout loggedIn={props.loggedIn} setLoggedIn = {(logged) => props.setLoggedIn(logged)}/>
+                </div>
+            }
         </div>
     )
 }

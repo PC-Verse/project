@@ -144,7 +144,7 @@ input[type=text], select {
   border-bottom: solid black;
   /* background-color: rgb(67, 116, 172); */
   display: flex;
-  /* justify-content: space-around; */
+  justify-content: space-around;
   color: white;
   font-size: 30px;
   height: 81px;
@@ -155,18 +155,25 @@ input[type=text], select {
 #postButton {   /* don't think this exists */
   border-radius: 20%;
   padding: 5px;
-  margin-left: 2%;
-  align-self: left;
+  /* margin-left: 2%; */
+  /* align-self: left; */
   color: white;
   outline: 0;
 }
 #logoName {
-  margin-left: 39%;
-  display: flex;
-  align-self: center;
+  /* margin-left: 39%; */
+  /* display: flex; */
+  /* align-self: center; */
   background-position-x: absolute;
   left:0;
   border-radius: 10px;
+}
+#loginBtn {
+  height: 40px;
+  border-radius: 10px;
+  color: white;
+  /* display: flex;
+  align-self: flex-end; */
 }
 
 .headerStuff {

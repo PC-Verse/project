@@ -73,7 +73,7 @@ class App extends Component {
 
 
 
-        <NavBar toggleComponent={this.toggleComponent}/>
+        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
 
         {this.state.showGlobalPosts && 
           <div>
