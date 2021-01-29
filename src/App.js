@@ -22,6 +22,7 @@ class App extends Component {
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true, // set this to true later
       globalPosts:[<Post title="First Post" content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true}/>],
+      imageLists: [],
       globalIds: [0],
       userPosts: [],
       userIds: [],

@@ -1,18 +1,18 @@
 import React from 'react';
 import ImageUploading from 'react-images-uploading';
- 
+
 export function PostPicture(props) {
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
- 
+
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    setImages(imageList);
+    // setImages(imageList);
     //Try to set the prop as the image list
-    // this.props.image = imageList;
+    props.setImagesP(imageList);
   };
- 
+
   return (
     <div className="App">
       <ImageUploading
@@ -43,7 +43,8 @@ export function PostPicture(props) {
             &nbsp;
             <button onClick={onImageRemoveAll}>Remove all images</button>
             {imageList.map((image, index) => (
-              <div key={index} className="image-item">
+              // <div key={index} className="image-item">
+              <div>
                 <img src={image['data_url']} alt="" width="100" />
                 <div className="image-item__btn-wrapper">
                   <button onClick={() => onImageUpdate(index)}>Update</button>

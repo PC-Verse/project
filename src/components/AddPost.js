@@ -14,6 +14,13 @@ class AddPost extends Component {
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
     this.handleChangeInTitle = this.handleChangeInTitle.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setImages = this.setImages.bind(this);
+  }
+
+  setImagesP(imageList){
+    this.setState({
+        images: imageList
+    })
   }
 
     hideComponent(name) {
@@ -68,7 +75,7 @@ class AddPost extends Component {
                                 
                             </div>
 
-                            <PostPicture image = {this.state.image}/>
+                            {/* <PostPicture setImagesP = {(imageList) => this.setImagesP(imageList)}/> */}
 
                             <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.image)}}>Post!</button>
                         </form>
