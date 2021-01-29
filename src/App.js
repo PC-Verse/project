@@ -31,6 +31,9 @@ class App extends Component {
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
+    this.setLoggedIn = this.setLoggedIn.bind(this);
+    this.setName = this.setName.bind(this);
+
   }
 
 
@@ -50,6 +53,17 @@ class App extends Component {
         break
     }
   }
+
+  setLoggedIn(logged){
+    this.setState({
+      loggedIn : logged
+    })
+  }
+  setName(name){
+    this.setState({
+      name : name
+    })
+}
 
   render(){
   return (
@@ -74,9 +88,9 @@ class App extends Component {
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}
         {/* <AddPost/> */}
         <div style={{}}>
-        <Login loggedIn={loggedIn} setLoggedIn = {(bool) => setLoggedIn(bool)} setName={(name) => setName(name)}/>
-        {loggedIn ? <p>Hello {name}</p>: <p>Not logged in</p> }
-        <Logout loggedIn={loggedIn} setLoggedIn = {(bool) => setLoggedIn(bool)}/>
+        <Login loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)}/>
+        {this.state.loggedIn ? <p>Hello {this.state.name}</p>: <p>Not logged in</p> }
+        <Logout loggedIn={this.state.loggedIn} setLoggedIn = {(logged) => this.setLoggedIn(logged)}/>
       </div>
 
 
