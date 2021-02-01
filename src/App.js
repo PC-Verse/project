@@ -22,7 +22,7 @@ class App extends Component {
     super();
     let date = new Date();
     this.state = {
-      showAddPost: true,
+      showAddPost: true,      // not used anymore
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true, // set this to true later
       globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} />],
