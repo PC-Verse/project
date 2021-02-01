@@ -1,13 +1,17 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import React, { Component, useEffect, useState } from "react";
 import NavBar from './components/NavBar'
-import AddPost from './components/AddPost'
+// import AddPost from './components/AddPost'
 import Post from './components/Post'
 import UserPosts from './components/UserPosts'
 import GlobalPosts from './components/GlobalPosts'
-import Login from './components/Login'
-import Logout from './components/Logout'
+// import Login from './components/Login'
+// import Logout from './components/Logout'
+import firebaseConfig from './firebase' // import firebase.js which has config stuff for firebase
+import "firebase/database"
+import firebase from "firebase/app"
+
 
 
 class App extends Component {
@@ -29,7 +33,8 @@ class App extends Component {
       userIds: [],
       availableId: 0,
       loggedIn: false,
-      name: ""
+      name: "",
+      database: null
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -38,6 +43,12 @@ class App extends Component {
 
   }
 
+  componentDidMount = () => {
+    firebase.initializeApp(firebaseConfig)
+    this.setState({
+      database: firebase.database()
+    })
+  }
 
   toggleComponent(name) {
     console.log(name);
