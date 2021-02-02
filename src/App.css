@@ -230,6 +230,7 @@ button:hover {
 }
 
 .swipeBtnContainer {
+  display: inline-block;
   display: flex;
   justify-content: space-evenly;
 }
@@ -246,7 +247,8 @@ button:hover {
 }
 
 .numSwipes {
-  padding-left: 85%;
+  float:right;
+  clear: both;
   font-weight: 700;
   color: darkblue;
 }

@@ -2,9 +2,8 @@
     "userGoogleIds":{},
     "globalPosts":
     {
-        "0":{"title":"First Post", "imageList":null, "content": "Hello there", "id": 0, "dateDay": "1/31/2021", "dateTime": "10:30:28 PM"}
+        "RandomGeneratedID":{"title":"First Post", "imageList":null, "content": "Hello there", "id": 0, "dateDay": "1/31/2021", "dateTime": "10:30:28 PM", "name": "Anonymous"}
     },
-    "availableId":1,
     "userPosts":
     {
         
