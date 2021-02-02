@@ -16,6 +16,7 @@ function Login(props) {
     refreshTokenSetup(res);
     props.setLoggedIn(true);
     props.setName(res.profileObj.name)
+    props.setProfileObj(res.profileObj);
   };
 
   const onFailure = (res) => {
@@ -28,7 +29,7 @@ function Login(props) {
   
   return (
 
-    <div>
+    <div id=""googleLoginBtn> 
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"

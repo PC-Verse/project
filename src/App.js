@@ -25,7 +25,7 @@ class App extends Component {
       showAddPost: true,      // not used anymore
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true, // set this to true later
-      globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} />],
+      globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name="Anonymous"/>],
       globalIds: [0],
       // globalImageLists: [],
       userPosts: [],
@@ -34,7 +34,8 @@ class App extends Component {
       availableId: 0,
       loggedIn: false,
       name: "",
-      database: null
+      database: null,
+      profileObj: null
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -48,6 +49,9 @@ class App extends Component {
     this.setState({
       database: firebase.database()
     })
+  //   {this.state.database().ref('globalPosts').once('value').then((snap) =>{
+  //     console.log(snap.val())
+  // })}
   }
 
   toggleComponent(name) {
@@ -77,6 +81,11 @@ class App extends Component {
       name: name
     })
   }
+  setProfileObj = (profileObj) => {
+    this.setState({
+      profileObj: profileObj
+    })
+  }
 
   render() {
     return (
@@ -85,7 +94,7 @@ class App extends Component {
 
 
 
-        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} />
+        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} setProfileObj={this.setProfileObj}/>
 
         {this.state.showGlobalPosts &&
           <div>
@@ -95,7 +104,7 @@ class App extends Component {
 
         {/* {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost={this.state.showAddPost, this.state.posts} globalPosts={this.state.posts} globalIds={this.state.ids} globalSetState={this.setState}/></div>} */}
         {this.state.showUserPosts && <div><UserPosts
-          globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId} database={this.state.database}/></div>}
+          globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId} database={this.state.database} profileObj={this.state.profileObj}/></div>}
 
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}

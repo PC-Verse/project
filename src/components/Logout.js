@@ -12,7 +12,7 @@ function Logout(props) {
   };
 
   return (
-    <div>
+    <div id="googleLogoutBtn"> 
       <GoogleLogout
         clientId={clientId}
         buttonText="Logout"

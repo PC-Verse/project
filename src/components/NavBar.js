@@ -10,20 +10,23 @@ const NavBar = (props) => {
 
     return (
         <div id="NavBar">
-            <button id="postButton" className="headerStuff" onClick={() => {props.toggleComponent("showUserPosts")}}>My Posts</button>
-            <div id="logoName" className="headerStuff" onClick={() => {props.toggleComponent("showGlobalPosts")}}>PC Verse</div>
-            <button onClick={()=>setDisplayGoogleStuff(!displayGoogleStuff)}
+            <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}>My Posts</button>
+            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}>PC Verse</div>
+            <div id="dropDownForGoogleSignIn">
+                <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                     id="loginBtn"
                     className="headerStuff">
-                {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
-            </button>
-            {displayGoogleStuff &&
-                <div>
-                    <Login loggedIn={props.loggedIn} setLoggedIn = {(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)}/>
-                    {props.loggedIn ? <div>Hello {props.name}</div> : <div>Not logged in</div> }
-                    <Logout loggedIn={props.loggedIn} setLoggedIn = {(logged) => props.setLoggedIn(logged)}/>
-                </div>
-            }
+                    {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
+                </button>
+                {displayGoogleStuff &&
+                    <div>
+                        <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setRes={props.setRes}/>
+                        {props.loggedIn ? <div>Hello {props.name}</div> : <div>Not logged in</div>}
+                        <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
+                    </div>
+                }
+            </div>
+
         </div>
     )
 }

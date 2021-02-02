@@ -59,16 +59,23 @@ body {
   margin: 0px;
   padding: 0px;
   font-size: 25px;
-  margin: fit-content;
-  column-fill: inherit;
+  display: inline; 
+  /* column-fill: inherit; */
+}
+#nameOfPoster {
+  float: right;
+  font-size: 12px;
+  clear: both;
 }
 .timeStamp {
   margin: 0px;
   padding: 0px;
   font-size: 10px;
-  margin-left: 85%;
+  float: right;
+  clear: both;
 }
 .postContent {
+  display: inline-block;
   margin: 0px;
   padding: 0px;
   width: 100%;
@@ -181,6 +188,20 @@ input[type=text], select {
   color: white;
   /* display: flex;
   align-self: flex-end; */
+}
+
+#dropDownForGoogleStuff {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+#googleLoginBtn {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#googleLogoutBtn {
+  margin-top:0;
+  margin-bottom:0;
 }
 
 .headerStuff {

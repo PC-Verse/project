@@ -28,7 +28,8 @@ class Post extends Component {
             <div className = "card">
                 <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
-                    <span className="timeStamp">{this.props.dateDay} {this.props.dateTime}</span>
+                    <div id="nameOfPoster">{this.props.name}</div>
+                    <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
                     <div className="postContent">{this.props.content}</div>
                     <div className="pictureContainer">
                         {this.props.imageList.map((image, index) => (
