@@ -18,6 +18,8 @@ class GlobalPosts extends Component {
         // }
     }
 
+
+
     render = () => {
         return (
             <div>

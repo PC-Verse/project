@@ -38,7 +38,8 @@ class App extends Component {
       // dbRef: null,
       // dbGlobalPosts: null,
       // dbUserPostsRef: null,
-      profileObj: null
+      profileObj: null,
+      items: []
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -47,18 +48,33 @@ class App extends Component {
 
   }
 
-  componentDidMount = () => {
-    firebase.initializeApp(firebaseConfig)
-    let database = firebase.database()
-    this.setState({
-      database: firebase.database(),
-    })
-  }
+  // componentDidMount = () => {
+  //   firebase.initializeApp(firebaseConfig)
+  //   let database = firebase.database()
+  //   this.setState({
+  //     database: firebase.database(),
+  //   })
+  // }
+
+  // componentWillMount(){
+
+  //   firebase.initializeApp(firebaseConfig)
+
+  //   var ref = firebase.database().ref('userPosts');
+
+  //   ref.on("value", (snapshot) => {
+  //     const userItem = snapshot.name();
+  //     let items1 = Object.values(userItem);
+  //     this.setState({ items: items1 });
+  //   });
+  // }
+
 
   // these references are functions
   dbRef = () => this.state.database.ref();
   dbGlobalPostsRef = () => this.state.database.ref('globalPosts')
   dbUserPostsRef = () => this.state.database.ref('userPosts')
+
 
   toggleComponent(name) {
     console.log(name);
@@ -93,6 +109,24 @@ class App extends Component {
     })
   }
 
+  // useEffect= () => {
+  //   // Hook to handle the initial fetching of posts
+
+  //   this.dbRef.collection("globalPosts")
+       
+  //     .get()
+  //     .then((querySnapshot) => {
+  //       const data = querySnapshot.docs.map((doc) => ({
+  //         id: doc.id,
+  //         ...doc.data(),
+  //       }));
+
+  //       this.setState({
+  //         userPosts: data
+  //       })
+  //     });
+  // }
+
   render() {
     return (
       <div className="body">
@@ -105,6 +139,8 @@ class App extends Component {
         {this.state.showGlobalPosts &&
           <div>
             <GlobalPosts globalPosts={this.state.globalPosts} database={this.state.database} dbGlobalPostsRef={this.state.dbGlobalPostsRef} dbGlobalPostsRef={this.dbGlobalPostsRef}/>
+            <div>{this.state.items}</div> 
+          
           </div>
         }
 

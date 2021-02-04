@@ -73,6 +73,10 @@ class UserPosts extends Component {
             ids: globalIds
         })
     }
+
+
+
+
     removePost = (postId) => {
         let updatedIds = this.props.userIds
         let updatedPosts = this.props.userPosts
