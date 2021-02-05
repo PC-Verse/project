@@ -132,7 +132,7 @@ input[type=text], select {
 
 
 #swiping-feature{
-  margin-top: 5%;
+  margin-top: 6%;
   text-align: center;
   font-size: 35px;
 }
@@ -156,7 +156,7 @@ input[type=text], select {
 
 #NavBar {
   font-family: 'Courier New', Courier, monospace;
-  background-image: url("images/RGB.png");
+  background-image: url("./images/RGB.png");
   width: 100vw;
   background-size: auto;
   background-size: 100vw;
@@ -167,9 +167,22 @@ input[type=text], select {
   justify-content: space-around;
   color: white;
   font-size: 30px;
-  height: 81px;
+  height: 10vh;
   position: fixed;
   top: 0;
+}
+.headerStuff {
+  border: solid rgb(186, 198, 211);
+  background-color: rgb(4, 30, 59);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: center;
+  transition: transform .3s;
+  outline: 0;
+}
+.headerStuff:hover {
+  cursor: pointer;
+  transform: scale( 1.12 );
 }
 
 #postButton {   /* don't think this exists */
@@ -183,8 +196,7 @@ input[type=text], select {
 #logoName {
   /* margin-left: 39%; */
   /* display: flex; */
-  /* align-self: center; */
-  background-position-x: absolute;
+  /* background-position-x: absolute; */
   left:0;
   border-radius: 10px;
   font-size: 40px;
@@ -211,18 +223,6 @@ input[type=text], select {
   margin-bottom:0;
 }
 
-.headerStuff {
-  border: solid rgb(186, 198, 211);
-  background-color: rgb(4, 30, 59);
-  margin-top: 20px;
-  margin-bottom: 20px;
-  transition: transform .3s;
-  outline: 0;
-}
-.headerStuff:hover {
-  cursor: pointer;
-  transform: scale( 1.12 );
-}
 button {
   transition: transform .3s;
 }
@@ -240,7 +240,8 @@ button:hover {
   border-radius: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  padding-top: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 
 }
 .swipeBtnContainer {
@@ -284,5 +285,5 @@ button:hover {
 
 #swipeIMG{
   width: 70vw;
-  height: 80vh;
+  height: 75vh;
 }
