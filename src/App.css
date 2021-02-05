@@ -317,6 +317,7 @@ button:hover {
 }
 
 .btn1 {
+  font-size: 20px;
   border: 1px solid rgb(0, 0, 0);
   margin-left: 5%;
   margin-right: 5%;
