@@ -13,6 +13,7 @@
   }
 } */
 #globalPostTitle{
+  padding-top: 2%;
   font-family: 'Courier New', Courier, monospace;
   font-size: 30px;
   color: blue;
@@ -24,7 +25,7 @@ body {
 .container{
   /* height: 300px; */
   margin:auto;
-  padding: None;
+  padding-bottom: 20px;
 }
 
 .Posting-Button{
@@ -36,10 +37,11 @@ body {
   align-items: center;
   margin:auto;
   padding: .2%;
-  margin-top: 86px; /* bc navBar is 81px tall*/
+  margin-top: 7%; /* bc navBar is 81px tall*/
   margin-bottom: 5px;
   border-radius: 8px;
   outline: 0;
+
 }
 .text-card{
   /* max-width: 70%; */
@@ -132,8 +134,11 @@ input[type=text], select {
 
 
 #swiping-feature{
+  padding: 30px;
+  padding-bottom: 20px;
   margin-top: 10vh;
   text-align: center;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 35px;
 }
 
@@ -300,3 +305,47 @@ button:hover {
     margin-top: 0vh;
   }
 }
+
+
+
+
+.item {
+  width: 100px;
+  height: 50px;
+  margin: 10px;
+  position: relative;
+}
+
+.btn1 {
+  border: 1px solid rgb(0, 0, 0);
+  margin-left: 5%;
+  margin-right: 5%;
+  background: white;
+  width: 10%;
+  padding: 15px;
+  border-radius: 3px;
+  color: blue;
+}
+
+.btn1:hover {
+  background: blue;
+  color: white;
+  font-weight: normal;
+}
+
+.btn1:hover i {
+  color: white;
+}
+
+i {
+  color: blue;
+  margin-left: 20px;
+}
+
+.arrow1 {
+  animation: slide1 1s ease-in-out infinite;
+  margin-left: 9px;
+}
+
+
+

@@ -23,8 +23,13 @@ class SwipeCard extends Component {
                  
               </div>
               <div>
-                <button onClick={this.props.swipeLeft} >swipe left</button>
-                <button onClick={this.props.swipeRight} >swipe right</button>
+                        {/* <div class="item">
+                            <button>R 
+                                <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
+                            </button>
+                        </div>` */}
+                <button class ="btn1" onClick={this.props.swipeLeft} > left </button>
+                <button  class ="btn1" onClick={this.props.swipeRight} > right  </button>
               </div>
 
             </div>

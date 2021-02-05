@@ -43,7 +43,7 @@ swipeLeft = () =>{
     render = () => {
         return (
             <div id="swiping-feature">
-                <div>Carousel</div>
+                <div>Happy Swiping!</div>
                 {
                     <SwipeCard link = {this.state.swipePosts[this.state.index]}swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
                 }
