@@ -6,6 +6,8 @@ import NavBar from './components/NavBar'
 import Post from './components/Post'
 import UserPosts from './components/UserPosts'
 import GlobalPosts from './components/GlobalPosts'
+import Swipe from './components/Swipe'
+
 // import Login from './components/Login'
 // import Logout from './components/Logout'
 import firebaseConfig from './firebase' // import firebase.js which has config stuff for firebase
@@ -24,7 +26,8 @@ class App extends Component {
     this.state = {
       showAddPost: true,      // not used anymore
       showUserPosts: false,  // set this to false later. testing purposes rn
-      showGlobalPosts: true, // set this to true later
+      showGlobalPosts: true,
+      showSwipes: false, // set this to true later
       globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name="Anonymous" />],
       globalIds: [0],
       // globalImageLists: [],
@@ -48,24 +51,22 @@ class App extends Component {
 
   }
 
-  // componentDidMount = () => {
-  //   firebase.initializeApp(firebaseConfig)
-  //   let database = firebase.database()
-  //   this.setState({
-  //     database: firebase.database(),
-  //   })
-  // }
+  componentDidMount = () => {
+    firebase.initializeApp(firebaseConfig)
+    let database = firebase.database()
+    this.setState({
+      database: firebase.database(),
+    })
+  }
 
   // componentWillMount(){
-
   //   firebase.initializeApp(firebaseConfig)
-
   //   var ref = firebase.database().ref('userPosts');
 
   //   ref.on("value", (snapshot) => {
-  //     const userItem = snapshot.name();
-  //     let items1 = Object.values(userItem);
-  //     this.setState({ items: items1 });
+  //     const userItem = snapshot.dateDay;
+  //     let items = Object.values(userItem);
+  //     this.setState({ items: items });
   //   });
   // }
 
@@ -81,15 +82,23 @@ class App extends Component {
     switch (name) {
       case "showAddPost":
         this.setState({ showPost: !this.state.showAddPost });
+        this.setState({ showSwipes: false })
         break;
       case "showUserPosts":
         this.setState({ showUserPosts: true })
         this.setState({ showGlobalPosts: false })
+        this.setState({ showSwipes: false })
         break
       case "showGlobalPosts":
         this.setState({ showGlobalPosts: true })
         this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
+        this.setState({ showSwipes: false })
         break
+      case "showSwipes":
+          this.setState({ showSwipes: true })
+          this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
+          this.setState({ showGlobalPosts: false })
+          break
     }
   }
 
@@ -139,10 +148,22 @@ class App extends Component {
         {this.state.showGlobalPosts &&
           <div>
             <GlobalPosts globalPosts={this.state.globalPosts} database={this.state.database} dbGlobalPostsRef={this.state.dbGlobalPostsRef} dbGlobalPostsRef={this.dbGlobalPostsRef}/>
-            <div>{this.state.items}</div> 
+            
           
           </div>
         }
+
+        {this.state.showSwipes &&
+          <div>
+            <Swipe swipePosts={this.state.globalPosts} />
+            
+          
+          </div>
+        }
+
+        {/* <div>{this.state.items}
+            display here
+        </div>  */}
 
         {/* {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost={this.state.showAddPost, this.state.posts} globalPosts={this.state.posts} globalIds={this.state.ids} globalSetState={this.setState}/></div>} */}
         {this.state.showUserPosts && <div><UserPosts

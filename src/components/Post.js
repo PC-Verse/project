@@ -8,19 +8,28 @@ class Post extends Component {
         super()
         this.state = {
             swipes: 0,
+            disALeft: false,
+            disARight: false
         }
     }
 
     incrementSwipes = () => {
         this.setState((prevState, props) => ({
-            swipes: prevState.swipes+1
+            swipes: prevState.swipes+1,
+            disARight: true,
+            disALeft: true
         }))
+        
+
     }
 
     decrementSwipes = () => {
         this.setState((prevState, props) => ({
-            swipes: prevState.swipes-1
+            swipes: prevState.swipes-1,
+            disALeft: true,
+            disARight: true
         }))
+        
     }
 
     render = () => {
@@ -42,8 +51,10 @@ class Post extends Component {
                     <div>
                         <div className="numSwipes">Swipes: {this.state.swipes}</div>
                         <div className="swipeBtnContainer">
-                            <button id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{"<"}= Swipe</button>
-                            <button id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Swipe ={">"}</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes
+                            
+                            }>{"<"}= Swipe</button>
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Swipe ={">"}</button>
                         </div>
                     </div>
                 }
