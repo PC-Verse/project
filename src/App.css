@@ -56,6 +56,18 @@ body {
   align-items: center;
   margin:auto;
   padding: 1%;
+  animation: postRender;
+  animation-duration: 2s;
+}
+@keyframes postRender{
+  0% {
+    opacity: 0;
+    transform: translateX(100%)
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
 }
 .postTitle {
   margin: 0px;
@@ -177,21 +189,32 @@ input[type=text], select {
   height: 10vh;
   position: fixed;
   top: 0;
+  grid-template-columns: 20vw 20vw 20vw 20vw 20vw;
 }
 
 #logoName{
   /* justify-content: center; */
   margin-left: 23%;
+  /* grid-column-start: 3;
+  grid-column-end: 4 span 2; */
+  /* margin-left: 39%; */
+  /* display: flex; */
+  /* background-position-x: absolute; */
+  left:0;
+  border-radius: 10px;
+  font-size: 40px;
 }
 #postButton{
   margin-left: 5%;
   margin-right: 5%;
+  /* grid-column-start: 1; */
 }
 
 #dropDownForGoogleSignIn{
   margin-left: 30%;
   align-items: center;
   margin-top: .5%;
+  /* grid-column-start: 5; */
 }
 
 .headerStuff {
@@ -216,14 +239,7 @@ input[type=text], select {
   color: white;
   outline: 0;
 }
-#logoName {
-  /* margin-left: 39%; */
-  /* display: flex; */
-  /* background-position-x: absolute; */
-  left:0;
-  border-radius: 10px;
-  font-size: 40px;
-}
+
 #loginBtn {
   height: 40px;
   border-radius: 10px;
@@ -232,7 +248,7 @@ input[type=text], select {
   align-self: flex-end; */
 }
 
-#dropDownForGoogleStuff {
+#dropDownForGoogleStuff { /* dont think this id exists*/
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -266,7 +282,7 @@ button:hover {
   padding-right: 5px;
   padding-top: 5px;
   padding-bottom: 5px;
-
+  grid-column-start: 2;
 }
 .swipeBtnContainer {
   display: inline-block;
@@ -310,6 +326,7 @@ button:hover {
 #swipeIMG{
   width: 70vw;
   height: 75vh;
+  border-radius: 5%;
   animation: slide_in;
   animation-duration: 1.5s;
 }
@@ -325,6 +342,32 @@ button:hover {
   }
 }
 
+.dragging {
+  animation: dragging;
+  animation-duration: 5s;;
+}
+
+@keyframe dragging {
+  0% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.loading {
+  animation: load;
+  animation-duration: 2s;
+}
+@keyframse load {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 
 

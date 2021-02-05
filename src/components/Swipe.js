@@ -10,7 +10,8 @@ class Swipe extends Component {
                 "/images/RGB.png",
                 '/images/maxresdefault.jpg'
             ],
-            index: 0
+            index: 0,
+            swipeImgClassName: ""
         }
 
     }
@@ -40,12 +41,18 @@ swipeLeft = () =>{
     }
 }
 
+setSwipeImgClassName = (name) => {
+    this.setState({
+        swipeImgClassName: name
+    })
+}
+
     render = () => {
         return (
             <div id="swiping-feature">
                 <div>Happy Swiping!</div>
                 {
-                    <SwipeCard link = {this.state.swipePosts[this.state.index]}swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                    <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link = {this.state.swipePosts[this.state.index]}swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
                 }
             </div>
         )
