@@ -169,13 +169,31 @@ input[type=text], select {
   border-bottom: solid black;
   /* background-color: rgb(67, 116, 172); */
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  /* justify-content: space-evenly; */
+  /* margin:auto; */
   color: white;
   font-size: 30px;
   height: 10vh;
   position: fixed;
   top: 0;
 }
+
+#logoName{
+  /* justify-content: center; */
+  margin-left: 23%;
+}
+#postButton{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#dropDownForGoogleSignIn{
+  margin-left: 30%;
+  align-items: center;
+  margin-top: .5%;
+}
+
 .headerStuff {
   border: solid rgb(186, 198, 211);
   background-color: rgb(4, 30, 59);

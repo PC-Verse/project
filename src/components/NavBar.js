@@ -11,8 +11,9 @@ const NavBar = (props) => {
     return (
         <div id="NavBar">
             <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}>My Posts</button>
-            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}>PC Verse</div>
             <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}>Carousel Feature</div>
+
+            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}>PC Verse</div>
             <div id="dropDownForGoogleSignIn">
                 <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                     id="loginBtn"
