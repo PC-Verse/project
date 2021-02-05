@@ -28,7 +28,7 @@ class SwipeCard extends Component {
                                 <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
                             </button>
                         </div>` */}
-                <button class ="btn1" onClick={this.props.swipeLeft} > &lt;&lt;  </button>
+                <button class ="btn1" onClick={this.props.swipeLeft} > &lt; &lt;  </button>
                 <button  class ="btn1" onClick={this.props.swipeRight} > &#x3e; &#x3e;  </button>
               </div>
 

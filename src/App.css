@@ -135,8 +135,8 @@ input[type=text], select {
 
 #swiping-feature{
   padding: 30px;
-  padding-bottom: 20px;
-  margin-top: 10vh;
+  padding-bottom: 30px;
+  margin-top: 7vh;
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
   font-size: 35px;
@@ -230,6 +230,7 @@ input[type=text], select {
 
 button {
   transition: transform .3s;
+  outline: 0;
 }
 
 button:hover {
