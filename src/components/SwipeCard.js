@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+
 // import Swipeable from 'react-swipeable'
 // import Pic from '../images/RGB.png'
 
@@ -14,24 +16,24 @@ class SwipeCard extends Component {
             dragStart: 0,
         }
     }
-    // handleTouchStart = (e) => {
-    //     this.setState({
-    //         touchStart: e.targetTouches[0].clientX,
-    //     })
-    // }
-    // handleTouchMove = (e) => {
-    //     this.setState({
-    //         touchEnd: e.targetTouches[0].clientX
-    //     })
-    // }
-    // handleTouchEnd = () => {
-    //     if (this.state.touchEnd - this.state.touchStart > 150) {
-    //         this.props.swipeLeft();
-    //     }
-    //     if (this.state.touchEnd - this.state.touchStart < -150) {
-    //         this.props.swipeRight();
-    //     }
-    // }
+    handleTouchStart = (e) => {
+        this.setState({
+            touchStart: e.targetTouches[0].clientX,
+        })
+    }
+    handleTouchMove = (e) => {
+        this.setState({
+            touchEnd: e.targetTouches[0].clientX
+        })
+    }
+    handleTouchEnd = () => {
+        if (this.state.touchEnd - this.state.touchStart > 150) {
+            this.props.swipeLeft();
+        }
+        if (this.state.touchEnd - this.state.touchStart < -150) {
+            this.props.swipeRight();
+        }
+    }
 
     // onSwipedLeft = (e, deltaX, deltaY, isFlick, velocity) => {
     //     console.log("You swiped left...", e, deltaX, deltaY, isFlick, velocity)
@@ -67,30 +69,38 @@ class SwipeCard extends Component {
                 {/* <Swipeable
                      onSwipedLeft={this.onSwipedLeft}
                      onSwipedRight={this.onSwipedRight}> */}
-                <img id='swipeIMG'
-                    className={ this.props.swipeImgClassName }
-                    src={window.location.origin + this.props.link}
-                    onDragStart={this.handleDragStart}
-                    onDragEnd={this.handleDragEnd}
-                // onTouchStart={this.handleTouchStart}
-                // onTouchMove={this.handleTouchMove}
-                // onTouchEnd={this.handleTouchEnd}
-                // onSwipe={() => {console.log("Swiped")}}
-                >
-                </img>
+                <TransitionGroup>   {/* transition group bc we need to aniamte entering and exiting card*/}
+                    <CSSTransition
+                        timeout={300}
+                        classNames="fade"
+                        key={this.props.index}  // need key so it knows which is which
+                    >
+                        <img id='swipeIMG'
+                            className={this.props.swipeImgClassName}
+                            src={window.location.origin + this.props.link}
+                            onDragStart={this.handleDragStart}
+                            onDragEnd={this.handleDragEnd}
+                            onTouchStart={this.handleTouchStart}
+                            onTouchMove={this.handleTouchMove}
+                            onTouchEnd={this.handleTouchEnd}
+                        // onSwipe={() => {console.log("Swiped")}}
+                        >
+                        </img>
+                    </CSSTransition>
+                </TransitionGroup>
                 {/* </Swipeable> */}
-                <div className="image">
+                {/* <div className="image">
                     <h></h>
 
-                </div>
+                </div> */}
                 <div>
                     {/* <div class="item">
                             <button>R 
                                 <i class="fa fa-long-arrow-right arrow1" aria-hidden="true"></i>
                             </button>
                         </div>` */}
-                    <button class="btn1" onClick={this.props.swipeLeft} > &lt; &lt;  </button>
-                    <button class="btn1" onClick={this.props.swipeRight} > &#x3e; &#x3e;  </button>
+                    <button className="btn1" onClick={this.props.swipeLeft} > &lt; &lt;  </button>
+                    <button className="btn1" onClick={this.props.swipeRight} > &#x3e; &#x3e;  </button>
                 </div>
 
             </div>

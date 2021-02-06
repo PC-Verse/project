@@ -156,8 +156,6 @@ class App extends Component {
         {this.state.showSwipes &&
           <div>
             <Swipe swipePosts={this.state.globalPosts} />
-            
-          
           </div>
         }
 

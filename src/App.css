@@ -342,7 +342,7 @@ button:hover {
   }
 }
 
-.dragging {
+/* .dragging {
   animation: dragging;
   animation-duration: 5s;;
 }
@@ -367,9 +367,40 @@ button:hover {
   100% {
     opacity: 1;
   }
+} */
+
+.fade-appear {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity 300 ms linear;
 }
 
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+  transform: scale(0.95) translateX(5px) translateY(-5px);
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transform: scale(1) translateX(0) translateY(0);
+  transition: opacity 300ms linear 300ms, transform 300ms ease-in-out 100ms; /* second 300ms is delay time*/
+}
 
+.fade-exit {
+  opacity: 1;
+  transform: scale(1) translateY(0) translateX(0);
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.95) translateX(5px) translateY(-5px);
+  transition: opacity 300ms linear, transform 150ms ease-out;
+}
+.fade-exit-done {
+  opacity: 0;
+}
 
 .item {
   width: 100px;

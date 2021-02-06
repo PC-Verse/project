@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { GoogleLogout } from 'react-google-login';
+import '../App.css';
 
 const clientId = '32621617245-cajshuunfbe1tcn9bp36adkq5enec9h1.apps.googleusercontent.com' //insert client id here
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AddPost from './AddPost'
-import Picture from './Picture'
+// import Picture from './Picture'
 import Post from './Post'
+// import '../App.css'
 
 class UserPosts extends Component {
     constructor() {

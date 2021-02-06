@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../App.css'
 
 import { GoogleLogin } from 'react-google-login';
 // refresh token
@@ -29,7 +30,7 @@ function Login(props) {
   
   return (
 
-    <div id=""googleLoginBtn> 
+    <div id="googleLoginBtn"> 
       <GoogleLogin
         clientId={clientId}
         buttonText="Login"

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import Post from './Post'
+// import Post from './Post'
+import '../App.css'
 import SwipeCard from './SwipeCard'
+import { CSSTransition } from 'react-transition-group'
 
 class Swipe extends Component {
     constructor() {
@@ -11,7 +13,8 @@ class Swipe extends Component {
                 '/images/maxresdefault.jpg'
             ],
             index: 0,
-            swipeImgClassName: ""
+            swipeImgClassName: "",
+            appearCard: true
         }
 
     }
@@ -52,11 +55,18 @@ setSwipeImgClassName = (name) => {
             <div id="swiping-feature">
                 <div>Happy Swiping!</div>
                 {
-                    <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link = {this.state.swipePosts[this.state.index]}swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                    <CSSTransition
+                        in={this.state.appearCard}
+                        appear={true}
+                        timeout={300}
+                        classNames="fade"   // classNames bc fade is base keyword for many classes
+                    >
+                        <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link = {this.state.swipePosts[this.state.index]} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                     </CSSTransition>
                 }
             </div>
         )
     }
 }
 
-export default Swipe
+export default Swipe;
