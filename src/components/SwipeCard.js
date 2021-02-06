@@ -35,7 +35,7 @@ class SwipeCard extends Component {
         return (
             <div className = "swipeCard">
 
-            <TinderCard onSwipe={this.onSwipe} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} 
+            <TinderCard onSwipe={this.onSwipe} 
             
             preventSwipe={['right', 'left']}>
                 <img id="swipeIMG"
