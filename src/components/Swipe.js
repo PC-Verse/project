@@ -55,14 +55,9 @@ setSwipeImgClassName = (name) => {
             <div id="swiping-feature">
                 <div>Happy Swiping!</div>
                 {
-                    <CSSTransition
-                        in={this.state.appearCard}
-                        appear={true}
-                        timeout={300}
-                        classNames="fade"   // classNames bc fade is base keyword for many classes
-                    >
+
                         <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link = {this.state.swipePosts[this.state.index]} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
-                     </CSSTransition>
+                     
                 }
             </div>
         )
