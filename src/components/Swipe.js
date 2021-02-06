@@ -19,36 +19,36 @@ class Swipe extends Component {
 
     }
 
-swipeRight = () => {
-    if(this.state.index>=this.state.swipePosts.length-1){
-        this.setState({
-            index:0
-        })
+    swipeRight = () => {
+        if (this.state.index >= this.state.swipePosts.length - 1) {
+            this.setState({
+                index: 0
+            })
+        }
+        else {
+            this.setState({
+                index: this.state.index + 1
+            })
+        }
     }
-    else{
-        this.setState({
-            index: this.state.index+1
-        })
+    swipeLeft = () => {
+        if (this.state.index <= 0) {
+            this.setState({
+                index: this.state.swipePosts.length - 1
+            })
+        }
+        else {
+            this.setState({
+                index: this.state.index - 1
+            })
+        }
     }
-}
-swipeLeft = () =>{
-    if(this.state.index<=0){
-        this.setState({
-            index: this.state.swipePosts.length-1
-        })
-    }
-    else{
-        this.setState({
-            index: this.state.index-1
-        })
-    }
-}
 
-setSwipeImgClassName = (name) => {
-    this.setState({
-        swipeImgClassName: name
-    })
-}
+    setSwipeImgClassName = (name) => {
+        this.setState({
+            swipeImgClassName: name
+        })
+    }
 
     render = () => {
         return (
@@ -56,8 +56,8 @@ setSwipeImgClassName = (name) => {
                 <div>Happy Swiping!</div>
                 {
 
-                        <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link = {this.state.swipePosts[this.state.index]} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
-                     
+                    <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link={this.state.swipePosts[this.state.index]} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+
                 }
             </div>
         )

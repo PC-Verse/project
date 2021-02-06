@@ -16,39 +16,40 @@ class SwipeCard extends Component {
 
 
     }
-     onSwipe = (direction) => {
+    onSwipe = (direction) => {
         console.log('You swiped: ' + direction)
-        if(direction>0){
+        if (direction > 0) {
             this.props.swipeLeft();
-        }else{
+        } else {
             this.props.swipeRight();
         }
-      }
-       
+    }
+
     onCardLeftScreen = (myIdentifier) => {
         console.log(myIdentifier + ' left the screen')
-      }
+    }
 
 
-   
+
     render = () => {
         return (
-            <div className = "swipeCard">
+            <div className="swipeCard">
 
-            <TinderCard onSwipe={this.onSwipe} onCardLeftScreen={() => this.onCardLeftScreen('fooBar')} 
-            
-            preventSwipe={['right', 'left']}>
-                <img id="swipeIMG"
-                src={window.location.origin + this.props.link}>
-                </img>
-            
-            </TinderCard>
+                <TinderCard
+                    onSwipe={this.onSwipe}
+                    onCardLeftScreen={() => this.onCardLeftScreen('fooBar')}
+                    preventSwipe={['right', 'left', 'up', 'down']}>
+                    <img id="swipeIMG"
+                        src={window.location.origin + this.props.link}>
+                    </img>
 
-            
+                </TinderCard>
+
+
 
 
             </div>
-            
+
         )
     }
 }

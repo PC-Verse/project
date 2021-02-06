@@ -23,7 +23,6 @@ const NavBar = (props) => {
                 {displayGoogleStuff &&
                     <div>
                         <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setRes={props.setRes}/>
-                        {props.loggedIn ? <div>Hello {props.name}</div> : <div>Not logged in</div>}
                         <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
                     </div>
                 }

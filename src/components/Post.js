@@ -14,20 +14,40 @@ class Post extends Component {
     }
 
     incrementSwipes = () => {
+        let disALeft;
+        let disARight;
+        if (this.state.disALeft == true) {
+            disALeft = false;
+            disARight = false;
+        }
+        else {
+            disALeft = false;
+            disARight = true;
+        }
         this.setState((prevState, props) => ({
             swipes: prevState.swipes+1,
-            disARight: true,
-            disALeft: true
+            disARight: disARight,
+            disALeft: disALeft
         }))
         
 
     }
 
     decrementSwipes = () => {
+        let disALeft;
+        let disARight;
+        if (this.state.disARight == true) {
+            disALeft = false;
+            disARight = false;
+        }
+        else {
+            disALeft = true;
+            disARight = false;
+        }
         this.setState((prevState, props) => ({
             swipes: prevState.swipes-1,
-            disALeft: true,
-            disARight: true
+            disALeft: disALeft,
+            disARight: disARight
         }))
         
     }
