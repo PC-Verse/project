@@ -41,19 +41,19 @@ class UserPosts extends Component {
         }))
 
         // this works
-        let postData = {
-            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name:this.state.name
-        }
+        // let postData = {
+        //     imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name:this.props.profileObj.name
+        // }
         let newPostKey = this.props.database.ref('userPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name:this.state.name
+            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name: this.props.profileObj.name
         })
         let newPostKey2 = this.props.database.ref('globalPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: true, name:this.state.name
+            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: true, name: this.props.profileObj.name
         })
- 
 
 
-        newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} name={this.state.name}/>)
+
+        newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} name={this.props.profileObj.name} />)
         updatedIds.unshift(this.props.availableId)
         this.props.globalSetState({
             userPosts: newPosts,
@@ -67,7 +67,7 @@ class UserPosts extends Component {
         // add it to global posts
         let globalPosts = this.props.globalPosts;
         let globalIds = this.props.globalIds;
-        globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name={this.state.name}/>)
+        globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name={this.props.profileObj.name} />)
         globalIds.unshift(this.props.availableId)
         this.props.globalSetState({
             posts: globalPosts,

@@ -41,7 +41,13 @@ class App extends Component {
       // dbRef: null,
       // dbGlobalPosts: null,
       // dbUserPostsRef: null,
-      profileObj: null,
+      profileObj: {
+        email: 'username@ucsb.edu',
+        familyName: "",
+        givenName: "Anonymous",
+        name: "Anonymous",
+        googleId: -1,
+        imageUrl: ""},
       items: []
     };
     this.toggleComponent = this.toggleComponent.bind(this);
@@ -112,9 +118,16 @@ class App extends Component {
       name: name
     })
   }
-  setProfileObj = (profileObj) => {
+  setProfileObj = (email, familyName, givenName, name, googleId, imageUrl) => {
+    let newProfileObj = {
+      email: email,
+      familyName: familyName,
+      givenName: givenName,
+      name: name,
+      googleId: googleId,
+      imageUrl: imageUrl}
     this.setState({
-      profileObj: profileObj
+      profileObj : newProfileObj
     })
   }
 

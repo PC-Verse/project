@@ -17,7 +17,14 @@ function Login(props) {
     refreshTokenSetup(res);
     props.setLoggedIn(true);
     props.setName(res.profileObj.name)
-    props.setProfileObj(res.profileObj);
+    props.setProfileObj(
+      res.profileObj.email,
+      res.profileObj.familyName,
+      res.profileObj.givenName,
+      res.profileObj.name,
+      res.profileObj.googleId,
+      res.profileObj.imageUrl
+    );
   };
 
   const onFailure = (res) => {

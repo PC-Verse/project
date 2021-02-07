@@ -21,8 +21,8 @@ const NavBar = (props) => {
                     {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
                 </button>
                 {displayGoogleStuff &&
-                    <div>
-                        <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setRes={props.setRes}/>
+                    <div className="dropdownContent">
+                        <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setProfileObj={props.setProfileObj}/>
                         <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
                     </div>
                 }
