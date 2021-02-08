@@ -131,23 +131,6 @@ class App extends Component {
     })
   }
 
-  // useEffect= () => {
-  //   // Hook to handle the initial fetching of posts
-
-  //   this.dbRef.collection("globalPosts")
-       
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       const data = querySnapshot.docs.map((doc) => ({
-  //         id: doc.id,
-  //         ...doc.data(),
-  //       }));
-
-  //       this.setState({
-  //         userPosts: data
-  //       })
-  //     });
-  // }
 
   render() {
     return (
