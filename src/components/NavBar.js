@@ -14,19 +14,17 @@ const NavBar = (props) => {
             <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}>Carousel Feature</div>
 
             <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}>PC Verse</div>
-            <div id="dropDownForGoogleSignIn">
-                <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
-                    id="loginBtn"
-                    className="headerStuff">
-                    {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
-                </button>
-                {displayGoogleStuff &&
-                    <div className="dropdownContent">
-                        <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setProfileObj={props.setProfileObj}/>
-                        <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
-                    </div>
-                }
-            </div>
+            <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
+                id="loginBtn"
+                className="headerStuff">
+                {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
+            </button>
+            {displayGoogleStuff &&
+                <div className="dropdownContent">
+                    <Login loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setProfileObj={props.setProfileObj} />
+                    <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
+                </div>
+            }
 
         </div>
     )
