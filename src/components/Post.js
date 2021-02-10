@@ -69,12 +69,14 @@ class Post extends Component {
                 <br/>
                 {this.props.isGlobalPost &&
                     <div>
-                        <div className="numSwipes">Swipes: {this.state.swipes}</div>
+                        <div className="numSwipes">Likes: {this.state.swipes}</div>
                         <div className="swipeBtnContainer">
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes
                             
-                            }>{"<"}= Swipe</button>
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Swipe ={">"}</button>
+                            }>{}Dislike</button>
+                            
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Like{}</button>
+
                         </div>
                     </div>
                 }
