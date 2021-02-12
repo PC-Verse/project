@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css'
 import Post from './Post'
+import database from '../firebase'
 
 class GlobalPosts extends Component {
     constructor() {
@@ -17,6 +18,23 @@ class GlobalPosts extends Component {
         //     return <Post title={post.title} content={post.content} dateDay={post.dateDay} dateTime={post.dateTime} id={post.id}/>
         //     })
         // }
+        database.ref('/globalPosts/').on("value", (snapshot) => {
+            let posts = []
+            snapshot.forEach(data => {
+                let post = <Post
+                    content={data.val().content}
+                    dateDay={data.val().dateDay}
+                    dateTime={data.val().dateTime}
+                    id={data.key}
+                    isGlobalPost={data.val().isGlobalPost}
+                    namee={data.val().name}
+                    title={data.val().title}
+                    imageList={data.val().imageList}
+                />
+                // console.log("Adding posts to state from database: ", post)
+                this.props.addGlobalPosts(post)
+            })
+        })
     }
 
 
@@ -25,26 +43,13 @@ class GlobalPosts extends Component {
         return (
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
-                {this.props.globalPosts.map((post) => {
+                {console.log(this.props.globalPosts)}
+                {this.props.globalPosts.map(post => {
+                    // console.log(post);
                     return post;
                 })
                 }
-                {/*The code down here doesn't get shown on the website for some reason, but it is logging the correct stuff. It logs on every rerender of the page, so the console will get filled up*/}
-                {this.props.database != null &&
-                    this.props.database.ref('globalPosts').on('value',(posts) => {
-                        posts.forEach(post => {
-                            console.log(post.val())
-                            // let posts = this.state.globalPosts
-                            // posts.unshift(<Post title={post.title} content={post.content} dateDay={post.dateDay} dateTime={post.dateTime} id={post.id} imageList={[]} removePost={this.removePost} isGlobalPost={true} name={post.name} />)
-                            // this.setState({
-                            //     globalPosts: posts
-                            // })
-                        })
-                        // let post = posts.val()[0];
-                        // console.log(post)
-                    })
-                }
-                {/* {this.state.globalPosts.map((post) => {
+                {/* {this.props.globalPosts.map((post) => {
                     return post;
                 })
                 } */}

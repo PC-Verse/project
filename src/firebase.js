@@ -1,13 +1,21 @@
+import firebase from 'firebase'
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyAekOg7-61AWEmUUlV5coeDrCqzV7cD3tI",
+    apiKey: process.env.FIREBASE_API_KEY,
     authDomain: "pc-verse.firebaseapp.com",
     databaseURL: "https://pc-verse-default-rtdb.firebaseio.com",
     projectId: "pc-verse",
     storageBucket: "pc-verse.appspot.com",
-    messagingSenderId: "11656839806",
-    appId: "1:11656839806:web:1fb9068dcbe338c8718e2f",
-    measurementId: "G-DZDKKWF2SS"
+    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.FIREBASE_APP_ID,
+    measurementId: process.env.FIREBASE_MEASUREMENT_ID
   };
 
-export default firebaseConfig
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+
+export {
+  database as default
+}

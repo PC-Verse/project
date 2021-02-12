@@ -60,11 +60,13 @@ class Post extends Component {
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
                     <div className="postContent">{this.props.content}</div>
+                    {this.props.imageList &&
                     <div className="pictureContainer">
                         {this.props.imageList.map((image, index) => (
                             <img src={image['data_url']} className="picture"/>
                         ))}
                     </div>
+                    }
                 </p>
                 <br/>
                 {this.props.isGlobalPost &&

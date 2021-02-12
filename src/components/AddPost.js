@@ -61,15 +61,15 @@ class AddPost extends Component {
     render = () => {
         return(
             <div>
-                <button class = "Posting-Button" onClick={() => this.toggleCard()}>
+                <button className = "Posting-Button" onClick={() => this.toggleCard()}>
                         Click to Post or Hide Form!
                 </button>
 
                 {  this.state.showAddPost && 
-                    <div class = "card">
+                    <div className = "card">
                         
 
-                            <form class = "container" onSubmit={this.handleSubmit} >
+                            <form className = "container" onSubmit={this.handleSubmit} >
                             <div>
                                 <p>Your Post Here:</p>
                                 <span>Title: </span>
@@ -85,7 +85,7 @@ class AddPost extends Component {
 
                             <PostPicture setImages = {this.setImages}/>
 
-                            <button class = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.images)}}>Post!</button>
+                            <button className = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.images)}}>Post!</button>
                         </form>
                     {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
                     </div>

@@ -13,6 +13,7 @@ import Swipe from './components/Swipe'
 import firebaseConfig from './firebase' // import firebase.js which has config stuff for firebase
 import "firebase/database"
 import firebase from "firebase/app"
+import database from './firebase'
 
 
 
@@ -37,7 +38,7 @@ class App extends Component {
       availableId: 0,
       loggedIn: false,
       name: "",
-      database: null,
+      database: database,
       // dbRef: null,
       // dbGlobalPosts: null,
       // dbUserPostsRef: null,
@@ -57,13 +58,13 @@ class App extends Component {
 
   }
 
-  componentDidMount = () => {
-    firebase.initializeApp(firebaseConfig)
-    let database = firebase.database()
-    this.setState({
-      database: firebase.database(),
-    })
-  }
+  // componentDidMount = () => {
+  //   firebase.initializeApp(firebaseConfig)
+  //   let database = firebase.database()
+  //   this.setState({
+  //     database: firebase.database(),
+  //   })
+  // }
 
   // componentWillMount(){
   //   firebase.initializeApp(firebaseConfig)
@@ -130,7 +131,15 @@ class App extends Component {
       profileObj : newProfileObj
     })
   }
-
+  addGlobalPosts = (newPost) => {
+    console.log("ran setGlobalPosts")
+    let posts = this.state.globalPosts;
+    posts.unshift(newPost);  // concatenate newPosts to front of posts
+    this.setState({
+      globalPosts: posts
+    })
+    // console.log(this.state.globalPosts)
+  }
 
   render() {
     return (
@@ -143,7 +152,10 @@ class App extends Component {
 
         {this.state.showGlobalPosts &&
           <div>
-            <GlobalPosts globalPosts={this.state.globalPosts} database={this.state.database} dbGlobalPostsRef={this.state.dbGlobalPostsRef} dbGlobalPostsRef={this.dbGlobalPostsRef}/>
+            <GlobalPosts
+              globalPosts={this.state.globalPosts}
+              database={this.state.database}
+              addGlobalPosts={this.addGlobalPosts}/>
             
           
           </div>
