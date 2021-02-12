@@ -12,22 +12,15 @@ class GlobalPosts extends Component {
     }
 
     componentDidMount = () => {
-        // {this.props.database != null && this.props.database.ref('globalPosts').on('value', (snap)=> {
-        //     console.log(snap.val())
-        //     let post = snap.val()[0];
-        //     return <Post title={post.title} content={post.content} dateDay={post.dateDay} dateTime={post.dateTime} id={post.id}/>
-        //     })
-        // }
         database.ref('/globalPosts/').on("value", (snapshot) => {
-            let posts = []
             snapshot.forEach(data => {
                 let post = <Post
                     content={data.val().content}
                     dateDay={data.val().dateDay}
                     dateTime={data.val().dateTime}
-                    id={data.key}
+                    key={data.key}
                     isGlobalPost={data.val().isGlobalPost}
-                    namee={data.val().name}
+                    name={data.val().name}
                     title={data.val().title}
                     imageList={data.val().imageList}
                 />
@@ -43,7 +36,7 @@ class GlobalPosts extends Component {
         return (
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
-                {console.log(this.props.globalPosts)}
+                {/* {console.log(this.props.globalPosts)} */}
                 {this.props.globalPosts.map(post => {
                     // console.log(post);
                     return post;

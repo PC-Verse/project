@@ -73,9 +73,7 @@ class Post extends Component {
                     <div>
                         <div className="numSwipes">Likes: {this.state.swipes}</div>
                         <div className="swipeBtnContainer">
-                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes
-                            
-                            }>{}Dislike</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{}Dislike</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Like{}</button>
 
@@ -88,7 +86,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                    <button onClick={() => {this.props.removePost(this.props.id)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.props.removePost(this.props.key)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>

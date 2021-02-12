@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AddPost from './AddPost'
 // import Picture from './Picture'
 import Post from './Post'
+import database from '../firebase'
 // import '../App.css'
 
 class UserPosts extends Component {
@@ -14,11 +15,25 @@ class UserPosts extends Component {
             showAddPost: false,
             name: "Anonymous"
         }
-        // if (this.props.profileObj != null) {
-        //     this.state= {
-        //         name : this.props.profileObj.name
-        //     }
-        // }
+    }
+    componentDidMount = () => {
+        database.ref('/userPosts/'+this.props.profileObj.googleId+'/').on("value", (snapshot) => {
+            snapshot.forEach(data => {
+                let post = <Post
+                    content={data.val().content}
+                    dateDay={data.val().dateDay}
+                    dateTime={data.val().dateTime}
+                    key={data.key}
+                    isGlobalPost={data.val().isGlobalPost}
+                    name={data.val().name}
+                    title={data.val().title}
+                    imageList={data.val().imageList}
+                    removePost={this.removePost}
+                />
+                // console.log("Adding posts to state from database: ", post)
+                this.props.addUserPosts(post)
+            })
+        })
     }
     hideCard = () => {
         this.setState({
@@ -32,83 +47,98 @@ class UserPosts extends Component {
     }
     createPost = (newTitle, newContent, newImageList) => {
 
-        let newPosts = this.props.userPosts
-        let newImagesList = this.props.userImageLists
-        let updatedIds = this.props.userIds
+        // let newPosts = this.props.userPosts
+        // let newImagesList = this.props.userImageLists
+        // let updatedIds = this.props.userIds
         let date = new Date()
-        this.props.globalSetState((prevState, props) => ({
-            availableId: prevState.availableId + 1
-        }))
+        // this.props.globalSetState((prevState, props) => ({
+        //     availableId: prevState.availableId + 1
+        // }))
 
         // this works
-        // let postData = {
-        //     imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name:this.props.profileObj.name
-        // }
-        let newPostKey = this.props.database.ref('userPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name: this.props.profileObj.name
+        let userPostKey = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name: this.props.profileObj.name
         })
-        let newPostKey2 = this.props.database.ref('globalPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, id: this.props.availableId, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: true, name: this.props.profileObj.name
+        let globalPostKey = this.props.database.ref('globalPosts').push({
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: true, name: this.props.profileObj.name
         })
+        // this one doesn't work for some reason
+        // let postKeysKey = this.props.database.ref('postKeys/'+this.props.profileObj.googleId+'/'+userPostKey+"/").push({
+        //     userPostKey: userPostKey,
+        //     globalPostKey: globalPostKey
+        // })
 
 
 
-        newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} name={this.props.profileObj.name} />)
-        updatedIds.unshift(this.props.availableId)
-        this.props.globalSetState({
-            userPosts: newPosts,
-            userIds: updatedIds,
-        })
-        this.setState({
-            showPost: false,
-            shouldClear: true
-        });
+        // newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} name={this.props.profileObj.name} />)
+        // updatedIds.unshift(this.props.availableId)
+        // this.props.globalSetState({
+        //     userPosts: newPosts,
+        //     userIds: updatedIds,
+        // })
+        // this.setState({
+        //     showPost: false,
+        //     shouldClear: true
+        // });
 
-        // add it to global posts
-        let globalPosts = this.props.globalPosts;
-        let globalIds = this.props.globalIds;
-        globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name={this.props.profileObj.name} />)
-        globalIds.unshift(this.props.availableId)
-        this.props.globalSetState({
-            posts: globalPosts,
-            ids: globalIds
-        })
+        // // add it to global posts
+        // let globalPosts = this.props.globalPosts;
+        // let globalIds = this.props.globalIds;
+        // globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name={this.props.profileObj.name} />)
+        // globalIds.unshift(this.props.availableId)
+        // this.props.globalSetState({
+        //     posts: globalPosts,
+        //     ids: globalIds
+        // })
     }
 
 
 
 
-    removePost = (postId) => {
-        let updatedIds = this.props.userIds
-        let updatedPosts = this.props.userPosts
-        for (let i = 0; i < this.props.userIds.length; i++) {
-            if (this.props.userIds[i] == postId) {
-                // remove the post and remove the id
-                updatedIds.splice(i, 1);
-                updatedPosts.splice(i, 1);
-
-                this.props.globalSetState({
-                    userPosts: updatedPosts,
-                    userIds: updatedIds
-                })
-                break
-            }
-        }
-
-        // remove it from global posts
-        let globalPosts = this.props.globalPosts;
-        let globalIds = this.props.globalIds;
-        for (let i = 0; i < this.props.globalIds.length; i++) {
-            if (this.props.globalIds[i] == postId) {
-                globalIds.splice(i, 1)
-                globalPosts.splice(i, 1)
-            }
-            this.props.globalSetState({
-                posts: globalPosts,
-                ids: globalIds
+    removePost = (key) => {
+        let userPostKey;
+        let globalPostKey;
+        database.ref('postKeys/'+this.profileObj.googleId+'/'+key+'/').on("value", (snapshot) => {
+            snapshot.forEach(data => {
+                userPostKey = data.val().userPostKey;
+                globalPostKey = data.val().globalPostKey;
             })
-        }
+        })
+
+        database.ref('userPosts/'+this.props.profileObj.googleId+"/"+userPostKey+'/').remove()
+        database.ref('globalPosts/'+globalPostKey+'/').remove()
+        
+        // let updatedIds = this.props.userIds
+        // let updatedPosts = this.props.userPosts
+        // for (let i = 0; i < this.props.userIds.length; i++) {
+        //     if (this.props.userIds[i] == postId) {
+        //         // remove the post and remove the id
+        //         updatedIds.splice(i, 1);
+        //         updatedPosts.splice(i, 1);
+
+        //         this.props.globalSetState({
+        //             userPosts: updatedPosts,
+        //             userIds: updatedIds
+        //         })
+        //         break
+        //     }
+        // }
+
+        // // remove it from global posts
+        // let globalPosts = this.props.globalPosts;
+        // let globalIds = this.props.globalIds;
+        // for (let i = 0; i < this.props.globalIds.length; i++) {
+        //     if (this.props.globalIds[i] == postId) {
+        //         globalIds.splice(i, 1)
+        //         globalPosts.splice(i, 1)
+        //     }
+        //     this.props.globalSetState({
+        //         posts: globalPosts,
+        //         ids: globalIds
+        //     })
+        // }
     }
+
     render = () => {
         return (
             <div>

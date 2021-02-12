@@ -29,7 +29,7 @@ class App extends Component {
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true,
       showSwipes: false, // set this to true later
-      globalPosts: [<Post title="First Post" imageList={[]} content="Hello there!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name="Anonymous" />],
+      globalPosts: [],
       globalIds: [0],
       // globalImageLists: [],
       userPosts: [],
@@ -44,7 +44,7 @@ class App extends Component {
       // dbUserPostsRef: null,
       profileObj: {
         email: 'username@ucsb.edu',
-        familyName: "",
+        familyName: "Anonymous",
         givenName: "Anonymous",
         name: "Anonymous",
         googleId: -1,
@@ -57,32 +57,6 @@ class App extends Component {
     this.setName = this.setName.bind(this);
 
   }
-
-  // componentDidMount = () => {
-  //   firebase.initializeApp(firebaseConfig)
-  //   let database = firebase.database()
-  //   this.setState({
-  //     database: firebase.database(),
-  //   })
-  // }
-
-  // componentWillMount(){
-  //   firebase.initializeApp(firebaseConfig)
-  //   var ref = firebase.database().ref('userPosts');
-
-  //   ref.on("value", (snapshot) => {
-  //     const userItem = snapshot.dateDay;
-  //     let items = Object.values(userItem);
-  //     this.setState({ items: items });
-  //   });
-  // }
-
-
-  // these references are functions
-  dbRef = () => this.state.database.ref();
-  dbGlobalPostsRef = () => this.state.database.ref('globalPosts')
-  dbUserPostsRef = () => this.state.database.ref('userPosts')
-
 
   toggleComponent(name) {
     console.log(name);
@@ -132,13 +106,20 @@ class App extends Component {
     })
   }
   addGlobalPosts = (newPost) => {
-    console.log("ran setGlobalPosts")
+    // console.log("ran setGlobalPosts")
     let posts = this.state.globalPosts;
     posts.unshift(newPost);  // concatenate newPosts to front of posts
     this.setState({
       globalPosts: posts
     })
     // console.log(this.state.globalPosts)
+  }
+  addUserPosts = (newPost) => {
+    let posts = this.state.userPosts;
+    posts.unshift(newPost);
+    this.setState({
+      userPosts : posts
+    })
   }
 
   render() {
@@ -172,8 +153,22 @@ class App extends Component {
         </div>  */}
 
         {/* {this.state.showUserPosts && <div><UserPosts showAddPostBTN = {this.state.showGlobalPosts?false : true} showAddPost = {true} showPost={this.state.showAddPost, this.state.posts} globalPosts={this.state.posts} globalIds={this.state.ids} globalSetState={this.setState}/></div>} */}
-        {this.state.showUserPosts && <div><UserPosts
-          globalPosts={this.state.globalPosts} globalIds={this.state.globalIds} globalSetState={this.setState} userIds={this.state.userIds} userPosts={this.state.userPosts} userImageLists={this.state.userImageLists} globalImageLists={this.state.globalImageLists} availableId={this.state.availableId} database={this.state.database} profileObj={this.state.profileObj} /></div>}
+        {this.state.showUserPosts &&
+          <div>
+            <UserPosts
+              globalPosts={this.state.globalPosts}
+              globalIds={this.state.globalIds}
+              globalSetState={this.setState}
+              userIds={this.state.userIds}
+              userPosts={this.state.userPosts}
+              addUserPosts={this.addUserPosts}
+              userImageLists={this.state.userImageLists}
+              globalImageLists={this.state.globalImageLists}
+              availableId={this.state.availableId}
+              database={this.state.database}
+              profileObj={this.state.profileObj} />
+          </div>
+        }
 
         {/* <button onClick={() => setCount(count + 1)}>Click me</button>
         { Array(count).fill(<Post title = {value} content = {content}/>) } */}
