@@ -9,7 +9,8 @@ class GlobalPosts extends Component {
     constructor() {
         super()
         this.state = {
-            globalPosts: []
+            globalPosts: [],
+            LazyLoad: []
         }
     }
 
@@ -26,8 +27,27 @@ class GlobalPosts extends Component {
                     title={data.val().title}
                     imageList={data.val().imageList}
                 />
-                // console.log("Adding posts to state from database: ", post)
+
+                // let LazyLoadPost = 
+                // <LazyLoad
+                //     height = {500}
+                // >   
+                //     <Post
+                //     content={data.val().content}
+                //     dateDay={data.val().dateDay}
+                //     dateTime={data.val().dateTime}
+                //     key={data.key}
+                //     isGlobalPost={data.val().isGlobalPost}
+                //     name={data.val().name}
+                //     title={data.val().title}
+                //     imageList={data.val().imageList}
+                //     />
+                // </LazyLoad>
+                console.log("Adding posts to state from database: ", post)
                 this.props.addGlobalPosts(post)
+                // let lazy = this.state.LazyLoad;
+                // lazy.unshift(LazyLoadPost);
+                // this.setState({LazyLoad: lazy})
             })
         })
     }
@@ -40,31 +60,27 @@ class GlobalPosts extends Component {
                 <div id="globalPostTitle">COMMUNITY</div>
                 {/* {console.log(this.props.globalPosts)} */}
 
-                {this.props.globalPosts.map(post => {
+                {/* {this.props.globalPosts.map(post => {
 
                     //attempt to lazy load a page of posts
                     //currently doesnt display anything
-                    <LazyLoad
-                        key = {post.id}
-                        height = {100}
-                        offset = {[-100,100]}
-                    >
-                        <Post 
-                            content = {post.content}
-                            dateDay={post.dateDay}
-                            dateTime={post.dateTime}
-                            key={post.key}
-                            isGlobalPost={post.isGlobalPost}
-                            name={post.name}
-                            title={post.title}
-                            imageList={post.imageList}
-                        ></Post>
-                    </LazyLoad>
-                    // console.log(post);
+                    console.log("new post loading");                        
 
-                    //return post;
+                    return post;
+
                    
                 })
+                } */}
+                {this.state.LazyLoad.map(lazy => {
+
+                //attempt to lazy load a page of posts
+                //currently doesnt display anything
+                    console.log("new post loading");                        
+
+                    return lazy;
+
+
+                    })
                 }
 
 
