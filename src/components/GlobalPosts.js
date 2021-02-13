@@ -32,7 +32,11 @@ class GlobalPosts extends Component {
                 // <LazyLoad
                 //     height = {500}
                 // >   
-                <LazyLoad>
+                <LazyLoad
+                    height= {200}
+                    offset = {[-100,100]}
+
+                >
                     <Post
                     content={data.val().content}
                     dateDay={data.val().dateDay}
