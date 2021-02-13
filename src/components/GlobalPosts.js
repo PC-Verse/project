@@ -8,7 +8,7 @@ import PostPicture from './PostPicture'
 
 const Spinner = () => (
     <div className = "loadingPost">
-        <img src = "project\src\images\loading.jpg"></img>
+        <h>loading...</h>
     </div>
 );
 
