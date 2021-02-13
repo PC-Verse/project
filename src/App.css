@@ -159,6 +159,15 @@ button:hover {
     transform: scale( 1.1);
 }
 
+.loadingPost{
+    width: 50%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    text-align: center;
+}
 
 /* Content Stuff (Below NavBar) */
 

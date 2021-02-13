@@ -5,6 +5,13 @@ import database from '../firebase'
 import LazyLoad from "react-lazyload"
 import PostPicture from './PostPicture'
 
+
+const Spinner = () => (
+    <div className = "loadingPost">
+        <img src = "project\src\images\loading.jpg"></img>
+    </div>
+);
+
 class GlobalPosts extends Component {
     constructor() {
         super()
@@ -33,9 +40,9 @@ class GlobalPosts extends Component {
                 //     height = {500}
                 // >   
                 <LazyLoad
-                    height= {200}
-                    offset = {[-100,100]}
-
+                    height= {50}
+                    offset = {[-70,70]}
+                    placeholder = {<Spinner/>}
                 >
                     <Post
                     content={data.val().content}
@@ -63,6 +70,19 @@ class GlobalPosts extends Component {
         return (
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
+
+                {this.state.LazyLoad.map(lazy => {
+
+                //attempt to lazy load a page of posts
+                //currently doesnt display anything
+                    console.log("new post loading");                        
+
+                    return lazy;
+
+
+                    })
+                }
+
                 {/* {console.log(this.props.globalPosts)} */}
 
                 {/* {this.props.globalPosts.map(post => {
@@ -76,19 +96,6 @@ class GlobalPosts extends Component {
                    
                 })
                 } */}
-                {this.state.LazyLoad.map(lazy => {
-
-                //attempt to lazy load a page of posts
-                //currently doesnt display anything
-                    console.log("new post loading");                        
-
-                    return lazy;
-
-
-                    })
-                }
-
-
                 {/* {this.props.globalPosts.map((post) => {
                     return post;
                 })
