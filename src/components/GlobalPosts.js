@@ -20,7 +20,6 @@ class GlobalPosts extends Component {
             LazyLoad: []
         }
     }
-
     componentDidMount = () => {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
