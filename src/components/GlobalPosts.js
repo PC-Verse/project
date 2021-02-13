@@ -28,26 +28,27 @@ class GlobalPosts extends Component {
                     imageList={data.val().imageList}
                 />
 
-                // let LazyLoadPost = 
+                let LazyLoadPost = 
                 // <LazyLoad
                 //     height = {500}
                 // >   
-                //     <Post
-                //     content={data.val().content}
-                //     dateDay={data.val().dateDay}
-                //     dateTime={data.val().dateTime}
-                //     key={data.key}
-                //     isGlobalPost={data.val().isGlobalPost}
-                //     name={data.val().name}
-                //     title={data.val().title}
-                //     imageList={data.val().imageList}
-                //     />
-                // </LazyLoad>
+                <LazyLoad>
+                    <Post
+                    content={data.val().content}
+                    dateDay={data.val().dateDay}
+                    dateTime={data.val().dateTime}
+                    key={data.key}
+                    isGlobalPost={data.val().isGlobalPost}
+                    name={data.val().name}
+                    title={data.val().title}
+                    imageList={data.val().imageList}
+                    />
+                </LazyLoad>
                 console.log("Adding posts to state from database: ", post)
-                this.props.addGlobalPosts(post)
-                // let lazy = this.state.LazyLoad;
-                // lazy.unshift(LazyLoadPost);
-                // this.setState({LazyLoad: lazy})
+                // this.props.addGlobalPosts(post)
+                let lazy = this.state.LazyLoad;
+                lazy.unshift(LazyLoadPost);
+                this.setState({LazyLoad: lazy})
             })
         })
     }
