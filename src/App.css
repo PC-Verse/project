@@ -171,6 +171,9 @@ button:hover {
     text-shadow: 1px 1px #00a2ff;
 }
 
+.post-container{
+    height: 100vh;
+}
 .container {
     /* height: 300px; */
     margin: auto;

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../App.css'
 import Post from './Post'
 import database from '../firebase'
+import LazyLoad from "react-lazyload"
+import PostPicture from './PostPicture'
 
 class GlobalPosts extends Component {
     constructor() {
@@ -37,11 +39,35 @@ class GlobalPosts extends Component {
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
                 {/* {console.log(this.props.globalPosts)} */}
+
                 {this.props.globalPosts.map(post => {
+
+                    //attempt to lazy load a page of posts
+                    //currently doesnt display anything
+                    <LazyLoad
+                        key = {post.id}
+                        height = {100}
+                        offset = {[-100,100]}
+                    >
+                        <Post 
+                            content = {post.content}
+                            dateDay={post.dateDay}
+                            dateTime={post.dateTime}
+                            key={post.key}
+                            isGlobalPost={post.isGlobalPost}
+                            name={post.name}
+                            title={post.title}
+                            imageList={post.imageList}
+                        ></Post>
+                    </LazyLoad>
                     // console.log(post);
-                    return post;
+
+                    //return post;
+                   
                 })
                 }
+
+
                 {/* {this.props.globalPosts.map((post) => {
                     return post;
                 })
