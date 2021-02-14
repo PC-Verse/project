@@ -105,7 +105,7 @@ class App extends Component {
       profileObj : newProfileObj
     })
   }
-  addGlobalPosts = (newPost) => {
+  addGlobalPost = (newPost) => {
     // console.log("ran setGlobalPosts")
     let posts = this.state.globalPosts;
     posts.unshift(newPost);  // concatenate newPosts to front of posts
@@ -114,7 +114,7 @@ class App extends Component {
     })
     // console.log(this.state.globalPosts)
   }
-  addUserPosts = (newPost) => {
+  addUserPost = (newPost) => {
     let posts = this.state.userPosts;
     posts.unshift(newPost);
     this.setState({
@@ -136,7 +136,7 @@ class App extends Component {
             <GlobalPosts
               globalPosts={this.state.globalPosts}
               database={this.state.database}
-              addGlobalPosts={this.addGlobalPosts}/>
+              addGlobalPost={this.addGlobalPost}/>
             
           
           </div>
@@ -161,7 +161,7 @@ class App extends Component {
               globalSetState={this.setState}
               userIds={this.state.userIds}
               userPosts={this.state.userPosts}
-              addUserPosts={this.addUserPosts}
+              addUserPost={this.addUserPost}
               userImageLists={this.state.userImageLists}
               globalImageLists={this.state.globalImageLists}
               availableId={this.state.availableId}

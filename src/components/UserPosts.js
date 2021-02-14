@@ -25,35 +25,38 @@ class UserPosts extends Component {
         }
     }
     componentDidMount = () => {
-        database.ref('/userPosts/'+this.props.profileObj.googleId+'/').on("value", (snapshot) => {
-            snapshot.forEach(data => {
-                let post = 
-                <LazyLoad
-                height= {50}
-                offset = {[-70,70]}
-                placeholder = {<Spinner/>}
-                >
-                    <Post
-                        content={data.val().content}
-                        dateDay={data.val().dateDay}
-                        dateTime={data.val().dateTime}
-                        key={data.key}
-                        isGlobalPost={data.val().isGlobalPost}
-                        name={data.val().name}
-                        title={data.val().title}
-                        imageList={data.val().imageList}
-                        removePost={this.removePost}
-                    />
-                </LazyLoad>
-                // console.log("Adding posts to state from database: ", post)
-                // this.props.addUserPosts(post)
-                let posts = this.state.userPosts;
-                posts.unshift(post);
-                this.setState({
-                    userPosts : posts
+        if (this.props.profileObj.googleId != -1)   // only read from database if signed in
+        {
+            database.ref('/userPosts/'+this.props.profileObj.googleId+'/').on("value", (snapshot) => {
+                snapshot.forEach(data => {
+                    let post = 
+                    <LazyLoad
+                    height= {50}
+                    offset = {[-70,70]}
+                    placeholder = {<Spinner/>}
+                    >
+                        <Post
+                            content={data.val().content}
+                            dateDay={data.val().dateDay}
+                            dateTime={data.val().dateTime}
+                            key={data.key}
+                            isGlobalPost={data.val().isGlobalPost}
+                            name={data.val().name}
+                            title={data.val().title}
+                            imageList={data.val().imageList}
+                            removePost={this.removePost}
+                        />
+                    </LazyLoad>
+                    // console.log("Adding posts to state from database: ", post)
+                    // this.props.addUserPosts(post)
+                    let posts = this.state.userPosts;
+                    posts.unshift(post);
+                    this.setState({
+                        userPosts : posts
+                    })
                 })
             })
-        })
+        }
     }
     hideCard = () => {
         this.setState({
@@ -74,13 +77,23 @@ class UserPosts extends Component {
         // this.props.globalSetState((prevState, props) => ({
         //     availableId: prevState.availableId + 1
         // }))
+        let dateDay = date.toLocaleDateString();
+        let dateTime = date.toLocaleTimeString();
+
+        if (this.props.profileObj.googleId == -1)   // user is not signed in
+        {
+            let post = <Post
+            imageList={newImageList} title={newTitle} content={newContent} dateDay={dateDay} dateTime={dateTime} isGlobalPost={false} name={this.props.profileObj.name}
+            />
+            this.props.addUserPost(post);
+        }
 
         // this works
         let userPostKey = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: false, name: this.props.profileObj.name
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name
         })
         let globalPostKey = this.props.database.ref('globalPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: date.toLocaleDateString(), dateTime: date.toLocaleTimeString(), isGlobalPost: true, name: this.props.profileObj.name
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name
         })
         // this one doesn't work for some reason
         // let postKeysKey = this.props.database.ref('postKeys/'+this.props.profileObj.googleId+'/'+userPostKey+"/").push({
@@ -166,16 +179,18 @@ class UserPosts extends Component {
                 <AddPost hideCard={this.hideCard} showPost={this.state.showAddPost} createPost={this.createPost} />
                 {/* } */}
 
-                {/* {this.props.userPosts.map((post) => {
-                    return post;
-                })
-                } */}
-
-                {this.state.userPosts.map((post) => {
+                {this.props.profileObj.googleId == -1 &&    // user not signed in
+                    this.props.userPosts.map((post) => {
                         return post;
                     })
                 }
-                {this.props.userPosts.length == 0 && <div id="noPostYetMsg">No Posts Yet!</div>}
+
+                {this.props.profileObj.googleId != -1 &&    // user is signed in
+                    this.state.userPosts.map((post) => {
+                            return post;
+                        })
+                }
+                {(this.state.userPosts.length == 0 && this.props.userPosts.length == 0) && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
     }

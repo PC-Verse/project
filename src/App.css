@@ -160,13 +160,30 @@ button:hover {
 }
 
 .loadingPost{
-    width: 50%;
+    width: 100vw;
     height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     font-size: 50px;
     text-align: center;
+}
+#loadingIcon {
+    margin: auto;
+    width: fit-content;
+    padding-bottom: 80vh;
+    /* animation-name: spinner;
+    animation-duration: 1s;
+    animation-iteration-count: infinite; */
+}
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Content Stuff (Below NavBar) */
@@ -354,6 +371,9 @@ select {
 
 #noPostYetMsg {
     margin-top: 30vh;
+    /* margin: auto;
+    width: fit-content;
+    height: fit-content; */
     font-size: 50px;
     text-align: center;
 }

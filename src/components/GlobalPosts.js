@@ -4,11 +4,13 @@ import Post from './Post'
 import database from '../firebase'
 import LazyLoad from "react-lazyload"
 import PostPicture from './PostPicture'
+import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
 
 
 const Spinner = () => (
     <div className = "loadingPost">
-        <h>loading...</h>
+        {/* <h>loading...</h> */}
+        <img id="loadingIcon" src={BlueLoadingBar} alt="Loading icon"/>
     </div>
 );
 
@@ -40,7 +42,7 @@ class GlobalPosts extends Component {
                 // >   
                 <LazyLoad
                     height= {50}
-                    offset = {[-70,70]}
+                    offset = {[-150, 150]}
                     placeholder = {<Spinner/>}
                 >
                     <Post
@@ -55,7 +57,7 @@ class GlobalPosts extends Component {
                     />
                 </LazyLoad>
                 console.log("Adding posts to state from database: ", post)
-                // this.props.addGlobalPosts(post)
+                // this.props.addGlobalPost(post)
                 let lazy = this.state.LazyLoad;
                 lazy.unshift(LazyLoadPost);
                 this.setState({LazyLoad: lazy})
