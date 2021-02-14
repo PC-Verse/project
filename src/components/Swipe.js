@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import Post from './Post'
 import '../App.css'
+import database from '../firebase'
 import SwipeCard from './SwipeCard'
 import { CSSTransition } from 'react-transition-group'
 
@@ -8,10 +9,7 @@ class Swipe extends Component {
     constructor() {
         super()
         this.state = {
-            swipePosts: [
-                "/images/RGB.png",
-                '/images/maxresdefault.jpg'
-            ],
+            imageList: [],
             index: 0,
             swipeImgClassName: "",
             appearCard: true
@@ -19,6 +17,16 @@ class Swipe extends Component {
 
     }
 
+    componentDidMount = () => {
+        database.ref('/globalPosts/').on("value", (snapshot) => {
+            snapshot.forEach(data => {
+                let imageList = data.val().imageList;
+                let lazy = this.state.imageList;
+                lazy.unshift(imageList);
+                this.setState({imageList: lazy})
+            })
+        })
+    }
     swipeRight = () => {
         if (this.state.index >= this.state.swipePosts.length - 1) {
             this.setState({
@@ -56,7 +64,7 @@ class Swipe extends Component {
                 <div>Happy Swiping!</div>
                 {
 
-                    <SwipeCard swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} link={this.state.swipePosts[this.state.index]} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                    <SwipeCard imageList= {this.state.imageList[this.state.index]} swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName}  swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
 
                 }
             </div>
@@ -65,3 +73,6 @@ class Swipe extends Component {
 }
 
 export default Swipe;
+
+/*
+link={this.state.swipePosts[this.state.index]}*/ 

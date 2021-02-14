@@ -35,13 +35,20 @@ class SwipeCard extends Component {
         return (
             <div className="swipeCard">
 
+                {console.log(this.props.id)}
+
                 <TinderCard
                     onSwipe={this.onSwipe}
                     onCardLeftScreen={() => this.onCardLeftScreen('fooBar')}
                     preventSwipe={['right', 'left', 'up', 'down']}>
-                    <img id="swipeIMG"
-                        src={window.location.origin + this.props.link}>
-                    </img>
+
+                     
+                    {/* <div className="pictureContainer">
+                    try to add the image here..not sure how
+                        {this.props.imageList.map((image, index) => (
+                            <img src={image['data_url']} className="picture"/>
+                        ))}
+                    </div> */}
 
                 </TinderCard>
 
