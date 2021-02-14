@@ -3,7 +3,14 @@ import AddPost from './AddPost'
 // import Picture from './Picture'
 import Post from './Post'
 import database from '../firebase'
+import LazyLoad from "react-lazyload"
 // import '../App.css'
+
+const Spinner = () => (
+    <div className = "loadingPost">
+        <h>loading...</h>
+    </div>
+);
 
 class UserPosts extends Component {
     constructor() {
@@ -13,25 +20,38 @@ class UserPosts extends Component {
             // posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>],
             shouldClear: false,
             showAddPost: false,
-            name: "Anonymous"
+            name: "Anonymous",
+            userPosts : []
         }
     }
     componentDidMount = () => {
         database.ref('/userPosts/'+this.props.profileObj.googleId+'/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                let post = <Post
-                    content={data.val().content}
-                    dateDay={data.val().dateDay}
-                    dateTime={data.val().dateTime}
-                    key={data.key}
-                    isGlobalPost={data.val().isGlobalPost}
-                    name={data.val().name}
-                    title={data.val().title}
-                    imageList={data.val().imageList}
-                    removePost={this.removePost}
-                />
+                let post = 
+                <LazyLoad
+                height= {50}
+                offset = {[-70,70]}
+                placeholder = {<Spinner/>}
+                >
+                    <Post
+                        content={data.val().content}
+                        dateDay={data.val().dateDay}
+                        dateTime={data.val().dateTime}
+                        key={data.key}
+                        isGlobalPost={data.val().isGlobalPost}
+                        name={data.val().name}
+                        title={data.val().title}
+                        imageList={data.val().imageList}
+                        removePost={this.removePost}
+                    />
+                </LazyLoad>
                 // console.log("Adding posts to state from database: ", post)
-                this.props.addUserPosts(post)
+                // this.props.addUserPosts(post)
+                let posts = this.state.userPosts;
+                posts.unshift(post);
+                this.setState({
+                    userPosts : posts
+                })
             })
         })
     }
@@ -146,9 +166,14 @@ class UserPosts extends Component {
                 <AddPost hideCard={this.hideCard} showPost={this.state.showAddPost} createPost={this.createPost} />
                 {/* } */}
 
-                {this.props.userPosts.map((post) => {
+                {/* {this.props.userPosts.map((post) => {
                     return post;
                 })
+                } */}
+
+                {this.state.userPosts.map((post) => {
+                        return post;
+                    })
                 }
                 {this.props.userPosts.length == 0 && <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
