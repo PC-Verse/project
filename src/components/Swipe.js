@@ -20,10 +20,13 @@ class Swipe extends Component {
     componentDidMount = () => {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                let imageList = data.val().imageList;
-                let lazy = this.state.imageList;
-                lazy.unshift(imageList);
-                this.setState({imageList: lazy})
+                if(data.val().imageList !== null){
+                    console.log(data.val().imageList['data.url']);
+                    let imageList = data.val().imageList;
+                    let lazy = this.state.imageList;
+                    lazy.unshift(imageList);
+                    this.setState({imageList: lazy})
+                }
             })
         })
     }
