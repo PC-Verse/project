@@ -81,6 +81,18 @@ body {
 #logoName {
     left: 0;
     font-size: 1.5rem;
+    display: flex;
+    justify-self: center;
+}
+#textForLogoName {
+    display: inline;
+    margin: auto;
+    width: fit-content;
+    height: fit-content;
+}
+#icon {
+    display: inline;
+    height: 40px;
 }
 
 #postButton {
@@ -287,7 +299,8 @@ button:hover {
 }
 
 .picture {
-    width: 25vw;
+    /* width: 40vw; */
+    height: 60vh;
 }
 
 .removeBtn {
