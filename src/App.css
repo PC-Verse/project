@@ -87,12 +87,25 @@ body {
 #textForLogoName {
     display: inline;
     margin: auto;
+    padding-right: 5px;
     width: fit-content;
     height: fit-content;
 }
 #icon {
     display: inline;
     height: 40px;
+    animation-name: spin;
+    animation-duration: 12s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes spin {
+    0% {
+       transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #postButton {
@@ -249,7 +262,8 @@ button:hover {
     margin: auto;
     padding: 1%;
     animation: postRender;
-    animation-duration: 2s;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
 }
 
 @keyframes postRender {
