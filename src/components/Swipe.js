@@ -9,7 +9,7 @@ class Swipe extends Component {
     constructor() {
         super()
         this.state = {
-            imageList: [],
+            imageLists: [],
             index: 0,
             swipeImgClassName: "",
             appearCard: true
@@ -21,14 +21,18 @@ class Swipe extends Component {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
                 let imageList = data.val().imageList;
-                let lazy = this.state.imageList;
-                lazy.unshift(imageList);
-                this.setState({imageList: lazy})
+                if (imageList !== undefined)
+                {
+                    let lazy = this.state.imageLists;
+                    lazy.unshift(imageList);
+                    this.setState({imageLists: lazy})
+                }
             })
         })
+        console.log(this.state.imageLists)
     }
     swipeRight = () => {
-        if (this.state.index >= this.state.swipePosts.length - 1) {
+        if (this.state.index >= this.state.imageLists.length - 1) {
             this.setState({
                 index: 0
             })
@@ -42,7 +46,7 @@ class Swipe extends Component {
     swipeLeft = () => {
         if (this.state.index <= 0) {
             this.setState({
-                index: this.state.swipePosts.length - 1
+                index: this.state.imageLists.length - 1
             })
         }
         else {
@@ -64,7 +68,7 @@ class Swipe extends Component {
                 <div>Happy Swiping!</div>
                 {
 
-                    <SwipeCard imageList= {this.state.imageList[this.state.index]} swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName}  swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                    <SwipeCard imageList={this.state.imageLists[this.state.index]} swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName}  swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
 
                 }
             </div>

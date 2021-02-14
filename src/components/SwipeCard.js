@@ -43,12 +43,14 @@ class SwipeCard extends Component {
                     preventSwipe={['right', 'left', 'up', 'down']}>
 
                      
-                    {/* <div className="pictureContainer">
-                    try to add the image here..not sure how
-                        {this.props.imageList.map((image, index) => (
-                            <img src={image['data_url']} className="picture"/>
-                        ))}
-                    </div> */}
+                    {this.props.imageList &&
+                        <div className="pictureContainer">
+                            {/*try to add the image here..not sure how*/}
+                            {this.props.imageList.map((image, index) => (
+                                <img src={image['data_url']} className="picture"/>
+                            ))}
+                        </div>
+                    }
 
                 </TinderCard>
 

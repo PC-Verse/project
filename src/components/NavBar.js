@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import '../App.css'
 import Login from './Login'
 import Logout from './Logout'
+import BlueCube from '../images/BlueCube.svg'
 
 const NavBar = (props) => {
 
@@ -13,7 +14,7 @@ const NavBar = (props) => {
             <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}>My Posts</button>
             <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}>Carousel Feature</div>
 
-            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}>PC Verse</div>
+            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}><div id="textForLogoName">PC Verse</div><img id="icon" src={BlueCube}/></div>
             <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                 id="loginBtn"
                 className="headerStuff">
