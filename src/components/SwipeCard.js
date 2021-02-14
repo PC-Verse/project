@@ -42,13 +42,16 @@ class SwipeCard extends Component {
                     onCardLeftScreen={() => this.onCardLeftScreen('fooBar')}
                     preventSwipe={['right', 'left', 'up', 'down']}>
 
-                     
+                    <button onClick={this.props.swipeLeft}></button>
                     <div className="pictureContainer">
-                        {
+
+                       
+                        {this.props.imageList &&
+                                this.props.imageList.map((image, index) => (
+                                    <img src={image['data_url']} className="picture"/>
+                                ))
+                        }
                         
-                        this.props.imageList.map((image, index) => (
-                            <img src={image['data_url']} className="picture"/>
-                        ))}
                     </div>
 
                 </TinderCard>

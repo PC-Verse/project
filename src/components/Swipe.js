@@ -20,8 +20,8 @@ class Swipe extends Component {
     componentDidMount = () => {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                if(data.val().imageList !== null){
-                    console.log(data.val().imageList['data.url']);
+                if(data.val().imageList !== undefined){
+                    console.log(data.val().imageList);
                     let imageList = data.val().imageList;
                     let lazy = this.state.imageList;
                     lazy.unshift(imageList);
@@ -31,7 +31,7 @@ class Swipe extends Component {
         })
     }
     swipeRight = () => {
-        if (this.state.index >= this.state.swipePosts.length - 1) {
+        if (this.state.index >= this.state.imageList.length - 1) {
             this.setState({
                 index: 0
             })
@@ -45,7 +45,7 @@ class Swipe extends Component {
     swipeLeft = () => {
         if (this.state.index <= 0) {
             this.setState({
-                index: this.state.swipePosts.length - 1
+                index: this.state.imageList.length - 1
             })
         }
         else {
