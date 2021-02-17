@@ -34,6 +34,7 @@ class GlobalPosts extends Component {
                     name={data.val().name}
                     title={data.val().title}
                     imageList={data.val().imageList}
+                    toggleComponent = {this.props.toggleComponent}
                 />
 
                 let LazyLoadPost = 
@@ -54,6 +55,7 @@ class GlobalPosts extends Component {
                     name={data.val().name}
                     title={data.val().title}
                     imageList={data.val().imageList}
+                    toggleComponent = {this.props.toggleComponent}
                     />
                 </LazyLoad>
                 console.log("Adding posts to state from database: ", post)

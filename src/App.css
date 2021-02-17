@@ -73,6 +73,10 @@ body {
     font-weight: 600;   /*400 is normal, 700 is bold, 900 is max*/
 }
 
+.Discussion{
+    margin-top: 10%;
+}
+
 .headerStuff:hover {
     cursor: pointer;
     transform: scale( 1.12);

@@ -76,7 +76,7 @@ class Post extends Component {
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{}Dislike</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Like{}</button>
-
+                            <button onClick={() => { this.props.toggleComponent("showDiscussion")}}>Click to Discuss</button>
                         </div>
                     </div>
                 }

@@ -7,6 +7,7 @@ import Post from './components/Post'
 import UserPosts from './components/UserPosts'
 import GlobalPosts from './components/GlobalPosts'
 import Swipe from './components/Swipe'
+import Discussion from './components/Discussion'
 
 // import Login from './components/Login'
 // import Logout from './components/Logout'
@@ -29,6 +30,7 @@ class App extends Component {
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true,
       showSwipes: false, // set this to true later
+      showDiscussion:false,
       globalPosts: [],
       globalIds: [0],
       // globalImageLists: [],
@@ -64,22 +66,32 @@ class App extends Component {
       case "showAddPost":
         this.setState({ showPost: !this.state.showAddPost });
         this.setState({ showSwipes: false })
+        this.setState({ showDiscussion: false })
         break;
       case "showUserPosts":
         this.setState({ showUserPosts: true })
         this.setState({ showGlobalPosts: false })
         this.setState({ showSwipes: false })
+        this.setState({ showDiscussion: false })
         break
       case "showGlobalPosts":
         this.setState({ showGlobalPosts: true })
         this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
         this.setState({ showSwipes: false })
+        this.setState({ showDiscussion: false })
         break
       case "showSwipes":
           this.setState({ showSwipes: true })
           this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
           this.setState({ showGlobalPosts: false })
+          this.setState({ showDiscussion: false })
           break
+      case "showDiscussion":
+          this.setState({ showPost: false });
+          this.setState({ showSwipes: false })
+          this.setState({ showGlobalPosts: false })
+          this.setState({ showDiscussion: true })
+          break;
     }
   }
 
@@ -134,17 +146,23 @@ class App extends Component {
         {this.state.showGlobalPosts &&
           <div>
             <GlobalPosts
+              toggleComponent = {this.toggleComponent}
               globalPosts={this.state.globalPosts}
               database={this.state.database}
-              addGlobalPost={this.addGlobalPost}/>
-            
-          
+              addGlobalPost={this.addGlobalPost}/>          
           </div>
         }
 
         {this.state.showSwipes &&
           <div>
             <Swipe swipePosts={this.state.globalPosts} />
+          </div>
+        }
+
+        {this.state.showDiscussion &&
+          <div>
+
+            <Discussion/>
           </div>
         }
 
@@ -156,6 +174,7 @@ class App extends Component {
         {this.state.showUserPosts &&
           <div>
             <UserPosts
+              toggleComponent = {this.toggleComponent}
               globalPosts={this.state.globalPosts}
               globalIds={this.state.globalIds}
               globalSetState={this.setState}
