@@ -45,6 +45,7 @@ class UserPosts extends Component {
                             title={data.val().title}
                             imageList={data.val().imageList}
                             removePost={this.removePost}
+                            setPostObj={this.props.setPostObj}
                         />
                     </LazyLoad>
                     // console.log("Adding posts to state from database: ", post)
@@ -80,20 +81,42 @@ class UserPosts extends Component {
         let dateDay = date.toLocaleDateString();
         let dateTime = date.toLocaleTimeString();
 
+        let post = <LazyLoad
+            height= {50}
+            offset = {[-70,70]}
+            placeholder = {<Spinner/>}
+            >
+                <Post
+                    imageList={newImageList}
+                    title={newTitle}
+                    content={newContent}
+                    dateDay={dateDay}
+                    dateTime={dateTime}
+                    isGlobalPost={false}
+                    haveDiscussBtn={false}
+                    isDiscussionThread={false}
+                    name={this.props.profileObj.name}
+                    setPostObj={this.props.setPostObj}
+                />
+            </LazyLoad>
         if (this.props.profileObj.googleId == -1)   // user is not signed in
         {
-            let post = <Post
-            imageList={newImageList} title={newTitle} content={newContent} dateDay={dateDay} dateTime={dateTime} isGlobalPost={false} name={this.props.profileObj.name}
-            />
             this.props.addUserPost(post);
+        }
+        else {
+            let posts = this.state.userPosts
+            posts.unshift(post);
+            this.setState({
+                userPosts: posts
+            })
         }
 
         // this works
         let userPostKey = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, haveDiscussBtn:false,name: this.props.profileObj.name, isDiscussionThread: false
         })
         let globalPostKey = this.props.database.ref('globalPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, haveDiscussBtn:true, name: this.props.profileObj.name, isDiscussionThread: false
         })
         // this one doesn't work for some reason
         // let postKeysKey = this.props.database.ref('postKeys/'+this.props.profileObj.googleId+'/'+userPostKey+"/").push({

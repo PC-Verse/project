@@ -51,7 +51,8 @@ class App extends Component {
         name: "Anonymous",
         googleId: -1,
         imageUrl: ""},
-      items: []
+      items: [],
+      postObj : null
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -133,6 +134,11 @@ class App extends Component {
       userPosts : posts
     })
   }
+  setPostObj = (newPostObj) => {
+    this.setState({
+      postObj: newPostObj
+    })
+  }
 
   render() {
     return (
@@ -149,7 +155,8 @@ class App extends Component {
               toggleComponent = {this.toggleComponent}
               globalPosts={this.state.globalPosts}
               database={this.state.database}
-              addGlobalPost={this.addGlobalPost}/>          
+              addGlobalPost={this.addGlobalPost}
+              setPostObj={this.setPostObj}/>          
           </div>
         }
 
@@ -162,7 +169,7 @@ class App extends Component {
         {this.state.showDiscussion &&
           <div>
 
-            <Discussion/>
+            <Discussion postObj={this.state.postObj}/>
           </div>
         }
 
@@ -175,17 +182,18 @@ class App extends Component {
           <div>
             <UserPosts
               toggleComponent = {this.toggleComponent}
-              globalPosts={this.state.globalPosts}
-              globalIds={this.state.globalIds}
-              globalSetState={this.setState}
-              userIds={this.state.userIds}
+              // globalPosts={this.state.globalPosts}
+              // globalIds={this.state.globalIds}
+              // globalSetState={this.setState}
+              // userIds={this.state.userIds}
               userPosts={this.state.userPosts}
               addUserPost={this.addUserPost}
-              userImageLists={this.state.userImageLists}
-              globalImageLists={this.state.globalImageLists}
-              availableId={this.state.availableId}
+              // userImageLists={this.state.userImageLists}
+              // globalImageLists={this.state.globalImageLists}
+              // availableId={this.state.availableId}
               database={this.state.database}
-              profileObj={this.state.profileObj} />
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}/>
           </div>
         }
 

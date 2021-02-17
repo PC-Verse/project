@@ -51,6 +51,23 @@ class Post extends Component {
         }))
         
     }
+    openDiscussion = () => {
+        console.log("running ope discussion...")
+        let postObj = {
+                    content: this.props.content,
+                    dateDay: this.props.dateDay,
+                    dateTime: this.props.dateTime,
+                    key: this.props.key,
+                    isGlobalPost: true,
+                    haveDiscussBtn: false,
+                    name: this.props.name,
+                    title : this.props.title,
+                    imageList : this.props.imageList,
+        }
+        this.props.setPostObj(postObj);
+        this.props.toggleComponent("showDiscussion");
+    }
+
 
     render = () => {
         return (
@@ -76,7 +93,9 @@ class Post extends Component {
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{}Dislike</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Like{}</button>
-                            <button onClick={() => { this.props.toggleComponent("showDiscussion")}}>Click to Discuss</button>
+                            {this.props.haveDiscussBtn &&
+                                <button onClick={this.openDiscussion}>Click to Discuss</button>
+                            }
                         </div>
                     </div>
                 }
