@@ -16,15 +16,15 @@ class Post extends Component {
 
     incrementSwipesFireBase = (key) =>{
         console.log(key + "");
-        database.ref('/globalPosts/'+ key).set({
-            title: this.props.title,
-            name: this.props.name,
-            content: this.props.content,
-            dateDay: this.props.dateDay,
-            isGlobalPost: this.props.isGlobalPost,
-            dateTime: this.props.dateTime,
-            numLikes: 500,
-        });
+        // database.ref('/globalPosts/'+ key).set({
+        //     title: this.props.title,
+        //     name: this.props.name,
+        //     content: this.props.content,
+        //     dateDay: this.props.dateDay,
+        //     isGlobalPost: this.props.isGlobalPost,
+        //     dateTime: this.props.dateTime,
+        //     numLikes: 500,
+        // });
     }
 
     incrementSwipes = (name) => {

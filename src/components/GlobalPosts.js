@@ -55,7 +55,7 @@ class GlobalPosts extends Component {
                     title={data.val().title}
                     imageList={data.val().imageList}
                     toggleComponent = {this.props.toggleComponent}
-                    numLikes = {data.val().numLikes == undefined?0:10}
+                    numLikes = {data.val().numLikes == undefined?0:data.val().numLikes}
                     />
                 </LazyLoad>
                 console.log("Adding posts to state from database: ", post)
