@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import Picture from './Picture'
 import PostPicture from './PostPicture'
+import database from '../firebase'
 
 class Post extends Component {
     constructor() {
@@ -13,7 +14,20 @@ class Post extends Component {
         }
     }
 
-    incrementSwipes = () => {
+    incrementSwipesFireBase = (key) =>{
+        console.log(key + "");
+        database.ref('/globalPosts/'+ key).set({
+            title: this.props.title,
+            name: this.props.name,
+            content: this.props.content,
+            dateDay: this.props.dateDay,
+            isGlobalPost: this.props.isGlobalPost,
+            dateTime: this.props.dateTime,
+            numLikes: 500,
+        });
+    }
+
+    incrementSwipes = (name) => {
         let disALeft;
         let disARight;
         if (this.state.disALeft == true) {
@@ -63,6 +77,7 @@ class Post extends Component {
                     name: this.props.name,
                     title : this.props.title,
                     imageList : this.props.imageList,
+                    numLikes: this.props.numLikes,
         }
         this.props.setPostObj(postObj);
         this.props.toggleComponent("showDiscussion");
@@ -88,11 +103,11 @@ class Post extends Component {
                 <br/>
                 {this.props.isGlobalPost &&
                     <div>
-                        <div className="numSwipes">Likes: {this.state.swipes}</div>
+                        <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         <div className="swipeBtnContainer">
-                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{}Dislike</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>{}Dislike</button>
                             
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes}>Like{}</button>
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>Like{}</button>
                             {this.props.haveDiscussBtn &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }

@@ -25,19 +25,16 @@ class GlobalPosts extends Component {
     componentDidMount = () => {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                // let post = <Post
-                //     content={data.val().content}
-                //     dateDay={data.val().dateDay}
-                //     dateTime={data.val().dateTime}
-                //     key={data.key}
-                //     isGlobalPost={data.val().isGlobalPost}
-                //     haveDiscussBtn={true}
-                //     name={data.val().name}
-                //     title={data.val().title}
-                //     imageList={data.val().imageList}
-                //     toggleComponent = {this.props.toggleComponent}
-                //     setPostObj={this.props.setPostObj}
-                // />
+                let post = <Post
+                    content={data.val().content}
+                    dateDay={data.val().dateDay}
+                    dateTime={data.val().dateTime}
+                    key={data.key}
+                    isGlobalPost={data.val().isGlobalPost}
+                    name={data.val().name}
+                    title={data.val().title}
+                    imageList={data.val().imageList}
+                />
 
                 let LazyLoadPost = 
                 // <LazyLoad
@@ -54,15 +51,14 @@ class GlobalPosts extends Component {
                     dateTime={data.val().dateTime}
                     key={data.key}
                     isGlobalPost={data.val().isGlobalPost}
-                    haveDiscussBtn={true}
                     name={data.val().name}
                     title={data.val().title}
                     imageList={data.val().imageList}
                     toggleComponent = {this.props.toggleComponent}
-                    setPostObj={this.props.setPostObj}
+                    numLikes = {data.val().numLikes == undefined?0:10}
                     />
                 </LazyLoad>
-                // console.log("Adding posts to state from database: ", post)
+                console.log("Adding posts to state from database: ", post)
                 // this.props.addGlobalPost(post)
                 let lazy = this.state.LazyLoad;
                 lazy.unshift(LazyLoadPost);
