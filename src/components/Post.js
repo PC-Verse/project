@@ -64,7 +64,7 @@ class Post extends Component {
                     content: this.props.content,
                     dateDay: this.props.dateDay,
                     dateTime: this.props.dateTime,
-                    key: this.props.key,
+                    postKey: this.props.postKey,
                     isGlobalPost: true,
                     haveDiscussBtn: false,
                     name: this.props.name,
@@ -101,7 +101,7 @@ class Post extends Component {
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>Dislike</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}>Like</button>
-                            {this.props.isGlobalPost &&
+                            {this.props.haveDiscussBtn &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }
                         </div>
