@@ -98,9 +98,9 @@ class Post extends Component {
                     <div>
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         <div className="swipeBtnContainer">
-                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>Dislike</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>&#x1F44E;</button>
                             
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}>Like</button>
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>
                             {this.props.haveDiscussBtn &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }
