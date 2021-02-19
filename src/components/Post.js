@@ -13,71 +13,51 @@ class Post extends Component {
             disALeft: false,
             disARight: false
         }
-        // console.log("this.props in post's key" + this.props.name.toString())
     }
 
-    incrementSwipesFireBase = (key) =>{
-        console.log(key + "");
+    incrementSwipesFireBase = (key) => {
+        let disALeft;
+        let disARight;
+        if (this.state.disALeft== true) {
+            this.setState({
+                disALeft: false,
+                disARight: true
+            })
+        }
+        else {
+            this.setState({
+                disALeft: false,
+                disARight: true
+            })
+
+        }
         database.ref('globalPosts/'+key).update({
-            numLikes: 30,
+            numLikes: this.props.numLikes+1,
         });
     }
 
-    incrementSwipes = (name) => {
+    decrementSwipesFireBase = (key) => {
         let disALeft;
         let disARight;
-        if (this.state.disALeft == true) {
-            disALeft = false;
-            disARight = false;
+        if (this.state.disARight== true) {
+            this.setState({
+                disALeft: true,
+                disARight: false
+            })
         }
         else {
-            disALeft = false;
-            disARight = true;
-        }
-        // let prevNumLikes = 0;
-        // console.log(this.props.key)
-        // database.ref('/globalPosts/'+ this.props.key).on("value", (snapshot) => {
-        //     if (snapshot.val().numLikes != null) {
-        //         prevNumLikes = snapshot.val().numLikes
-        //     }
-        // })
-        // database.ref('/globalPosts/'+ this.props.key).update({
-        //     numLikes: prevNumLikes+1
-        // });
-        this.setState((prevState, props) => ({
-            swipes: prevState.swipes+1,
-            disARight: disARight,
-            disALeft: disALeft
-        }))
-        
+            this.setState({
+                disALeft: true,
+                disARight: false
+            })
+            
 
-    }
-
-    decrementSwipes = () => {
-        let disALeft;
-        let disARight;
-        if (this.state.disARight == true) {
-            disALeft = false;
-            disARight = false;
         }
-        else {
-            disALeft = true;
-            disARight = false;
-        }
-        let prevNumLikes;
-        database.ref('/globalPosts/'+ this.props.key+'/').on("value", (snapshot) => {
-            prevNumLikes = snapshot.val().numLikes;
-        })
-        database.ref('/globalPosts/'+ this.props.key+'/numLikes/').update({
-            numLikes: prevNumLikes-1,
+        database.ref('globalPosts/'+key).update({
+            numLikes: this.props.numLikes-1,
         });
-        this.setState((prevState, props) => ({
-            swipes: prevState.swipes-1,
-            disALeft: disALeft,
-            disARight: disARight
-        }))
-        
     }
+
     openDiscussion = () => {
         console.log("running ope discussion...")
         let postObj = {
@@ -118,10 +98,10 @@ class Post extends Component {
                     <div>
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         <div className="swipeBtnContainer">
-                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{this.props.key}Dislike</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>Dislike</button>
                             
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes(this.props.key)}>Like{}</button>
-                            {this.props.haveDiscussBtn &&
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}>Like</button>
+                            {this.props.isGlobalPost &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }
                         </div>
@@ -133,7 +113,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                    <button onClick={() => {this.props.removePost(this.props.postKey)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.props.removePost(this.props.key)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>
