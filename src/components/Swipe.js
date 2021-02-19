@@ -21,7 +21,7 @@ class Swipe extends Component {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
                 if(data.val().imageList !== undefined){
-                    console.log(data.val().imageList);
+                    // console.log(data.val().imageList);
                     let imageList = data.val().imageList;
                     let lazy = this.state.imageList;
                     lazy.unshift(imageList);

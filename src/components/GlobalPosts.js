@@ -15,59 +15,88 @@ const Spinner = () => (
 );
 
 class GlobalPosts extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             globalPosts: [],
             LazyLoad: []
         }
     }
     componentDidMount = () => {
+        console.log("Running componentDidMount")
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                let post = <Post
-                    content={data.val().content}
-                    dateDay={data.val().dateDay}
-                    dateTime={data.val().dateTime}
-                    key={data.key}
-                    isGlobalPost={data.val().isGlobalPost}
-                    name={data.val().name}
-                    title={data.val().title}
-                    imageList={data.val().imageList}
-                />
+                // let post = <Post
+                //     content={data.val().content}
+                //     dateDay={data.val().dateDay}
+                //     dateTime={data.val().dateTime}
+                //     key={data.key}
+                //     isGlobalPost={data.val().isGlobalPost}
+                //     haveDiscussBtn={true}
+                //     numLikes={data.val().numLikes}
+                //     name={data.val().name}
+                //     title={data.val().title}
+                //     imageList={data.val().imageList}
+                // />
 
-                let LazyLoadPost = 
+                // let LazyLoadPost = 
+                // // <LazyLoad
+                // //     height = {500}
+                // // >   
                 // <LazyLoad
-                //     height = {500}
-                // >   
-                <LazyLoad
-                    height= {50}
-                    offset = {[-150, 150]}
-                    placeholder = {<Spinner/>}
-                >
-                    <Post
-                    content={data.val().content}
-                    dateDay={data.val().dateDay}
-                    dateTime={data.val().dateTime}
-                    key={data.key}
-                    isGlobalPost={data.val().isGlobalPost}
-                    name={data.val().name}
-                    title={data.val().title}
-                    imageList={data.val().imageList}
-                    toggleComponent = {this.props.toggleComponent}
-                    numLikes = {data.val().numLikes == undefined?0:data.val().numLikes}
-                    />
-                </LazyLoad>
-                console.log("Adding posts to state from database: ", post)
+                //     height= {50}
+                //     offset = {[-150, 150]}
+                //     placeholder = {<Spinner/>}
+                // >
+                //     <Post
+                //     content={data.val().content}
+                //     dateDay={data.val().dateDay}
+                //     dateTime={data.val().dateTime}
+                //     key={data.key}
+                //     isGlobalPost={data.val().isGlobalPost}
+                //     haveDiscussBtn={true}
+                //     // numLikes={data.val().numLikes}
+                //     name={data.val().name}
+                //     title={data.val().title}
+                //     imageList={data.val().imageList}
+                //     toggleComponent = {this.props.toggleComponent}
+                //     numLikes = {data.val().numLikes == undefined ? 0 : data.val().numLikes}
+                //     setPostObj={this.props.setPostObj}
+                //     />
+                // </LazyLoad>
+
+                let LazyLoadPost = {
+                    key: data.key,
+                    imageList: data.val().imageList,
+                    title: data.val().title,
+                    content:data.val().content,
+                    dateDay:data.val().dateDay,
+                    dateTime:data.val().dateTime,
+                    isGlobalPost:data.val().isGlobalPost,
+                    haveDiscussBtn:true,
+                    name: data.val().name,
+                    numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes
+                }
+                // console.log("Adding posts to state from database: ", LazyLoadPost)
                 // this.props.addGlobalPost(post)
-                let lazy = this.state.LazyLoad;
-                lazy.unshift(LazyLoadPost);
-                this.setState({LazyLoad: lazy})
+                this.addGlobalPost(LazyLoadPost);
+
+                // let lazy = this.state.LazyLoad;
+                // lazy.unshift(LazyLoadPost);
+                // this.setState({LazyLoad: lazy})
             })
         })
     }
 
-
+    addGlobalPost = (newPost) => {
+        // console.log("ran setGlobalPosts")
+        let posts = this.state.globalPosts;
+        posts.unshift(newPost);  // concatenate newPosts to front of posts
+        this.setState({
+          globalPosts: posts
+        })
+        // console.log(this.state.globalPosts)
+      }
 
     render = () => {
         return (
@@ -78,13 +107,37 @@ class GlobalPosts extends Component {
 
                 //attempt to lazy load a page of posts
                 //currently doesnt display anything
-                    console.log("new post loading");                        
+                    // console.log("new post loading");                        
 
                     return lazy;
 
 
                     })
                 }
+
+                {this.state.globalPosts.map(post => {
+                    return <LazyLoad        // these need to be on the same line as the return for some reason
+                        height= {50}
+                        offset = {[-150, 150]}
+                        placeholder = {<Spinner/>}
+                    >
+                        <Post
+                        content={post.content}
+                        dateDay={post.dateDay}
+                        dateTime={post.dateTime}
+                        key={post.key}
+                        isGlobalPost={post.isGlobalPost}
+                        haveDiscussBtn={true}
+                        // numLikes={data.val().numLikes}
+                        name={post.name}
+                        title={post.title}
+                        imageList={post.imageList}
+                        toggleComponent = {this.props.toggleComponent}
+                        numLikes = {post.numLikes}
+                        setPostObj={this.props.setPostObj}
+                        />
+                    </LazyLoad>
+                })}
 
                 {/* {console.log(this.props.globalPosts)} */}
 

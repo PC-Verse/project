@@ -3,7 +3,10 @@ import '../App.css'
 import Post from './Post'
 
 class Discussion extends Component {
-   
+    constructor(props) {
+        super(props)
+    }
+    
     //will pass the string list as a prop through the database
     render = () => {
         console.log("showing di");
