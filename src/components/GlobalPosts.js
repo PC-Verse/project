@@ -29,7 +29,7 @@ class GlobalPosts extends Component {
                     content={data.val().content}
                     dateDay={data.val().dateDay}
                     dateTime={data.val().dateTime}
-                    key={data.key}
+                    key={data.ref.key}
                     isGlobalPost={data.val().isGlobalPost}
                     name={data.val().name}
                     title={data.val().title}

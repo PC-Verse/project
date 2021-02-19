@@ -90,10 +90,10 @@ class UserPosts extends Component {
 
         // this works
         let userPostKey = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:10
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0
         })
         let globalPostKey = this.props.database.ref('globalPosts').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:10
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0
         })
         // this one doesn't work for some reason
         // let postKeysKey = this.props.database.ref('postKeys/'+this.props.profileObj.googleId+'/'+userPostKey+"/").push({

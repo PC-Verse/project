@@ -16,7 +16,7 @@ class Post extends Component {
 
     incrementSwipesFireBase = (key) =>{
         console.log(key + "");
-        database.ref('/globalPosts/'+ key).update({
+        database.ref('globalPosts/'+key).update({
             numLikes: 30,
         });
     }
@@ -102,7 +102,7 @@ class Post extends Component {
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>{}Dislike</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>Like{}</button>
-                            {this.props.haveDiscussBtn &&
+                            {this.props.isGlobalPost &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }
                         </div>
