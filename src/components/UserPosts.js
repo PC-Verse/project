@@ -59,7 +59,7 @@ class UserPosts extends Component {
                         dateDay:data.val().dateDay,
                         dateTime:data.val().dateTime,
                         isGlobalPost:false,
-                        haveDiscussBtn:false,
+                        haveDiscussBtn:true,
                         name:data.val().name,
                         numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes
                         // removePost:this.removePost
@@ -117,10 +117,10 @@ class UserPosts extends Component {
     
         // this works
         let userPostRef = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"], numViews:1, numSwipeRights:0
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0, numViews:1, numSwipeRights:0
         })
         let globalPostRef = this.props.database.ref('globalPosts/'+userPostRef.key +'/').set({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"], numViews:1, numSwipeRights:0
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0, numViews:1, numSwipeRights:0
         })
 
         // if (this.props.profileObj.googleId == -1)   // user is not signed in
@@ -154,7 +154,7 @@ class UserPosts extends Component {
                 dateDay:dateDay,
                 dateTime:dateTime,
                 isGlobalPost:false,
-                haveDiscussBtn:false,
+                haveDiscussBtn:true,
                 name:this.props.profileObj.name,
                 numLikes:0
                 // removePost:this.removePost
@@ -275,10 +275,12 @@ class UserPosts extends Component {
                     dateDay={post.dateDay}
                     dateTime={post.dateTime}
                     isGlobalPost={false}
-                    haveDiscussBtn={false}
+                    haveDiscussBtn={post.haveDiscussBtn}
                     name={this.props.profileObj.name}
                     numLikes={0}
                     removePost={this.removePost}
+                    setPostObj={this.props.setPostObj}
+                    toggleComponent = {this.props.toggleComponent}
                 />
             </LazyLoad>
         })
@@ -309,10 +311,12 @@ class UserPosts extends Component {
                                 dateDay={post.dateDay}
                                 dateTime={post.dateTime}
                                 isGlobalPost={false}
-                                haveDiscussBtn={false}
+                                haveDiscussBtn={post.haveDiscussBtn}
                                 name={this.props.profileObj.name}
                                 numLikes={0}
                                 removePost={this.removePost}
+                                setPostObj={this.props.setPostObj}
+                                toggleComponent = {this.props.toggleComponent}
                             />
                         </LazyLoad>
                         })

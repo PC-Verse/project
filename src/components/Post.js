@@ -94,9 +94,11 @@ class Post extends Component {
                     }
                 </p>
                 <br/>
-                {this.props.isGlobalPost &&
+                {/* {this.props.isGlobalPost && */}
                     <div>
+                        {this.props.isGlobalPost &&
                         <h>{ "Tinder Score: " + (this.props.numSwipeRights / this.props.numViews).toFixed(2)}</h>
+                    } 
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         {   this.props.haveDiscussBtn && 
                             <div className="swipeBtnContainer">
@@ -108,7 +110,7 @@ class Post extends Component {
                             
                         </div>}
                     </div>
-                }
+                {/* } */}
                 
                 {/* <PostPicture/> */}
 
