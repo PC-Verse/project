@@ -315,10 +315,13 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+#postPic {
+    max-width: 50vw;
+}
 
 .picture {
     /* width: 40vw; */
-    height: 60vh;
+    max-height: 60vh;
 }
 
 .removeBtn {

@@ -5,8 +5,9 @@ import PostPicture from './PostPicture'
 import database from '../firebase'
 
 class Post extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        this.props = props
         this.state = {
             swipes: 0,
             disALeft: false,
@@ -32,6 +33,16 @@ class Post extends Component {
             disALeft = false;
             disARight = true;
         }
+        // let prevNumLikes = 0;
+        // console.log(this.props.key)
+        // database.ref('/globalPosts/'+ this.props.key).on("value", (snapshot) => {
+        //     if (snapshot.val().numLikes != null) {
+        //         prevNumLikes = snapshot.val().numLikes
+        //     }
+        // })
+        // database.ref('/globalPosts/'+ this.props.key).update({
+        //     numLikes: prevNumLikes+1
+        // });
         this.setState((prevState, props) => ({
             swipes: prevState.swipes+1,
             disARight: disARight,
@@ -52,6 +63,13 @@ class Post extends Component {
             disALeft = true;
             disARight = false;
         }
+        let prevNumLikes;
+        database.ref('/globalPosts/'+ this.props.key+'/').on("value", (snapshot) => {
+            prevNumLikes = snapshot.val().numLikes;
+        })
+        database.ref('/globalPosts/'+ this.props.key+'/numLikes/').update({
+            numLikes: prevNumLikes-1,
+        });
         this.setState((prevState, props) => ({
             swipes: prevState.swipes-1,
             disALeft: disALeft,
@@ -89,7 +107,7 @@ class Post extends Component {
                     {this.props.imageList &&
                     <div className="pictureContainer">
                         {this.props.imageList.map((image, index) => (
-                            <img src={image['data_url']} className="picture"/>
+                            <img src={image['data_url']} className="picture" id="postPic"/>
                         ))}
                     </div>
                     }
@@ -99,10 +117,10 @@ class Post extends Component {
                     <div>
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         <div className="swipeBtnContainer">
-                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>{}Dislike</button>
+                            <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={this.decrementSwipes}>{this.props.key}Dislike</button>
                             
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipesFireBase(this.props.key+"")}>Like{}</button>
-                            {this.props.isGlobalPost &&
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={this.incrementSwipes(this.props.key)}>Like{}</button>
+                            {this.props.haveDiscussBtn &&
                                 <button onClick={this.openDiscussion}>Click to Discuss</button>
                             }
                         </div>

@@ -3,7 +3,10 @@ import '../App.css'
 import Post from './Post'
 
 class Discussion extends Component {
-   
+    constructor(props) {
+        super(props)
+    }
+    
     //will pass the string list as a prop through the database
     render = () => {
         console.log("showing di");
@@ -21,6 +24,7 @@ class Discussion extends Component {
                     name={this.props.postObj.name}
                     title={this.props.postObj.title}
                     imageList={this.props.postObj.imageList}
+                    numLikes={this.props.postObj.numLikes}
                     toggleComponent = {this.props.toggleComponent}
                 />
                 {/* <div className = "card">

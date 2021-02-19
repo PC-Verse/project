@@ -153,9 +153,9 @@ class App extends Component {
           <div>
             <GlobalPosts
               toggleComponent = {this.toggleComponent}
-              globalPosts={this.state.globalPosts}
+              // globalPosts={this.state.globalPosts}
               database={this.state.database}
-              addGlobalPost={this.addGlobalPost}
+              // addGlobalPost={this.addGlobalPost}
               setPostObj={this.setPostObj}/>          
           </div>
         }
