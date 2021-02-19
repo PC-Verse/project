@@ -94,21 +94,24 @@ class Post extends Component {
                     }
                 </p>
                 <br/>
-                {this.props.isGlobalPost &&
+                {/* {this.props.isGlobalPost && */}
                     <div>
-                        <h>{ "Tinder Score: " + (this.props.numSwipeRights / this.props.numViews).toFixed(2)}</h>
+                        {this.props.isGlobalPost &&
+                            <h>{ "Tinder Score: " + (this.props.numSwipeRights / this.props.numViews).toFixed(2)}</h>
+                        } 
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
-                        {   this.props.haveDiscussBtn && 
+                        {this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>&#x1F44E;</button>
                             
-                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>
-                           
-                            <button onClick={this.openDiscussion}>Click to Discuss</button>
-                            
-                        </div>}
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>   
+                        </div>
+                        }
+                        {   this.props.haveDiscussBtn && 
+                            <button id="discussBtn" onClick={this.openDiscussion}>Click to Discuss</button>
+                        }   
                     </div>
-                }
+                {/* } */}
                 
                 {/* <PostPicture/> */}
 

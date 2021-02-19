@@ -345,6 +345,11 @@ button:hover {
     margin: 0;
 }
 
+#discussBtn {
+    display: flex;
+    margin: auto;
+}
+
 .description {
     width: 50%;
     height: 100px;

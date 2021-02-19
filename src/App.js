@@ -91,6 +91,7 @@ class App extends Component {
           this.setState({ showPost: false });
           this.setState({ showSwipes: false })
           this.setState({ showGlobalPosts: false })
+          this.setState({ showUserPosts: false })
           this.setState({ showDiscussion: true })
           break;
     }
@@ -169,7 +170,8 @@ class App extends Component {
         {this.state.showDiscussion &&
           <div>
 
-            <Discussion postObj={this.state.postObj}/>
+            <Discussion postObj={this.state.postObj}
+            profileObj={this.state.profileObj}/>
           </div>
         }
 
