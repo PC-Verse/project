@@ -26,44 +26,6 @@ class GlobalPosts extends Component {
         console.log("Running componentDidMount")
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                // let post = <Post
-                //     content={data.val().content}
-                //     dateDay={data.val().dateDay}
-                //     dateTime={data.val().dateTime}
-                //     key={data.key}
-                //     isGlobalPost={data.val().isGlobalPost}
-                //     haveDiscussBtn={true}
-                //     numLikes={data.val().numLikes}
-                //     name={data.val().name}
-                //     title={data.val().title}
-                //     imageList={data.val().imageList}
-                // />
-
-                // let LazyLoadPost = 
-                // // <LazyLoad
-                // //     height = {500}
-                // // >   
-                // <LazyLoad
-                //     height= {50}
-                //     offset = {[-150, 150]}
-                //     placeholder = {<Spinner/>}
-                // >
-                //     <Post
-                //     content={data.val().content}
-                //     dateDay={data.val().dateDay}
-                //     dateTime={data.val().dateTime}
-                //     key={data.key}
-                //     isGlobalPost={data.val().isGlobalPost}
-                //     haveDiscussBtn={true}
-                //     // numLikes={data.val().numLikes}
-                //     name={data.val().name}
-                //     title={data.val().title}
-                //     imageList={data.val().imageList}
-                //     toggleComponent = {this.props.toggleComponent}
-                //     numLikes = {data.val().numLikes == undefined ? 0 : data.val().numLikes}
-                //     setPostObj={this.props.setPostObj}
-                //     />
-                // </LazyLoad>
 
                 let LazyLoadPost = {
                     postKey: data.key,
@@ -75,7 +37,9 @@ class GlobalPosts extends Component {
                     isGlobalPost:data.val().isGlobalPost,
                     haveDiscussBtn:true,
                     name: data.val().name,
-                    numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes
+                    numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes,
+                    numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
+                    numSwipeRights:data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                 }
                 console.log(data.key)
                 // console.log("Adding posts to state from database: ", LazyLoadPost)
@@ -109,10 +73,7 @@ class GlobalPosts extends Component {
                 //attempt to lazy load a page of posts
                 //currently doesnt display anything
                     // console.log("new post loading");                        
-
                     return lazy;
-
-
                     })
                 }
 
@@ -136,33 +97,11 @@ class GlobalPosts extends Component {
                         toggleComponent = {this.props.toggleComponent}
                         numLikes = {post.numLikes}
                         setPostObj={this.props.setPostObj}
-                        />
+                        numViews= {post.numViews}
+                        numSwipeRights= {post.numSwipeRights}                        />
                     </LazyLoad>
                 })}
 
-                {/* {console.log(this.props.globalPosts)} */}
-
-                {/* {this.props.globalPosts.map(post => {
-
-                    //attempt to lazy load a page of posts
-                    //currently doesnt display anything
-                    console.log("new post loading");                        
-
-                    return post;
-
-                   
-                })
-                } */}
-                {/* {this.props.globalPosts.map((post) => {
-                    return post;
-                })
-                } */}
-
-                {/* } */}
-                {/* {this.props.database != null &&
-                    this.props.database.ref('globalPosts').map(post => (
-                        <Post title={post.title} content={post.content} dateDay={post.dateDay} dateTime={post.dateTime} id={post.id} name={post.name} />
-                    ))} */}
             </div>
         )
     }

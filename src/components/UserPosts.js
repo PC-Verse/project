@@ -117,10 +117,10 @@ class UserPosts extends Component {
     
         // this works
         let userPostRef = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"]
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"], numViews:1, numSwipeRights:0
         })
         let globalPostRef = this.props.database.ref('globalPosts/'+userPostRef.key +'/').set({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"]
+            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0, comments: ["no comments yet"], numViews:1, numSwipeRights:0
         })
 
         // if (this.props.profileObj.googleId == -1)   // user is not signed in
