@@ -66,7 +66,7 @@ class GlobalPosts extends Component {
                 // </LazyLoad>
 
                 let LazyLoadPost = {
-                    key: data.key,
+                    postKey: data.key,
                     imageList: data.val().imageList,
                     title: data.val().title,
                     content:data.val().content,
@@ -126,7 +126,7 @@ class GlobalPosts extends Component {
                         content={post.content}
                         dateDay={post.dateDay}
                         dateTime={post.dateTime}
-                        key={post.key}
+                        postKey={post.postKey}
                         isGlobalPost={post.isGlobalPost}
                         haveDiscussBtn={true}
                         // numLikes={data.val().numLikes}

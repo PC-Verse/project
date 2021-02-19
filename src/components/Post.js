@@ -13,6 +13,7 @@ class Post extends Component {
             disALeft: false,
             disARight: false
         }
+        // console.log("this.props in post's key" + this.props.name.toString())
     }
 
     incrementSwipesFireBase = (key) =>{
@@ -132,7 +133,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                    <button onClick={() => {this.props.removePost(this.props.key)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.props.removePost(this.props.postKey)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>
