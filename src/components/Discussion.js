@@ -24,6 +24,7 @@ class Discussion extends Component {
                     name={this.props.postObj.name}
                     title={this.props.postObj.title}
                     imageList={this.props.postObj.imageList}
+                    numLikes={this.props.postObj.numLikes}
                     toggleComponent = {this.props.toggleComponent}
                 />
                 {/* <div className = "card">
