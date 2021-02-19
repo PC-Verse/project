@@ -96,15 +96,17 @@ class Post extends Component {
                 <br/>
                 {this.props.isGlobalPost &&
                     <div>
+                        <h>{ "Tinder Score: " + (this.props.numSwipeRights / this.props.numViews).toFixed(2)}</h>
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
-                        <div className="swipeBtnContainer">
+                        {   this.props.haveDiscussBtn && 
+                            <div className="swipeBtnContainer">
                             <button disabled ={this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>&#x1F44E;</button>
                             
                             <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>
-                            {this.props.haveDiscussBtn &&
-                                <button onClick={this.openDiscussion}>Click to Discuss</button>
-                            }
-                        </div>
+                           
+                            <button onClick={this.openDiscussion}>Click to Discuss</button>
+                            
+                        </div>}
                     </div>
                 }
                 
