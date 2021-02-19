@@ -52,7 +52,7 @@ class UserPosts extends Component {
                     //     />
                     // </LazyLoad>
                     let post = {
-                        key: data.key,
+                        postKey: data.key,
                         imageList: data.val().imageList,
                         title: data.val().title,
                         content:data.val().content,
@@ -64,9 +64,13 @@ class UserPosts extends Component {
                         numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes
                         // removePost:this.removePost
                     }
-                    console.log(data.key)
+                    console.log(data.key + typeof(data.key))
+                    console.log(this.state.userPosts)
                     // console.log("Adding posts to state from database: ", post)
                     // this.props.addUserPosts(post)
+                    // this.setState((prevState) => ({
+                    //     userPosts : prevState.userPosts.unshift(post)
+                    //   }));
                     this.addUserPost(post)      // adding it to state
                     // let posts = this.state.userPosts;
                     // posts.unshift(post);
@@ -90,10 +94,14 @@ class UserPosts extends Component {
     addUserPost = (newPost) => {
         let posts = this.state.userPosts;
         posts.unshift(newPost);
-        this.setState({
-          userPosts : posts
-        })
-      }
+        this.setState((prevState) => ({
+            userPosts : posts
+          }))
+        // this.setState((prevState) => ({
+        //   userPosts : prevState.userPosts.unshift(newPost)
+        // }))
+
+    }
     createPost = (newTitle, newContent, newImageList) => {
 
         // let newPosts = this.props.userPosts
@@ -139,7 +147,7 @@ class UserPosts extends Component {
             //     />
             // </LazyLoad>
             let post = {
-                key: userPostRef.key,
+                postKey: userPostRef.key,
                 imageList: newImageList,
                 title: newTitle,
                 content:newContent,
@@ -252,6 +260,29 @@ class UserPosts extends Component {
     }
 
     render = () => {
+        const postComponents = this.props.userPosts.map((post) => {
+            // return post;
+            return <LazyLoad    // these need to be on the same line as the return for some reason
+                    height= {50}
+                    offset = {[-150,150]}
+                    placeholder = {<Spinner/>}
+                >
+                <Post
+                    // title={post.title}
+                    postKey={post.postKey}
+                    content={post.content}
+                    imageList={post.imageList}
+                    dateDay={post.dateDay}
+                    dateTime={post.dateTime}
+                    isGlobalPost={false}
+                    haveDiscussBtn={false}
+                    name={this.props.profileObj.name}
+                    numLikes={0}
+                    removePost={this.removePost}
+                />
+            </LazyLoad>
+        })
+        console.log(this.state.userPosts[0])
         return (
             <div>
                 {/* {this.props.showAddPostBTN && */}
@@ -259,28 +290,7 @@ class UserPosts extends Component {
                 {/* } */}
 
                 {this.props.profileObj.googleId == -1 &&    // user not signed in
-                    this.props.userPosts.map((post) => {
-                        // return post;
-                        return <LazyLoad    // these need to be on the same line as the return for some reason
-                                height= {50}
-                                offset = {[-150,150]}
-                                placeholder = {<Spinner/>}
-                            >
-                            <Post
-                                key={post.key}
-                                title={post.title}
-                                content={post.content}
-                                imageList={post.imageList}
-                                dateDay={post.dateDay}
-                                dateTime={post.dateTime}
-                                isGlobalPost={false}
-                                haveDiscussBtn={false}
-                                name={this.props.profileObj.name}
-                                numLikes={0}
-                                removePost={this.removePost}
-                            />
-                        </LazyLoad>
-                    })
+                    postComponents
                 }
 
                 {this.props.profileObj.googleId != -1 &&    // user is signed in
@@ -292,7 +302,7 @@ class UserPosts extends Component {
                                 placeholder = {<Spinner/>}
                             >
                             <Post
-                                key={post.key}
+                                postKey={post.postKey}
                                 title={post.title}
                                 content={post.content}
                                 imageList={post.imageList}
