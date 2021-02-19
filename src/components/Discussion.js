@@ -31,7 +31,7 @@ class Discussion extends Component {
         database.ref('/globalPosts/' + this.props.postObj.postKey + '/comments').on("value", (snapshot) => {
            console.log(snapshot.val());
            this.setState({
-            CommentsList: snapshot.val()
+                CommentsList: snapshot.val()
            })
         })
     }
@@ -58,9 +58,12 @@ class Discussion extends Component {
                     toggleComponent = {this.props.toggleComponent}
                 />
                 {this.state.CommentsList.map(comment => {
-                    return <Comments
+                    if(typeof(comment) === 'string' ){
+                        return <Comments
                         content = {comment}
-                    />
+                        />
+                    }
+
                 })}
 
                 <AddComment
