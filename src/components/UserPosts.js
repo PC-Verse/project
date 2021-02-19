@@ -163,7 +163,7 @@ class UserPosts extends Component {
                 this.props.addUserPost(post);
             }
             else {
-                this.addUserPost(post);
+                // this.addUserPost(post);
             }
             // this.props.addUserPost(post);
         // }
@@ -268,7 +268,7 @@ class UserPosts extends Component {
                     placeholder = {<Spinner/>}
                 >
                 <Post
-                    // title={post.title}
+                    title={post.title}
                     postKey={post.postKey}
                     content={post.content}
                     imageList={post.imageList}
