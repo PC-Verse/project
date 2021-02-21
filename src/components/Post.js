@@ -100,7 +100,6 @@ class Post extends Component {
                            <div>
                             <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
                             <progress class="tinder-bar" value={(this.props.numSwipeRights / this.props.numViews * 100).toString()} max="100"> {(this.props.numSwipeRights / this.props.numViews).toFixed(2)} </progress>
-
                            </div>
 
                         } 
