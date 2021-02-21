@@ -24,7 +24,7 @@ class GlobalPosts extends Component {
     }
     componentDidMount = () => {
         console.log("Running componentDidMount")
-        database.ref('/globalPosts/').on("value", (snapshot) => {
+        database.ref('/globalPosts/').orderByChild("numLikes").on("value", (snapshot) => {
             snapshot.forEach(data => {
 
                 let LazyLoadPost = {
@@ -41,9 +41,7 @@ class GlobalPosts extends Component {
                     numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
                     numSwipeRights:data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                 }
-                console.log(data.key)
-                // console.log("Adding posts to state from database: ", LazyLoadPost)
-                // this.props.addGlobalPost(post)
+
                 this.addGlobalPost(LazyLoadPost);
 
                 // let lazy = this.state.LazyLoad;
@@ -51,6 +49,8 @@ class GlobalPosts extends Component {
                 // this.setState({LazyLoad: lazy})
             })
         })
+
+
     }
 
     addGlobalPost = (newPost) => {
@@ -68,16 +68,10 @@ class GlobalPosts extends Component {
             <div>
                 <div id="globalPostTitle">COMMUNITY</div>
 
-                {this.state.LazyLoad.map(lazy => {
 
-                //attempt to lazy load a page of posts
-                //currently doesnt display anything
-                    // console.log("new post loading");                        
-                    return lazy;
-                    })
-                }
+                {
+                this.state.globalPosts.map(post => {
 
-                {this.state.globalPosts.map(post => {
                     return <LazyLoad        // these need to be on the same line as the return for some reason
                         height= {50}
                         offset = {[-150, 150]}
