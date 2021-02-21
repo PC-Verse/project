@@ -97,7 +97,12 @@ class Post extends Component {
                 {/* {this.props.isGlobalPost && */}
                     <div>
                         {this.props.isGlobalPost &&
-                            <h>{ "Tinder Score: " + (this.props.numSwipeRights / this.props.numViews).toFixed(2)}</h>
+                           <div>
+                            <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
+                            <progress class="tinder-bar" value={(this.props.numSwipeRights / this.props.numViews * 100).toString()} max="100"> {(this.props.numSwipeRights / this.props.numViews).toFixed(2)} </progress>
+
+                           </div>
+
                         } 
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         {this.props.isGlobalPost && 

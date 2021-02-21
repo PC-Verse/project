@@ -38,7 +38,10 @@ body {
 /* .App-link {
   color: #61dafb;
 } */
-
+.tinder-bar{
+    color: red;
+    size: 50px;
+}
 #NavBar {
     /* font-family: 'Courier New', Courier, monospace; */
     background-image: url("./images/RGB.png");
