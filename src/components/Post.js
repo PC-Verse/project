@@ -95,6 +95,7 @@ class Post extends Component {
                     numSwipeRights: this.props.numSwipeRights
         }
         this.props.setPostObj(postObj);
+        this.props.setPostKey(this.props.postKey);
         this.props.toggleComponent("showDiscussion");
     }
 

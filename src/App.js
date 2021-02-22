@@ -179,6 +179,7 @@ class App extends Component {
           <div>
 
             <Discussion postObj={this.state.postObj}
+            postKey={this.state.postKey}
             profileObj={this.state.profileObj}/>
           </div>
         }
