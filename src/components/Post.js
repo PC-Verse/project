@@ -31,9 +31,15 @@ class Post extends Component {
             })
 
         }
-        database.ref('globalPosts/'+key).update({
+        database.ref('globalPosts/'+this.props.postKey).update({
             numLikes: this.props.numLikes+1,
+            numSwipeRights: this.props.numSwipeRights+1
         });
+        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
+        // database.ref('userPosts/'+this.props.profileObj.googleId+"/"+this.props.postKey).update({
+        //     numLikes: this.props.numLikes+1,
+        //     numSwipeRights: this.props.numSwipeRights+1
+        // });
     }
 
     decrementSwipesFireBase = (key) => {
@@ -56,10 +62,23 @@ class Post extends Component {
         database.ref('globalPosts/'+key).update({
             numLikes: this.props.numLikes-1,
         });
+        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
+        // database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
+        //     numLikes: this.props.numLikes-1,
+        // });
+    }
+    incrementNumViews = () => {
+        database.ref('globalPosts/'+this.props.postKey).update({
+            numViews: this.props.numViews+1,
+        });
+        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
+        // database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
+        //     numViews: this.props.numViews+1,
+        // });
     }
 
     openDiscussion = () => {
-        console.log("running ope discussion...")
+        console.log("running open discussion...")
         let postObj = {
                     content: this.props.content,
                     dateDay: this.props.dateDay,
@@ -68,9 +87,12 @@ class Post extends Component {
                     isGlobalPost: true,
                     haveDiscussBtn: false,
                     name: this.props.name,
+                    profileObj : this.props.profileObj,
                     title : this.props.title,
                     imageList : this.props.imageList,
                     numLikes: this.props.numLikes,
+                    numViews: this.props.numLikes,
+                    numSwipeRights: this.props.numSwipeRights
         }
         this.props.setPostObj(postObj);
         this.props.toggleComponent("showDiscussion");
@@ -80,7 +102,7 @@ class Post extends Component {
     render = () => {
         return (
             <div className = "card">
-                <p class = "text-card">
+                <p class = "text-card" onLoad={this.incrementNumViews}>
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
@@ -96,7 +118,7 @@ class Post extends Component {
                 <br/>
                 {/* {this.props.isGlobalPost && */}
                     <div>
-                        {this.props.isGlobalPost &&
+                        {/* this.props.isGlobalPost && */
                            <div>
                             <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
                             <progress class="tinder-bar" value={(this.props.numSwipeRights / this.props.numViews * 100).toString()} max="100"> {(this.props.numSwipeRights / this.props.numViews).toFixed(2)} </progress>
@@ -122,7 +144,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                    <button onClick={() => {this.props.removePost(this.props.key)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.props.removePost(this.props.postKey)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>

@@ -10,7 +10,8 @@ class Discussion extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            CommentsList: ["empty"]
+            CommentsList: [],
+            post: {}
         }
     }
 
@@ -31,38 +32,37 @@ class Discussion extends Component {
         // });
         let dateObj = new Date();
         let dateDay = dateObj.toLocaleDateString()
-        let dateTime= dateObj.toLocaleTimeString();
+        let dateTime = dateObj.toLocaleTimeString();
         database.ref('globalPosts/' + this.props.postObj.postKey + '/comments/').push({
             content: newContent,
             numLikes: 0,
             profileObj: this.props.profileObj,
-            dateDay:dateDay,
-            dateTime:dateTime
+            dateDay: dateDay,
+            dateTime: dateTime
         });
-        // database.ref('userPosts/' + this.props.profileObj.googleId+ '/'+this.props.postObj.postKey + '/comments/').push({
-        //     content: newContent,
-        //     numLikes: 0,
-        //     profileObj: this.props.profileObj,
-        //     dateDay:dateDay,
-        //     dateTime:dateTime
-        // });
+        database.ref('userPosts/' + this.props.profileObj.googleId + '/' + this.props.postObj.postKey + '/comments/').push({
+            content: newContent,
+            numLikes: 0,
+            profileObj: this.props.profileObj,
+            dateDay: dateDay,
+            dateTime: dateTime
+        });
     }
 
-    // removeComment = (postKey) => {
-    //     database.ref('globalPosts'+ this.props.postObj.postKey+"/comments/"+postKey).remove()
-    //     database.ref('userPosts/' + this.props.profileObj.googleId+ '/'+postKey + '/comments/').remove()
-        
-    //     let comments = this.state.CommentsList;
-    //     for (let i = 0; i < comments.length; i++) {
-    //         if (comments[i].postKey == postKey) {
-    //             comments.splice(i,1);
-    //             break;
-    //         }
-    //     }
-    //     this.setState({
-    //         CommentsList: comments
-    //     })
-    // }
+    removeComment = (commentKey) => {
+        database.ref('globalPosts/' + this.props.postObj.postKey + "/comments/" + commentKey+'/').remove()
+        database.ref('userPosts/' + this.props.profileObj.googleId + '/' + this.props.postObj.postKey + '/comments/'+commentKey+'/').remove()
+        let comments = this.state.CommentsList;
+        for (let i = 0; i < comments.length; i++) {
+            if (comments[i].commentKey == commentKey) {
+                comments.splice(i, 1);
+                break;
+            }
+        }
+        this.setState({
+            CommentsList: comments
+        })
+    }
 
     componentDidMount = () => {
         console.log("Running componentDidMount")
@@ -80,7 +80,7 @@ class Discussion extends Component {
                     profileObj: comment.val().profileObj,
                     dateDay: comment.val().dateDay,
                     dateTime: comment.val().dateTime,
-                    postKey: comment.key
+                    commentKey: comment.key
                 }
                 let comments = this.state.CommentsList;
                 if (comments[0] == "Empty") {
@@ -93,6 +93,25 @@ class Discussion extends Component {
             })
         })
 
+        database.ref('globalPosts/' + this.props.postKey).on("value", (data) => {
+            let post = {
+                postKey: data.key,
+                imageList: data.val().imageList,
+                title: data.val().title,
+                content: data.val().content,
+                dateDay: data.val().dateDay,
+                dateTime: data.val().dateTime,
+                isGlobalPost: data.val().isGlobalPost,
+                haveDiscussBtn: false,
+                name: data.val().name,
+                numLikes: data.val().numLikes == undefined ? 0 : data.val().numLikes,
+                numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
+                numSwipeRights: data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
+            }
+            this.setState({
+                post: post
+            })
+        })
 
     }
 
@@ -104,7 +123,7 @@ class Discussion extends Component {
         return (
 
             <div className="Discussion">
-                <Post
+                {/* <Post
                     content={this.props.postObj.content}
                     dateDay={this.props.postObj.dateDay}
                     dateTime={this.props.postObj.dateTime}
@@ -116,13 +135,31 @@ class Discussion extends Component {
                     imageList={this.props.postObj.imageList}
                     numLikes={this.props.postObj.numLikes}
                     toggleComponent={this.props.toggleComponent}
+                    numViews={this.props.postObj.numViews}
+                    numSwipeRights={this.props.postObj.numSwipeRights}
+                /> */}
+                <Post
+                    content={this.state.post.content}
+                    dateDay={this.state.post.dateDay}
+                    dateTime={this.state.post.dateTime}
+                    postKey={this.state.post.postKey}
+                    isGlobalPost={this.state.post.isGlobalPost}
+                    haveDiscussBtn={this.state.post.haveDiscussBtn}
+                    name={this.state.post.name}
+                    profileObj={this.props.postObj.profileObj}
+                    title={this.state.post.title}
+                    imageList={this.state.post.imageList}
+                    numLikes={this.state.post.numLikes}
+                    toggleComponent={this.props.toggleComponent}
+                    numViews={this.state.post.numViews}
+                    numSwipeRights={this.state.post.numSwipeRights}
                 />
 
                 {this.state.CommentsList.map(comment => {
                     return <Comments
                         commentObj={comment}
-                        // removeComment = {this.removeComment}
-                        currentProfileObj = {this.props.profileObj}
+                        removeComment={this.removeComment}
+                        currentProfileObj={this.props.profileObj}
                     />
                 })}
 

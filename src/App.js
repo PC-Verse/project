@@ -52,7 +52,8 @@ class App extends Component {
         googleId: -1,
         imageUrl: ""},
       items: [],
-      postObj : null
+      postObj : null,
+      postKey : -1
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -140,6 +141,11 @@ class App extends Component {
       postObj: newPostObj
     })
   }
+  setPostKey = (postKey) => {
+    this.setState({
+      postKey: postKey
+    })
+  }
 
   render() {
     return (
@@ -157,7 +163,9 @@ class App extends Component {
               // globalPosts={this.state.globalPosts}
               database={this.state.database}
               // addGlobalPost={this.addGlobalPost}
-              setPostObj={this.setPostObj}/>          
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>          
           </div>
         }
 

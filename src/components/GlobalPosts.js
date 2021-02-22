@@ -37,9 +37,10 @@ class GlobalPosts extends Component {
                     isGlobalPost:data.val().isGlobalPost,
                     haveDiscussBtn:true,
                     name: data.val().name,
+                    profileObj: data.val().profileObj,
                     numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes,
                     numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
-                    numSwipeRights:data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
+                    numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights
                 }
 
                 this.addGlobalPost(LazyLoadPost);
@@ -86,11 +87,13 @@ class GlobalPosts extends Component {
                         haveDiscussBtn={true}
                         // numLikes={data.val().numLikes}
                         name={post.name}
+                        profileObj={post.profileObj}
                         title={post.title}
                         imageList={post.imageList}
                         toggleComponent = {this.props.toggleComponent}
                         numLikes = {post.numLikes}
                         setPostObj={this.props.setPostObj}
+                        setPostKey={this.props.setPostKey}
                         numViews= {post.numViews}
                         numSwipeRights= {post.numSwipeRights}                        />
                     </LazyLoad>
