@@ -61,22 +61,20 @@ class UserPosts extends Component {
                         isGlobalPost:false,
                         haveDiscussBtn:true,
                         name:data.val().name,
-                        numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes
-                        // removePost:this.removePost
+                        profileObj: data.val().profileObj,
+                        numLikes:data.val().numLikes == undefined ? 0 : data.val().numLikes,
+                        numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
+                        numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                     }
-                    console.log(data.key + typeof(data.key))
-                    console.log(this.state.userPosts)
+                    // console.log(data.key + typeof(data.key))
+                    // console.log(this.state.userPosts)
                     // console.log("Adding posts to state from database: ", post)
                     // this.props.addUserPosts(post)
                     // this.setState((prevState) => ({
                     //     userPosts : prevState.userPosts.unshift(post)
                     //   }));
                     this.addUserPost(post)      // adding it to state
-                    // let posts = this.state.userPosts;
-                    // posts.unshift(post);
-                    // this.setState({
-                    //     userPosts : posts
-                    // })
+
                 })
             })
         }
@@ -104,48 +102,41 @@ class UserPosts extends Component {
     }
     createPost = (newTitle, newContent, newImageList) => {
 
-        // let newPosts = this.props.userPosts
-        // let newImagesList = this.props.userImageLists
-        // let updatedIds = this.props.userIds
+        
         let date = new Date()
-        // this.props.globalSetState((prevState, props) => ({
-        //     availableId: prevState.availableId + 1
-        // }))
         let dateDay = date.toLocaleDateString();
         let dateTime = date.toLocaleTimeString();
 
     
         // this works
         let userPostRef = this.props.database.ref('userPosts/'+this.props.profileObj.googleId+'/').push({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: false, name: this.props.profileObj.name, numLikes:0, numViews:1, numSwipeRights:0
+            imageList: newImageList,
+            title: newTitle,
+            content: newContent,
+            dateDay: dateDay,
+            dateTime: dateTime,
+            isGlobalPost: false,
+            name: this.props.profileObj.name,
+            profileObj: this.props.profileObj,
+            numLikes:0,
+            numViews:1,
+            numSwipeRights:0
         })
         let globalPostRef = this.props.database.ref('globalPosts/'+userPostRef.key +'/').set({
-            imageList: newImageList, title: newTitle, content: newContent, dateDay: dateDay, dateTime: dateTime, isGlobalPost: true, name: this.props.profileObj.name, numLikes:0, numViews:1, numSwipeRights:0
+            imageList: newImageList,
+            title: newTitle,
+            content: newContent,
+            dateDay: dateDay,
+            dateTime: dateTime,
+            isGlobalPost: true,
+            name: this.props.profileObj.name,
+            profileObj: this.props.profileObj,
+            numLikes:0,
+            numViews:1,
+            numSwipeRights:0
         })
 
-        // if (this.props.profileObj.googleId == -1)   // user is not signed in
-        // {
-            // update the state so page rerenders
-            // let post = 
-            // <LazyLoad
-            //     height= {50}
-            //     offset = {[-150,150]}
-            //     placeholder = {<Spinner/>}
-            //     >
-            //     <Post
-            //         key={userPostRef.key}
-            //         title={newTitle}
-            //         content={newContent}
-            //         imageList={newImageList}
-            //         dateDay={dateDay}
-            //         dateTime={dateTime}
-            //         isGlobalPost={false}
-            //         haveDiscussBtn={false}
-            //         name={this.props.profileObj.name}
-            //         numLikes={0}
-            //         removePost={this.removePost}
-            //     />
-            // </LazyLoad>
+       
             let post = {
                 postKey: userPostRef.key,
                 imageList: newImageList,
@@ -156,8 +147,10 @@ class UserPosts extends Component {
                 isGlobalPost:false,
                 haveDiscussBtn:true,
                 name:this.props.profileObj.name,
-                numLikes:0
-                // removePost:this.removePost
+                profileObj: this.props.profileObj,
+                numLikes:0,
+                numViews: 0,
+                numSwipeRights: 0
             }
             if (this.props.profileObj.googleId == -1) {
                 this.props.addUserPost(post);
@@ -166,50 +159,13 @@ class UserPosts extends Component {
                 // this.addUserPost(post);
             }
             // this.props.addUserPost(post);
-        // }
 
-        // this one doesn't work for some reason
-        // let postKeysKey = this.props.database.ref('postKeys/'+this.props.profileObj.googleId+'/'+userPostKey+"/").push({
-        //     userPostKey: userPostKey,
-        //     globalPostKey: globalPostKey
-        // })
-
-
-
-        // newPosts.unshift(<Post imageList={newImageList} title={newTitle} Picture={this.state.Picture} setPicture={this.setPicture} content={newContent} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false} name={this.props.profileObj.name} />)
-        // updatedIds.unshift(this.props.availableId)
-        // this.props.globalSetState({
-        //     userPosts: newPosts,
-        //     userIds: updatedIds,
-        // })
-        // this.setState({
-        //     showPost: false,
-        //     shouldClear: true
-        // });
-
-        // // add it to global posts
-        // let globalPosts = this.props.globalPosts;
-        // let globalIds = this.props.globalIds;
-        // globalPosts.unshift(<Post imageList={newImageList} title={newTitle} setPicture={this.setPicture} content={newContent} Picture={this.state.Picture} removePost={this.removePost} id={this.props.availableId} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={true} name={this.props.profileObj.name} />)
-        // globalIds.unshift(this.props.availableId)
-        // this.props.globalSetState({
-        //     posts: globalPosts,
-        //     ids: globalIds
-        // })
     }
 
 
 
 
-    removePost = (postKey) => {     //key is undefined for someone
-        // let userPostKey;
-        // let globalPostKey;
-        // database.ref('postKeys/'+this.profileObj.googleId+'/'+key+'/').on("value", (snapshot) => {
-        //     snapshot.forEach(data => {
-        //         userPostKey = data.val().userPostKey;
-        //         globalPostKey = data.val().globalPostKey;
-        //     })
-        // })
+    removePost = (postKey) => {   
 
         console.log("Atempting to remove post with key: " + postKey)
         database.ref('userPosts/'+this.props.profileObj.googleId+"/"+postKey+'/').remove()
@@ -227,36 +183,7 @@ class UserPosts extends Component {
                 userPosts.splice(i,1);  
             }
         }
-        
-        // let updatedIds = this.props.userIds
-        // let updatedPosts = this.props.userPosts
-        // for (let i = 0; i < this.props.userIds.length; i++) {
-        //     if (this.props.userIds[i] == postId) {
-        //         // remove the post and remove the id
-        //         updatedIds.splice(i, 1);
-        //         updatedPosts.splice(i, 1);
 
-        //         this.props.globalSetState({
-        //             userPosts: updatedPosts,
-        //             userIds: updatedIds
-        //         })
-        //         break
-        //     }
-        // }
-
-        // // remove it from global posts
-        // let globalPosts = this.props.globalPosts;
-        // let globalIds = this.props.globalIds;
-        // for (let i = 0; i < this.props.globalIds.length; i++) {
-        //     if (this.props.globalIds[i] == postId) {
-        //         globalIds.splice(i, 1)
-        //         globalPosts.splice(i, 1)
-        //     }
-        //     this.props.globalSetState({
-        //         posts: globalPosts,
-        //         ids: globalIds
-        //     })
-        // }
     }
 
     render = () => {
@@ -277,9 +204,13 @@ class UserPosts extends Component {
                     isGlobalPost={false}
                     haveDiscussBtn={post.haveDiscussBtn}
                     name={this.props.profileObj.name}
+                    profileObj={this.props.profileObj}
                     numLikes={0}
+                    numViews= {post.numViews}
+                    numSwipeRights= {post.numSwipeRights}
                     removePost={this.removePost}
                     setPostObj={this.props.setPostObj}
+                    setPostKey={this.props.setPostKey}
                     toggleComponent = {this.props.toggleComponent}
                 />
             </LazyLoad>
@@ -313,9 +244,13 @@ class UserPosts extends Component {
                                 isGlobalPost={false}
                                 haveDiscussBtn={post.haveDiscussBtn}
                                 name={this.props.profileObj.name}
+                                profileObj={this.props.profileObj}
                                 numLikes={0}
+                                numViews= {post.numViews}
+                                numSwipeRights= {post.numSwipeRights}
                                 removePost={this.removePost}
                                 setPostObj={this.props.setPostObj}
+                                setPostKey={this.props.setPostKey}
                                 toggleComponent = {this.props.toggleComponent}
                             />
                         </LazyLoad>
