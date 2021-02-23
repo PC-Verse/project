@@ -11,28 +11,14 @@ class Discussion extends Component {
         super(props)
         this.state = {
             CommentsList: [],
-            post: {}
+            post: {},
+            listsize: 0
         }
     }
 
     createPost = (newContent) => {
-        this.setState({
-            CommentsList: []
-        })
-        // let newComments = this.state.CommentsList;
-        // // let newCommentObj = {
-        // //     content: newContent,
-        // //     numLikes : 0,
-        // //     profileObj: this.props.profileObj
-        // // }
-        // newComments.unshift(newContent);
-        // this.setState({
-        //     CommentsList: newComments
-        // })
 
-        // database.ref('globalPosts/'+this.props.postObj.postKey).update({
-        //     comments: this.state.CommentsList
-        // });
+
         let dateObj = new Date();
         let dateDay = dateObj.toLocaleDateString()
         let dateTime = dateObj.toLocaleTimeString();
@@ -43,13 +29,14 @@ class Discussion extends Component {
             dateDay: dateDay,
             dateTime: dateTime
         });
-        database.ref('userPosts/' + this.props.profileObj.googleId + '/' + this.props.postObj.postKey + '/comments/').push({
-            content: newContent,
-            numLikes: 0,
-            profileObj: this.props.profileObj,
-            dateDay: dateDay,
-            dateTime: dateTime
-        });
+
+        // database.ref('userPosts/' + this.props.profileObj.googleId + '/' + this.props.postObj.postKey + '/comments/').push({
+        //     content: newContent,
+        //     numLikes: 0,
+        //     profileObj: this.props.profileObj,
+        //     dateDay: dateDay,
+        //     dateTime: dateTime
+        // });
     }
 
     removeComment = (commentKey) => {
@@ -69,13 +56,19 @@ class Discussion extends Component {
 
     componentDidMount = () => {
         
-        console.log("Running componentDidMount")
         // database.ref('/globalPosts/' + this.props.postObj.postKey + '/comments').on("value", (snapshot) => {
         //    console.log(snapshot.val());
         //    this.setState({
         //     CommentsList: snapshot.val()
         //    })
         // })
+        // console.log("running mount");
+        // console.log("setting to empty");
+        // this.setState({
+        //     CommentsList: ['empty']
+        // })
+        // console.log(this.state.CommentsList);
+        
         database.ref('/globalPosts/' + this.props.postObj.postKey + '/comments').on("value", (snapshot) => {
             snapshot.forEach(comment => {
                 let commentObj = {
@@ -87,16 +80,20 @@ class Discussion extends Component {
                     commentKey: comment.key
                 }
                 let comments = this.state.CommentsList;
-                if (comments[0] == "Empty") {
-                    comments = [];
+                let found = false;
+                for(let g=0; g<this.state.CommentsList.length; g++){
+                    if(this.state.CommentsList[g].commentKey == commentObj.commentKey)
+                        found = true;
                 }
-                comments.unshift(commentObj)
-                this.setState({
-                    CommentsList: comments
-                })
+                if(!found){
+                    comments.push(commentObj)
+                    this.setState({
+                        CommentsList: comments,
+                    })
+                }
+
             })
 
-            this.forceUpdate();
 
         })
 
@@ -130,7 +127,9 @@ class Discussion extends Component {
         return (
 
             <div className="Discussion">
-                {/* <Post
+                {
+
+                /* <Post
                     content={this.props.postObj.content}
                     dateDay={this.props.postObj.dateDay}
                     dateTime={this.props.postObj.dateTime}
@@ -162,7 +161,11 @@ class Discussion extends Component {
                     numSwipeRights={this.state.post.numSwipeRights}
                 />
 
-                {this.state.CommentsList.map(comment => {
+
+                {console.log(this.state.CommentsList)}
+                {
+                    
+                this.state.CommentsList.map(comment => {
                     return <Comments
                         commentObj={comment}
                         removeComment={this.removeComment}

@@ -35,7 +35,6 @@ class GlobalPosts extends Component {
         database.ref('/globalPosts/').orderByChild("numLikes").on("value", (snapshot) => {
             snapshot.forEach(data => {
 
-                console.log(this.props.community)
                 let LazyLoadPost = {
                     postKey: data.key,
                     imageList: data.val().imageList,
