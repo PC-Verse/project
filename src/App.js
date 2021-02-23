@@ -149,8 +149,9 @@ class App extends Component {
   }
   switchCommunity = (name) => {
     // console.log("ran setGlobalPosts")
-    this.toggleComponent("showUserPosts");
+    this.toggleComponent("showSwipes");
 
+    this.forceUpdate();
     this.setState({
       community: name
     })
@@ -172,7 +173,7 @@ class App extends Component {
         {this.state.showGlobalPosts &&
           <div>
 
-                <div className = "card">
+                <div id = "communityswitch" className = "card">
                      <h>Which Community would you like to View?</h>
                         <button onClick = {() => this.switchCommunity("Apple")}>Apple</button>
                         <button onClick = {() => this.switchCommunity("Nvidia")}> Nvidia</button>

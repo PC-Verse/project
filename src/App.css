@@ -42,6 +42,10 @@ body {
     color: red;
     size: 50px;
 }
+
+#communityswitch{
+    margin-top: 10%;
+}
 #NavBar {
     /* font-family: 'Courier New', Courier, monospace; */
     background-image: url("./images/RGB.png");
