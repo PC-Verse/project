@@ -160,6 +160,11 @@ class App extends Component {
       userPosts : posts
     })
   }
+  setUserPosts = (newUserPosts) => {
+    this.setState({
+      userPosts: newUserPosts
+    })
+  }
   setPostObj = (newPostObj) => {
     this.setState({
       postObj: newPostObj
@@ -313,6 +318,7 @@ class App extends Component {
               // userIds={this.state.userIds}
               userPosts={this.state.userPosts}
               addUserPost={this.addUserPost}
+              setUserPosts={this.setUserPosts}
               switchCommunity = {this.switchCommunity}
               // userImageLists={this.state.userImageLists}
               // globalImageLists={this.state.globalImageLists}

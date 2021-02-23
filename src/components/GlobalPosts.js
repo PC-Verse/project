@@ -55,11 +55,12 @@ class GlobalPosts extends Component {
                 for(let g=0; g<this.state.globalPosts.length; g++){
                     if(this.state.globalPosts[g].postKey == LazyLoadPost.postKey){
                         let copyList = this.state.globalPosts;
-                       copyList[g].numLikes = LazyLoadPost.numLikes;
-                       this.setState({
+                    //    copyList[g].numLikes = LazyLoadPost.numLikes;
+                        copyList[g] = LazyLoadPost;
+                        this.setState({
                             globalPosts: copyList,
-                       })
-                       found = true;
+                        })
+                        found = true;
                     }
                 }
                 if(!found && (this.props.community == 'Global' || 

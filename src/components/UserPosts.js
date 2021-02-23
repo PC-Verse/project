@@ -48,7 +48,22 @@ class UserPosts extends Component {
                         numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                     }
 
-                    this.addUserPost(post)      // adding it to state
+                    let found = false;
+                    for (let i = 0; i < this.state.userPosts.length; i++) {
+                        if (this.state.userPosts[i].postKey == post.postKey) {
+                            console.log(post.postKey);
+                            found = true;
+                            let userPostsCopy = this.state.userPosts;
+                            userPostsCopy[i] = post;
+                            this.setState({
+                                userPosts: userPostsCopy
+                            })
+                        }
+                    }
+                    if (!found)
+                    {
+                        this.addUserPost(post)      // adding it to state
+                    }
 
                 })
             })
@@ -152,15 +167,27 @@ class UserPosts extends Component {
         let userPosts;
         if (this.props.profileObj.googleId == -1) {
             userPosts = this.props.userPosts
+            for (let i = 0; i < userPosts.length; i++) {
+                if (userPosts[i].postKey == postKey) {
+                    userPosts.splice(i,1);  
+                    this.props.setUserPosts(userPosts);
+                    break;
+                }
+            }
         }
         else {
             userPosts = this.state.userPosts
-        }
-        for (let i = 0; i < userPosts.length; i++) {
-            if (userPosts[i].key == postKey) {
-                userPosts.splice(i,1);  
+            for (let i = 0; i < userPosts.length; i++) {
+                if (userPosts[i].postKey == postKey) {
+                    userPosts.splice(i,1);  
+                    this.setState({
+                        userPosts : userPosts
+                    })
+                    break;
+                }
             }
         }
+        
 
     }
 
