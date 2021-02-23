@@ -1,7 +1,11 @@
 .App {
     text-align: center;
+    background-color: rgb(173, 170, 170);
 }
 
+.everything {
+    text-align: center;
+}
 
 /* .App-logo {
   height: 40vmin;
@@ -41,6 +45,11 @@ body {
 .tinder-bar{
     color: red;
     size: 50px;
+}
+
+#btnSwitch{
+    background-color: Transparent;
+
 }
 #communityswitch1{
     /* margin-top: 100px; */

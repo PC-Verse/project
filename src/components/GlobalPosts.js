@@ -5,7 +5,7 @@ import database from '../firebase'
 import LazyLoad from "react-lazyload"
 import PostPicture from './PostPicture'
 import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
-import appleLogo from '../images/appleLogo.svg'
+import appleLogo from '../images/appleLogo.png'
 import microsoftLogo from '../images/microsoftLogo.svg'
 import hpLogo from '../images/hp.png'
 import intelLogo from '../images/intel.png'
@@ -88,17 +88,17 @@ class GlobalPosts extends Component {
 
     render = () => {
         return (
-            <div>
+            <div class="everything" > 
 
                 <div id="globalPostTitle">{this.props.community}</div>
 
                 <div id = "communityswitch" className = "card">
-                        <button onClick = {() => this.props.toggleComponent("showApple")}><img src={appleLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showNvidia")}><img src={nvidiaLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showAMD")} ><img src={amdLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showHP")} ><img src={hpLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showIntel")} ><img src={intelLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showMicrosoft")} ><img src={microsoftLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showApple")}><img src={appleLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showNvidia")}><img src={nvidiaLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showAMD")} ><img src={amdLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showHP")} ><img src={hpLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showIntel")} ><img src={intelLogo} class="companyLogos"/></button>
+                        <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showMicrosoft")} ><img src={microsoftLogo} class="companyLogos"/></button>
 
                         <button onClick = {() => this.props.toggleComponent("showGlobalPosts")} >Global</button>
                 </div>
