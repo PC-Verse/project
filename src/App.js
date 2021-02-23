@@ -53,7 +53,8 @@ class App extends Component {
         imageUrl: ""},
       items: [],
       postObj : null,
-      postKey : -1
+      postKey : -1,
+      community: 'Global'
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -146,6 +147,19 @@ class App extends Component {
       postKey: postKey
     })
   }
+  switchCommunity = (name) => {
+    // console.log("ran setGlobalPosts")
+    this.toggleComponent("showUserPosts");
+
+    this.setState({
+      community: name
+    })
+
+    this.toggleComponent("showGlobalPosts");
+
+    // this.componentDidMount();
+    // console.log(this.state.globalPosts)
+}
 
   render() {
     return (
@@ -157,9 +171,19 @@ class App extends Component {
 
         {this.state.showGlobalPosts &&
           <div>
+
+                <div className = "card">
+                     <h>Which Community would you like to View?</h>
+                        <button onClick = {() => this.switchCommunity("Apple")}>Apple</button>
+                        <button onClick = {() => this.switchCommunity("Nvidia")}> Nvidia</button>
+                        <button onClick = {() => this.switchCommunity("AMD")}>AMD</button>
+                        <button onClick = {() => this.switchCommunity("Microsoft")} >Microsoft</button>
+                        <button onClick = {() => this.switchCommunity("Global")} >Global</button>
+                </div>
             <GlobalPosts
               toggleComponent = {this.toggleComponent}
               // globalPosts={this.state.globalPosts}
+              community = {this.state.community}
               database={this.state.database}
               // addGlobalPost={this.addGlobalPost}
               profileObj={this.state.profileObj}
