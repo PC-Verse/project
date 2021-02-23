@@ -26,7 +26,12 @@ class App extends Component {
     super();
     let date = new Date();
     this.state = {
-      showAddPost: true,      // not used anymore
+      showAddPost: true,
+      showApple: false, 
+      showMicrosoft: false,
+      showNvidia: false,
+      showAMD: false,   
+            // not used anymore
       showUserPosts: false,  // set this to false later. testing purposes rn
       showGlobalPosts: true,
       showSwipes: false, // set this to true later
@@ -64,36 +69,43 @@ class App extends Component {
   }
 
   toggleComponent(name) {
+    this.setState({ showGlobalPosts: false });
+    this.setState({ showUserPosts: false }); // changed this to false, bc will be hiding the userPosts stuff
+    this.setState({ showSwipes: false });
+    this.setState({ showDiscussion: false });
+    this.setState({ showSwipes: false });
+    this.setState({ showPost: false });
+    this.setState({ showApple: false });
+    this.setState({ showNvidia: false });
+    this.setState({ showAMD: false });
+    this.setState({ showMicrosoft: false });
     console.log(name);
     switch (name) {
       case "showAddPost":
         this.setState({ showPost: !this.state.showAddPost });
-        this.setState({ showSwipes: false })
-        this.setState({ showDiscussion: false })
         break;
       case "showUserPosts":
         this.setState({ showUserPosts: true })
-        this.setState({ showGlobalPosts: false })
-        this.setState({ showSwipes: false })
-        this.setState({ showDiscussion: false })
         break
       case "showGlobalPosts":
-        this.setState({ showGlobalPosts: true })
-        this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
-        this.setState({ showSwipes: false })
-        this.setState({ showDiscussion: false })
+        this.setState({ showGlobalPosts: true });
         break
+      case "showApple":
+          this.setState({ showApple: true })
+          break
+      case "showNvidia":
+          this.setState({ showNvidia: true })
+          break
+      case "showAMD":
+          this.setState({ showAMD: true })
+          break
+      case "showMicrosoft":
+          this.setState({ showMicrosoft: true })
+          break           
       case "showSwipes":
           this.setState({ showSwipes: true })
-          this.setState({ showUserPosts: false }) // changed this to false, bc will be hiding the userPosts stuff
-          this.setState({ showGlobalPosts: false })
-          this.setState({ showDiscussion: false })
           break
       case "showDiscussion":
-          this.setState({ showPost: false });
-          this.setState({ showSwipes: false })
-          this.setState({ showGlobalPosts: false })
-          this.setState({ showUserPosts: false })
           this.setState({ showDiscussion: true })
           break;
     }
@@ -149,15 +161,12 @@ class App extends Component {
   }
   switchCommunity = (name) => {
     // console.log("ran setGlobalPosts")
-    this.toggleComponent("showSwipes");
 
-    this.forceUpdate();
+    this.toggleComponent("showApple")
     this.setState({
       community: name
     })
-
-    this.toggleComponent("showGlobalPosts");
-
+    this.forceUpdate();
     // this.componentDidMount();
     // console.log(this.state.globalPosts)
 }
@@ -173,20 +182,65 @@ class App extends Component {
         {this.state.showGlobalPosts &&
           <div>
 
-                <div id = "communityswitch" className = "card">
-                     <h>Which Community would you like to View?</h>
-                        <button onClick = {() => this.switchCommunity("Apple")}>Apple</button>
-                        <button onClick = {() => this.switchCommunity("Nvidia")}> Nvidia</button>
-                        <button onClick = {() => this.switchCommunity("AMD")}>AMD</button>
-                        <button onClick = {() => this.switchCommunity("Microsoft")} >Microsoft</button>
-                        <button onClick = {() => this.switchCommunity("Global")} >Global</button>
-                </div>
             <GlobalPosts
               toggleComponent = {this.toggleComponent}
+              switchCommunity ={this.switchCommunity}
               // globalPosts={this.state.globalPosts}
-              community = {this.state.community}
+              community = {'Global'}
               database={this.state.database}
-              // addGlobalPost={this.addGlobalPost}
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>          
+          </div>
+        }
+
+        {this.state.showApple &&
+          <div>
+            <GlobalPosts
+              toggleComponent = {this.toggleComponent}
+              switchCommunity ={this.switchCommunity}
+              // globalPosts={this.state.globalPosts}
+              community = {'Apple'}
+              database={this.state.database}
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>          
+          </div>
+        }
+        {this.state.showNvidia &&
+          <div>
+            <GlobalPosts
+              toggleComponent = {this.toggleComponent}
+              switchCommunity ={this.switchCommunity}
+              // globalPosts={this.state.globalPosts}
+              community = {'Nvidia'}
+              database={this.state.database}
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>          
+          </div>
+        }
+        {this.state.showAMD &&
+          <div>
+            <GlobalPosts
+              toggleComponent = {this.toggleComponent}
+              switchCommunity ={this.switchCommunity}
+              // globalPosts={this.state.globalPosts}
+              community = {'AMD'}
+              database={this.state.database}
+              profileObj={this.state.profileObj}
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>          
+          </div>
+        }
+              {this.state.showMicrosoft &&
+          <div>
+            <GlobalPosts
+              toggleComponent = {this.toggleComponent}
+              switchCommunity ={this.switchCommunity}
+              // globalPosts={this.state.globalPosts}
+              community = {'Microsoft'}
+              database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
               setPostKey={this.setPostKey}/>          
@@ -223,6 +277,7 @@ class App extends Component {
               // userIds={this.state.userIds}
               userPosts={this.state.userPosts}
               addUserPost={this.addUserPost}
+              switchCommunity = {this.switchCommunity}
               // userImageLists={this.state.userImageLists}
               // globalImageLists={this.state.globalImageLists}
               // availableId={this.state.availableId}
