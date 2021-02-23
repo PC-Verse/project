@@ -181,7 +181,6 @@ class App extends Component {
 
         {this.state.showGlobalPosts &&
           <div>
-
             <GlobalPosts
               toggleComponent = {this.toggleComponent}
               switchCommunity ={this.switchCommunity}
