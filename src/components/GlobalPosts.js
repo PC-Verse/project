@@ -51,8 +51,19 @@ class GlobalPosts extends Component {
                     numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights
                 }
                 
-                if(this.props.community == 'Global' || 
-                    data.val().community != undefined && data.val().community == this.props.community){
+                let found = false;
+                for(let g=0; g<this.state.globalPosts.length; g++){
+                    if(this.state.globalPosts[g].postKey == LazyLoadPost.postKey){
+                        let copyList = this.state.globalPosts;
+                       copyList[g].numLikes = LazyLoadPost.numLikes;
+                       this.setState({
+                            globalPosts: copyList,
+                       })
+                       found = true;
+                    }
+                }
+                if(!found && (this.props.community == 'Global' || 
+                    data.val().community != undefined && data.val().community == this.props.community)){
                     this.addGlobalPost(LazyLoadPost);
                 }
 
