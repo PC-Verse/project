@@ -153,7 +153,6 @@ class App extends Component {
         {/* <header className="App-header"> */}
 
 
-
         <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} setProfileObj={this.setProfileObj} />
 
         {this.state.showGlobalPosts &&

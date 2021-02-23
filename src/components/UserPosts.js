@@ -31,26 +31,7 @@ class UserPosts extends Component {
         {
             database.ref('/userPosts/'+this.props.profileObj.googleId+'/').on("value", (snapshot) => {
                 snapshot.forEach(data => {
-                    // let post = 
-                    // <LazyLoad
-                    // height= {50}
-                    // offset = {[-150,150]}
-                    // placeholder = {<Spinner/>}
-                    // >
-                    //     <Post
-                    //         content={data.val().content}
-                    //         dateDay={data.val().dateDay}
-                    //         dateTime={data.val().dateTime}
-                    //         key={data.key}
-                    //         isGlobalPost={data.val().isGlobalPost}
-                    //         haveDiscussBtn={false}
-                    //         name={data.val().name}
-                    //         title={data.val().title}
-                    //         imageList={data.val().imageList}
-                    //         numLikes = {data.val().numLikes == undefined ? 0 : data.val().numLikes}
-                    //         removePost={this.removePost}
-                    //     />
-                    // </LazyLoad>
+
                     let post = {
                         postKey: data.key,
                         imageList: data.val().imageList,
@@ -66,13 +47,7 @@ class UserPosts extends Component {
                         numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
                         numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                     }
-                    // console.log(data.key + typeof(data.key))
-                    // console.log(this.state.userPosts)
-                    // console.log("Adding posts to state from database: ", post)
-                    // this.props.addUserPosts(post)
-                    // this.setState((prevState) => ({
-                    //     userPosts : prevState.userPosts.unshift(post)
-                    //   }));
+
                     this.addUserPost(post)      // adding it to state
 
                 })
@@ -100,7 +75,7 @@ class UserPosts extends Component {
         // }))
 
     }
-    createPost = (newTitle, newContent, newImageList) => {
+    createPost = (newTitle, newContent, newImageList, community) => {
 
         
         let date = new Date()
@@ -120,7 +95,8 @@ class UserPosts extends Component {
             profileObj: this.props.profileObj,
             numLikes:0,
             numViews:1,
-            numSwipeRights:0
+            numSwipeRights:0,
+            community: community
         })
         let globalPostRef = this.props.database.ref('globalPosts/'+userPostRef.key +'/').set({
             imageList: newImageList,
@@ -133,7 +109,8 @@ class UserPosts extends Component {
             profileObj: this.props.profileObj,
             numLikes:0,
             numViews:1,
-            numSwipeRights:0
+            numSwipeRights:0,
+            community: community
         })
 
        
@@ -150,7 +127,8 @@ class UserPosts extends Component {
                 profileObj: this.props.profileObj,
                 numLikes:0,
                 numViews: 0,
-                numSwipeRights: 0
+                numSwipeRights: 0,
+                community: community
             }
             if (this.props.profileObj.googleId == -1) {
                 this.props.addUserPost(post);

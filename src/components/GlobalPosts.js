@@ -19,7 +19,8 @@ class GlobalPosts extends Component {
         super(props)
         this.state = {
             globalPosts: [],
-            LazyLoad: []
+            LazyLoad: [],
+            community:'Global'
         }
     }
     componentDidMount = () => {
@@ -27,6 +28,7 @@ class GlobalPosts extends Component {
         database.ref('/globalPosts/').orderByChild("numLikes").on("value", (snapshot) => {
             snapshot.forEach(data => {
 
+                console.log(this.state.community)
                 let LazyLoadPost = {
                     postKey: data.key,
                     imageList: data.val().imageList,
@@ -42,16 +44,30 @@ class GlobalPosts extends Component {
                     numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
                     numSwipeRights : data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights
                 }
+                
+                if(this.state.community == 'Global' || 
+                    data.val().community != undefined && data.val().community == this.state.community){
+                    this.addGlobalPost(LazyLoadPost);
+                }
 
-                this.addGlobalPost(LazyLoadPost);
 
-                // let lazy = this.state.LazyLoad;
-                // lazy.unshift(LazyLoadPost);
-                // this.setState({LazyLoad: lazy})
             })
         })
 
 
+    }
+
+    switchCommunity = (name) => {
+        // console.log("ran setGlobalPosts")
+       
+
+        this.setState({
+          community: name
+        })
+        this.props.toggleComponent("showUserPosts");
+        this.props.toggleComponent("showGlobalPosts");
+        this.componentDidMount();
+        // console.log(this.state.globalPosts)
     }
 
     addGlobalPost = (newPost) => {
@@ -62,13 +78,21 @@ class GlobalPosts extends Component {
           globalPosts: posts
         })
         // console.log(this.state.globalPosts)
-      }
+    }
 
     render = () => {
         return (
             <div>
-                <div id="globalPostTitle">COMMUNITY</div>
 
+                <div id="globalPostTitle">{this.state.community}</div>
+                <div className = "card">
+                     <h>Which Community would you like to View?</h>
+                        <button onClick = {() => this.switchCommunity("Apple")}>Apple</button>
+                        <button onClick = {() => this.switchCommunity("Nvidia")}> Nvidia</button>
+                        <button onClick = {() => this.switchCommunity("AMD")}>AMD</button>
+                        <button onClick = {() => this.switchCommunity("Microsoft")} >Microsoft</button>
+                        <button onClick = {() => this.switchCommunity("Global")} >Global</button>
+                </div>
 
                 {
                 this.state.globalPosts.map(post => {

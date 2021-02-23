@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css'
+import SelectCommunity from './SelectCommunity'
 import Picture from './Picture'
 import PostPicture from './PostPicture'
 import ImageUploading from 'react-images-uploading';
@@ -13,7 +14,8 @@ class AddPost extends Component {
         content: '',
         title: '',
         showAddPost: true,
-        images: []
+        images: [],
+        community: 'Microsoft'
     };
 
     this.handleChangeInContent = this.handleChangeInContent.bind(this);
@@ -21,6 +23,8 @@ class AddPost extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setImages = this.setImages.bind(this);
     this.toggleCard = this.toggleCard.bind(this);
+    this.toggleCommunity = this.toggleCommunity.bind(this);
+
   }
 
   setImages(imageList){
@@ -39,8 +43,9 @@ class AddPost extends Component {
     toggleCard(){
         this.setState({showAddPost: !this.state.showAddPost})
     }
-
-
+    toggleCommunity(name){
+        this.setState({community: name})
+    }
 
     handleChangeInContent(event) {
         this.setState({
@@ -65,13 +70,16 @@ class AddPost extends Component {
                         Click to Post or Hide Form!
                 </button>
 
+
                 {  this.state.showAddPost && 
                     <div className = "card">
-                        
-
+                            
+                            <SelectCommunity toggleCommuity = {this.toggleCommunity} ></SelectCommunity>
                             <form className = "container" onSubmit={this.handleSubmit} >
                             <div>
+
                                 <p>Your Post Here:</p>
+                                <p>{this.state.community}</p>
                                 <span>Title: </span>
                                 <input type="text"  onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title..">
                                     {/* {this.props.shouldClear && this.state.title} */}
@@ -85,7 +93,7 @@ class AddPost extends Component {
 
                             <PostPicture setImages = {this.setImages}/>
 
-                            <button className = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.images)}}>Post!</button>
+                            <button className = "postBtn" onClick={() => {this.props.createPost(this.state.title, this.state.content, this.state.images, this.state.community)}}>Post!</button>
                         </form>
                     {/* </div><input type="text" id="fname" name="firstname" placeholder="Your name.."> */}
                     </div>

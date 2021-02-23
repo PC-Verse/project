@@ -11,6 +11,10 @@ const NavBar = (props) => {
 
     return (
         <div id="NavBar">
+            <div class="sidenav">
+                
+            </div>
+
             <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}>My Posts</button>
             <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}>Carousel Feature</div>
 

@@ -33,7 +33,7 @@ class Post extends Component {
         }
         database.ref('globalPosts/'+this.props.postKey).update({
             numLikes: this.props.numLikes+1,
-            numSwipeRights: this.props.numSwipeRights+1
+            // numSwipeRights: this.props.numSwipeRights+1
         });
         // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
         // database.ref('userPosts/'+this.props.profileObj.googleId+"/"+this.props.postKey).update({
