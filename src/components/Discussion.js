@@ -16,6 +16,9 @@ class Discussion extends Component {
     }
 
     createPost = (newContent) => {
+        this.setState({
+            CommentsList: []
+        })
         // let newComments = this.state.CommentsList;
         // // let newCommentObj = {
         // //     content: newContent,
@@ -65,6 +68,7 @@ class Discussion extends Component {
     }
 
     componentDidMount = () => {
+        
         console.log("Running componentDidMount")
         // database.ref('/globalPosts/' + this.props.postObj.postKey + '/comments').on("value", (snapshot) => {
         //    console.log(snapshot.val());
@@ -91,6 +95,9 @@ class Discussion extends Component {
                     CommentsList: comments
                 })
             })
+
+            this.forceUpdate();
+
         })
 
         database.ref('globalPosts/' + this.props.postKey).on("value", (data) => {

@@ -7,7 +7,10 @@ import PostPicture from './PostPicture'
 import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
 import appleLogo from '../images/appleLogo.svg'
 import microsoftLogo from '../images/microsoftLogo.svg'
+import hpLogo from '../images/hp.png'
+import intelLogo from '../images/intel.png'
 import nvidiaLogo from '../images/nvidiaLogo.svg'
+import amdLogo from  '../images/amd.png'
 // import SelectCommunity from './SelectCommunity'
 
 
@@ -82,8 +85,11 @@ class GlobalPosts extends Component {
                 <div id = "communityswitch" className = "card">
                         <button onClick = {() => this.props.toggleComponent("showApple")}><img src={appleLogo} class="companyLogos"/></button>
                         <button onClick = {() => this.props.toggleComponent("showNvidia")}><img src={nvidiaLogo} class="companyLogos"/></button>
-                        <button onClick = {() => this.props.toggleComponent("showAMD")}>AMD</button>
+                        <button onClick = {() => this.props.toggleComponent("showAMD")} ><img src={amdLogo} class="companyLogos"/></button>
+                        <button onClick = {() => this.props.toggleComponent("showHP")} ><img src={hpLogo} class="companyLogos"/></button>
+                        <button onClick = {() => this.props.toggleComponent("showIntel")} ><img src={intelLogo} class="companyLogos"/></button>
                         <button onClick = {() => this.props.toggleComponent("showMicrosoft")} ><img src={microsoftLogo} class="companyLogos"/></button>
+
                         <button onClick = {() => this.props.toggleComponent("showGlobalPosts")} >Global</button>
                 </div>
                 {
