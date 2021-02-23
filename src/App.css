@@ -50,8 +50,9 @@ body {
     /* justify-content: center; */
     width: 70vw;
     justify-content: space-evenly;
-
-
+}
+.companyLogos {
+    height: 4vh;
 }
 #NavBar {
     /* font-family: 'Courier New', Courier, monospace; */

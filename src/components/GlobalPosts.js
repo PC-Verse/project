@@ -5,6 +5,10 @@ import database from '../firebase'
 import LazyLoad from "react-lazyload"
 import PostPicture from './PostPicture'
 import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
+import appleLogo from '../images/appleLogo.svg'
+import microsoftLogo from '../images/microsoftLogo.svg'
+import nvidiaLogo from '../images/nvidiaLogo.svg'
+// import SelectCommunity from './SelectCommunity'
 
 
 const Spinner = () => (
@@ -75,12 +79,11 @@ class GlobalPosts extends Component {
 
                 <div id="globalPostTitle">{this.props.community}</div>
 
-                
                 <div id = "communityswitch" className = "card">
-                        <button onClick = {() => this.props.toggleComponent("showApple")}>Apple</button>
-                        <button onClick = {() => this.props.toggleComponent("showNvidia")}> Nvidia</button>
+                        <button onClick = {() => this.props.toggleComponent("showApple")}><img src={appleLogo} class="companyLogos"/></button>
+                        <button onClick = {() => this.props.toggleComponent("showNvidia")}><img src={nvidiaLogo} class="companyLogos"/></button>
                         <button onClick = {() => this.props.toggleComponent("showAMD")}>AMD</button>
-                        <button onClick = {() => this.props.toggleComponent("showMicrosoft")} >Microsoft</button>
+                        <button onClick = {() => this.props.toggleComponent("showMicrosoft")} ><img src={microsoftLogo} class="companyLogos"/></button>
                         <button onClick = {() => this.props.toggleComponent("showGlobalPosts")} >Global</button>
                 </div>
                 {
