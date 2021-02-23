@@ -22,7 +22,7 @@ class SelectCommunity extends Component {
             <div>
 
                 
-                 <div id = "communityswitch" className = "card">
+                 <div id = "communityswitch1" className = "card">
                         <button onClick = {()=> this.props.toggleCommuity("Apple")}><img src={appleLogo} class="companyLogos"/></button>
                         <button onClick = {()=> this.props.toggleCommuity("Nvidia")}><img src={nvidiaLogo} class="companyLogos"/></button>
                         <button onClick = {()=> this.props.toggleCommuity("AMD")} ><img src={amdLogo} class="companyLogos"/></button>
