@@ -17,7 +17,6 @@ class SelectCommunity extends Component {
 
                 
                  <div id = "communityswitch" className = "card">
-                     <h>Select a community to post: </h>
                         <button onClick = {()=> this.props.toggleCommuity("Apple")}>Apple</button>
                         <button onClick = {()=> this.props.toggleCommuity("Nvidia")}> Nvidia</button>
                         <button onClick = {()=> this.props.toggleCommuity("AMD")}>AMD</button>

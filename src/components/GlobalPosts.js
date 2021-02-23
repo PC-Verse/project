@@ -77,7 +77,6 @@ class GlobalPosts extends Component {
 
                 
                 <div id = "communityswitch" className = "card">
-                     <h>Which Community would you like to View?</h>
                         <button onClick = {() => this.props.toggleComponent("showApple")}>Apple</button>
                         <button onClick = {() => this.props.toggleComponent("showNvidia")}> Nvidia</button>
                         <button onClick = {() => this.props.toggleComponent("showAMD")}>AMD</button>

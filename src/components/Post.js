@@ -67,15 +67,15 @@ class Post extends Component {
         //     numLikes: this.props.numLikes-1,
         // });
     }
-    incrementNumViews = () => {
-        database.ref('globalPosts/'+this.props.postKey).update({
-            numViews: this.props.numViews+1,
-        });
-        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
-        // database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
-        //     numViews: this.props.numViews+1,
-        // });
-    }
+    // incrementNumViews = () => {
+    //     database.ref('globalPosts/'+this.props.postKey).update({
+    //         numViews: this.props.numViews+1,
+    //     });
+    //     // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
+    //     // database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
+    //     //     numViews: this.props.numViews+1,
+    //     // });
+    // }
 
     openDiscussion = () => {
         console.log("running open discussion...")
@@ -103,7 +103,7 @@ class Post extends Component {
     render = () => {
         return (
             <div className = "card">
-                <p class = "text-card" onLoad={this.incrementNumViews}>
+                <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>

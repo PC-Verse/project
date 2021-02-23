@@ -21,15 +21,16 @@ class Swipe extends Component {
     componentDidMount = () => {
         database.ref('/globalPosts/').on("value", (snapshot) => {
             snapshot.forEach(data => {
-                if(data.val().imageList !== undefined){
-                    console.log(data.key);
+                if (data.val().imageList !== undefined) {
+                    // console.log(data.key);
                     let imageList = data.val().imageList;
                     let lazy = this.state.imageList;
                     lazy.unshift(imageList);
-                    this.setState({imageList: lazy})
+                    this.setState({ imageList: lazy })
+
                     let postKeyCopy = this.state.postKeys;
                     postKeyCopy.unshift(data.key);
-                    this.setState({postKeys: postKeyCopy})
+                    this.setState({ postKeys: postKeyCopy })
                 }
             })
         })
@@ -38,16 +39,16 @@ class Swipe extends Component {
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
-         });
+        });
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
-            numViews: num+1
+            numViews: num + 1
         });
         let right = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numSwipeRights').on("value", (snapshot) => {
             right = snapshot.val()
-         });
+        });
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
-            numSwipeRights: right+1
+            numSwipeRights: right + 1
         });
 
         if (this.state.index >= this.state.imageList.length - 1) {
@@ -60,16 +61,16 @@ class Swipe extends Component {
                 index: this.state.index + 1
             })
         }
-        
+
 
     }
     swipeLeft = () => {
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
-         });
+        });
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
-            numViews: num+1
+            numViews: num + 1
         });
         if (this.state.index <= 0) {
             this.setState({
@@ -95,7 +96,7 @@ class Swipe extends Component {
                 <div>Happy Swiping!</div>
                 {
 
-                    <SwipeCard imageList= {this.state.imageList[this.state.index]} swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName}  swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
+                    <SwipeCard imageList={this.state.imageList[this.state.index]} swipeImgClassName={this.state.swipeImgClassName} setSwipeImgClassName={this.setSwipeImgClassName} swipeRight={this.swipeRight} swipeLeft={this.swipeLeft} index={this.state.index}></SwipeCard>
 
                 }
             </div>
@@ -106,4 +107,4 @@ class Swipe extends Component {
 export default Swipe;
 
 /*
-link={this.state.swipePosts[this.state.index]}*/ 
+link={this.state.swipePosts[this.state.index]}*/
