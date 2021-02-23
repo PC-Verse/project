@@ -79,7 +79,7 @@ class AddPost extends Component {
                             <div>
 
                                 <p>Your Post Here:</p>
-                                <p>{this.state.community}</p>
+                                <p>Posting to {this.state.community} Community</p>
                                 <span>Title: </span>
                                 <input type="text"  onChange={this.handleChangeInTitle} id="fname" className="title" placeholder="Your title..">
                                     {/* {this.props.shouldClear && this.state.title} */}
