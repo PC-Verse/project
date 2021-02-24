@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import Picture from './Picture'
 import PostPicture from './PostPicture'
+import fire from '../images/fire.png'
 import database from '../firebase'
 
 class Post extends Component {
@@ -130,7 +131,12 @@ class Post extends Component {
                         {/* this.props.isGlobalPost && */
                            <div>
                             <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
+
                             <progress class="tinder-bar" value={(this.props.numSwipeRights / this.props.numViews * 100).toString()} max="100"> {(this.props.numSwipeRights / this.props.numViews).toFixed(2)} </progress>
+                           
+                            {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2) > 8.5 &&
+                               <img id = "hot" src={fire}></img>
+                            }
                            </div>
                            
 

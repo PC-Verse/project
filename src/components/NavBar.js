@@ -25,7 +25,7 @@ const NavBar = (props) => {
             <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                 id="loginBtn"
                 className="headerStuff">
-                {props.loggedIn ? <div>Logged In</div> : <div>Not Signed In</div>}
+                {props.loggedIn ? <div>Logged In</div> : <div>Sign In</div>}
             </button>
             {displayGoogleStuff &&
                 <div className="dropdownContent">

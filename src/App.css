@@ -16,9 +16,15 @@
   }
 } */
 
+#hot{
+    height: 40px;
+}
+
 .compName{
     font-size: 20px;
-    color: rgb(0, 38, 255);
+    color: rgb(36, 26, 28);
+    text-shadow: 1px 1px #000000;
+
 }
 #textForLogoName{
     font-size: 50px;
