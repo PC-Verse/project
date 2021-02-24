@@ -40,7 +40,7 @@
     font-family: 'Courier New', Courier, monospace;
     font-style:oblique;
     font-style: normal;
-    color: yellow;
+    color: rgb(0, 174, 255);
     text-shadow: black,10px;
 }
     #complete{
