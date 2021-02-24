@@ -36,6 +36,7 @@ class Swipe extends Component {
         })
     }
     swipeRight = () => {
+        console.log("going right");
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
@@ -65,6 +66,8 @@ class Swipe extends Component {
 
     }
     swipeLeft = () => {
+        console.log("going left");
+
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
@@ -72,16 +75,18 @@ class Swipe extends Component {
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
             numViews: num + 1
         });
-        if (this.state.index <= 0) {
+
+        if (this.state.index >= this.state.imageList.length - 1) {
             this.setState({
-                index: this.state.imageList.length - 1
+                index: 0
             })
         }
         else {
             this.setState({
-                index: this.state.index - 1
+                index: this.state.index + 1
             })
         }
+
     }
 
     setSwipeImgClassName = (name) => {

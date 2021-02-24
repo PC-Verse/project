@@ -18,7 +18,8 @@ class SwipeCard extends Component {
     }
     onSwipe = (direction) => {
         console.log('You swiped: ' + direction)
-        if (direction > 0) {
+        console.log(direction)
+        if (direction == 'left') {
             this.props.swipeLeft();
         } else {
             this.props.swipeRight();
