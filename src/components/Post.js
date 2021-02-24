@@ -109,7 +109,7 @@ class Post extends Component {
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
                     <div className="postContent">{this.props.content}</div>
-                    {this.props.haveDiscussBtn &&
+                    {this.props.haveDiscussBtn && this.props.community != undefined && 
                         <div class = "compName">
                         <img src = ""></img>
                         <li>{this.props.community.toString().toUpperCase()} </li>
