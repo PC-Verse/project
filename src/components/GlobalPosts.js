@@ -38,6 +38,7 @@ class GlobalPosts extends Component {
                 let LazyLoadPost = {
                     postKey: data.key,
                     imageList: data.val().imageList,
+                    community: data.val().community,
                     title: data.val().title,
                     content:data.val().content,
                     dateDay:data.val().dateDay,
@@ -91,7 +92,7 @@ class GlobalPosts extends Component {
         return (
             <div class="everything" > 
 
-                <div id="globalPostTitle">{this.props.community}</div>
+                <div id="globalPostTitle"></div>
 
                 <div id = "communityswitch" className = "card">
                         <button id="btnSwitch" onClick = {() => this.props.toggleComponent("showApple")}><img src={appleLogo} class="companyLogos"/></button>
@@ -113,6 +114,7 @@ class GlobalPosts extends Component {
                     >
                         <Post
                         content={post.content}
+                        community={post.community}
                         dateDay={post.dateDay}
                         dateTime={post.dateTime}
                         postKey={post.postKey}

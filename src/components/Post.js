@@ -108,6 +108,14 @@ class Post extends Component {
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
                     <div className="postContent">{this.props.content}</div>
+                    {this.props.haveDiscussBtn &&
+                        <div class = "compName">
+                        <img src = ""></img>
+                        <li>{this.props.community.toString().toUpperCase()} </li>
+                        </div>
+                    }
+
+
                     {this.props.imageList &&
                     <div className="pictureContainer">
                         {this.props.imageList.map((image, index) => (
@@ -124,6 +132,7 @@ class Post extends Component {
                             <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
                             <progress class="tinder-bar" value={(this.props.numSwipeRights / this.props.numViews * 100).toString()} max="100"> {(this.props.numSwipeRights / this.props.numViews).toFixed(2)} </progress>
                            </div>
+                           
 
                         } 
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>

@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import '../App.css'
 import Login from './Login'
 import Logout from './Logout'
+import tinder from '../images/tinder.svg'
+import user from '../images/user.png'
+
 import BlueCube from '../images/BlueCube.svg'
 
 const NavBar = (props) => {
@@ -11,14 +14,14 @@ const NavBar = (props) => {
 
     return (
         <div id="NavBar">
-            <div class="sidenav">
-                
-            </div>
 
-            <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}>My Posts</button>
-            <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}>Carousel Feature</div>
 
-            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}><div id="textForLogoName">PC Verse</div><img id="icon" src={BlueCube}/></div>
+            <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}><img id="userBtn" src={user}/></button>
+
+            <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}><img id="icon2" src={tinder}/></div>
+            {/* <button id="swipeBtn" onClick={() => { props.toggleComponent("showSwipes") }} ><img src={tinder} class="showSwipes"/></button> */}
+
+            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}><div id="textForLogoName">PC-Verse</div><img id="icon" src={BlueCube}/></div>
             <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                 id="loginBtn"
                 className="headerStuff">
