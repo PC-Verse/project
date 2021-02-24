@@ -21,13 +21,13 @@
 }
 
 .compName{
-    font-size: 20px;
+    font-size: 1.3rem;
     color: rgb(36, 26, 28);
     text-shadow: 1px 1px #000000;
 
 }
 #textForLogoName{
-    font-size: 50px;
+    font-size: 2.5rem;
     font-family:'Times New Roman', Times, serif;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-family: fantasy;
@@ -49,6 +49,26 @@
 }
 html {
     font-size: 100%;
+}
+@media (max-width: 1310px) {
+    html {
+        font-size: 85%;
+    }
+}
+@media (max-width: 1160px) {
+    html {
+        font-size: 75%;
+    }
+}
+@media (max-width: 1050px) {
+    html {
+        font-size: 70%;
+    }
+}
+@media (max-width: 768px) {
+    html {
+        font-size: 65%;
+    }
 }
 
 body {
@@ -245,7 +265,7 @@ body {
 }
 #loginBtn {
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     grid-column: 5 / 6;
     margin: auto;
     width: fit-content;
@@ -292,7 +312,7 @@ button:hover {
     /* display: flex; */
     /* justify-content: center; */
     /* align-items: center; */
-    font-size: 50px;
+    font-size: 3rem;
     text-align: center;
 }
 #loadingIcon {
@@ -525,7 +545,7 @@ select {
     /* margin: auto;
     width: fit-content;
     height: fit-content; */
-    font-size: 50px;
+    font-size: 3rem;
     text-align: center;
 }
 
@@ -636,7 +656,7 @@ select {
 }
 
 .btn1 {
-    font-size: 20px;
+    font-size: 1.3rem;
     border: 1px solid rgb(0, 0, 0);
     margin-left: 5%;
     margin-right: 5%;
