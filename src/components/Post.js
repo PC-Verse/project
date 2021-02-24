@@ -102,7 +102,7 @@ class Post extends Component {
 
     render = () => {
         return (
-            <div className = "card">
+            <div className = "card" id= "post-card-1">
                 <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
