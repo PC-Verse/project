@@ -361,14 +361,25 @@ button:hover {
 .pictureContainer {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+    border-radius: 15px;
 }
 #postPic {
     max-width: 50vw;
 }
 
+.pictures {
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 5px;
+}
 .picture {
     /* width: 40vw; */
     max-height: 60vh;
+    max-width: 80vw;
+    border-radius: 15px;
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
 }
 
 .removeBtn {
