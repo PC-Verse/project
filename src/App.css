@@ -34,6 +34,8 @@
     font-family: 'Courier New', Courier, monospace;
     font-style:oblique;
     font-style: normal;
+    color: yellow;
+    text-shadow: black,10px;
 }
     #complete{
 }
@@ -78,6 +80,7 @@ body {
 }
 #communityswitch1{
     border-radius: 25px;
+    background-color: transparent;
     /* margin-top: 100px; */
     display: flex;
     /* justify-content: center; */
@@ -88,7 +91,7 @@ body {
 #communityswitch{
     /* margin-top: 100px; */
     border-radius: 25px;
-    background-color: black;    
+    background-color: transparent;
     display: flex;
     /* justify-content: center; */
     width: 70vw;
@@ -99,7 +102,7 @@ body {
 }
 #NavBar {
     /* font-family: 'Courier New', Courier, monospace; */
-    background-image: url("./images/RGB.png");
+    background-image: url("./images/bgrd.png");
     width: 100vw;
     background-size: auto;
     background-size: 100vw;
