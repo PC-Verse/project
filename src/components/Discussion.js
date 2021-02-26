@@ -159,6 +159,7 @@ class Discussion extends Component {
                     toggleComponent={this.props.toggleComponent}
                     numViews={this.state.post.numViews}
                     numSwipeRights={this.state.post.numSwipeRights}
+                    currUser={this.props.postObj.currUser}
                 />
 
 
