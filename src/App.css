@@ -65,9 +65,19 @@ html {
         font-size: 70%;
     }
 }
+@media (max-width: 1000px) {
+    html {
+        font-size: 63%;
+    }
+}
 @media (max-width: 768px) {
     html {
-        font-size: 65%;
+        font-size: 55%;
+    }
+}
+@media (max-width: 600px) {
+    html {
+        font-size: 55%;
     }
 }
 
@@ -183,6 +193,7 @@ body {
     font-size: 1.5rem;
     display: flex;
     justify-self: center;
+    grid-colum: 3/4;
 }
 #textForLogoName {
     display: inline;
@@ -234,8 +245,10 @@ body {
     /* margin-left: 5%;
   margin-right: 5%; */
     /* grid-column-start: 1; */
+    grid-column: 1/2
 }
 #swipeBtn {
+    grid-column: 2/3;
 }
 
 #postButton {
