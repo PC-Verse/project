@@ -325,7 +325,8 @@ class App extends Component {
               // availableId={this.state.availableId}
               database={this.state.database}
               profileObj={this.state.profileObj}
-              setPostObj={this.setPostObj}/>
+              setPostObj={this.setPostObj}
+              setPostKey={this.setPostKey}/>
           </div>
         }
 
