@@ -100,6 +100,7 @@ class Discussion extends Component {
         database.ref('globalPosts/' + this.props.postKey).on("value", (data) => {
             let post = {
                 postKey: data.key,
+                community : data.val().community,
                 imageList: data.val().imageList,
                 title: data.val().title,
                 content: data.val().content,
@@ -146,9 +147,10 @@ class Discussion extends Component {
                 /> */}
                 <Post
                     content={this.state.post.content}
+                    community={this.state.post.community}
                     dateDay={this.state.post.dateDay}
                     dateTime={this.state.post.dateTime}
-                    postKey={this.state.post.postKey}
+                    postKey={this.props.postKey}
                     isGlobalPost={this.state.post.isGlobalPost}
                     haveDiscussBtn={this.state.post.haveDiscussBtn}
                     name={this.state.post.name}

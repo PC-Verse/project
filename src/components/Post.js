@@ -16,26 +16,48 @@ class Post extends Component {
         }
     }
 
-    checkInteracted = () =>{
+    componentDidMount = () => {
+        this.checkInteracted();
+    }
 
-        database.ref('userPosts/'+this.props.currUser + '/interactedPosts').on("value", (snapshot) => {
-           let interactedState = -1;
-           snapshot.forEach(key => {
-                if(key.key == this.props.postKey && key.val().interactedState != -1){
-                        if(key.val().interactedState == 0){
-                            this.setState({
-                                disALeft: true
-                            })
-                        }else{
-                            this.setState({
-                                disARight: true
-                            })    
-                        }
-                }
+    checkInteracted = () => {
+        console.log("in checkInteracted")
+        console.log(this.props.currUser)
+        if (this.props.currUser != -1) {
+            database.ref('userPosts/'+this.props.currUser + '/interactedPosts/').on("value", (snapshot) => {
+            let interactedState = -1;
+            console.log("Started reading from database")
+            //    console.log(snapshot)
+            snapshot.forEach(data => {
+                   console.log("data.key: " + data.key)
+                   console.log("this.props.postKey: " + this.props.postKey)
+                    if(data.key == this.props.postKey) {
+                        console.log("from database: " + data.val().interactedState)
+                            if(data.val().interactedState == 0){
+                                this.setState({
+                                    disALeft: true,
+                                    disARight: false
+                                })
+                            }else if (data.val().interactedState ==1) {
+                                this.setState({
+                                    disARight: true,
+                                    disALeft : false
+                                })    
+                            }
+                    }
 
-           })
-        })
-        
+            })
+            })
+        }
+        if (this.props.currUser == -1)
+        {
+            this.setState({
+                disALeft: true,
+                disARight: true
+            })
+        }
+        console.log("disALeft: "+this.state.disALeft);
+        console.log("disAright: "+this.state.disARight);
     }
 
     incrementSwipesFireBase = (key) => {
@@ -65,7 +87,7 @@ class Post extends Component {
         });
         
         
-        database.ref('userPosts/'+this.props.currUser + '/interactedPosts'+ this.props.profileObj.postKey).set({
+        database.ref('userPosts/'+this.props.currUser + '/interactedPosts/'+ this.props.postKey+'/').set({
             //0 is disliked, 1 is liked, -1 is not interacted
             interactedState: 1,
         })
@@ -95,7 +117,7 @@ class Post extends Component {
         database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
             numLikes: this.props.numLikes-1,
         });
-        database.ref('userPosts/'+this.props.currUser + '/interactedPosts'+ this.props.profileObj.postKey).set({
+        database.ref('userPosts/'+this.props.currUser + '/interactedPosts/'+ this.props.postKey+'/').set({
             //0 is disliked, 1 is liked, -1 is not interacted
             interactedState: 0,
             
@@ -179,11 +201,11 @@ class Post extends Component {
                         { 
                         this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">
-                            {console.log(this.props.currUser)}
+                            {/* {console.log(this.props.currUser)} */}
                             
-                            <button disabled ={this.checkInteracted() || this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>&#x1F44E;</button>
+                            <button disabled ={ this.state.disALeft} id="swipeLeftBtn" className="swipeBtn" onClick={()=>{this.decrementSwipesFireBase(this.props.postKey)}}>&#x1F44E;</button>
                             
-                            <button disabled ={this.checkInteracted() || this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>   
+                            <button disabled ={this.state.disARight} id="swipeRightBtn" className="swipeBtn" onClick={()=>{this.incrementSwipesFireBase(this.props.postKey)}}> &#x1F44D;</button>   
                             </div>
                         }
                         {   this.props.haveDiscussBtn && 
