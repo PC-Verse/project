@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import '../App.css'
-
 import { GoogleLogin } from 'react-google-login';
 // refresh token
 import { refreshTokenSetup } from '../utils/refreshToken';
@@ -25,6 +24,11 @@ function Login(props) {
       res.profileObj.googleId,
       res.profileObj.imageUrl
     );
+
+
+    this.props.updateIntereactedPosts();
+
+
   };
 
   const onFailure = (res) => {

@@ -130,7 +130,9 @@ class GlobalPosts extends Component {
                         setPostObj={this.props.setPostObj}
                         setPostKey={this.props.setPostKey}
                         numViews= {post.numViews}
-                        numSwipeRights= {post.numSwipeRights}                        />
+                        numSwipeRights= {post.numSwipeRights}
+                        currUser = {this.props.profileObj.googleId}
+                        />
                     </LazyLoad>
                 })}
 

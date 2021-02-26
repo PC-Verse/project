@@ -112,6 +112,7 @@ class UserPosts extends Component {
             numViews:1,
             numSwipeRights:0,
             community: community
+            
         })
         let globalPostRef = this.props.database.ref('globalPosts/'+userPostRef.key +'/').set({
             imageList: newImageList,

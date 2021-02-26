@@ -47,6 +47,7 @@ class App extends Component {
       availableId: 0,
       loggedIn: false,
       name: "",
+      interactedPosts:[],
       database: database,
       // dbRef: null,
       // dbGlobalPosts: null,
@@ -122,6 +123,15 @@ class App extends Component {
     }
   }
 
+
+
+  updateIntereactedPosts = () =>{
+      database.ref('userPosts/' + this.state.profileObj.googleId + '/interacted').on("value", (snapshot) => {
+          this.setState({
+              interactedPosts: snapshot.val(),
+          })
+      })
+  }
   setLoggedIn(logged) {
     this.setState({
       loggedIn: logged
@@ -193,7 +203,7 @@ class App extends Component {
         {/* <header className="App-header"> */}
 
 
-        <NavBar toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} setProfileObj={this.setProfileObj} />
+        <NavBar updateIntereactedPosts = {this.updateIntereactedPosts} toggleComponent={this.toggleComponent} loggedIn={this.state.loggedIn} setLoggedIn={(logged) => this.setLoggedIn(logged)} setName={(name) => this.setName(name)} setProfileObj={this.setProfileObj} />
 
         {this.state.showGlobalPosts &&
           <div>
