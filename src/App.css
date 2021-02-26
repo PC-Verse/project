@@ -119,6 +119,7 @@ body {
     background-color: transparent;
     /* margin-top: 100px; */
     display: flex;
+    flex-wrap: wrap;
     /* justify-content: center; */
     width: 50vw;
     height: 5vw;
@@ -129,6 +130,7 @@ body {
     border-radius: 25px;
     background-color: transparent;
     display: flex;
+    flex-wrap: wrap;
     /* justify-content: center; */
     width: 70vw;
     justify-content: space-evenly;
