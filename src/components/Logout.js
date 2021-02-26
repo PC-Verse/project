@@ -10,6 +10,14 @@ function Logout(props) {
     console.log('Logout made successfully');
     // alert('Logout made successfully ✌');
     props.setLoggedIn(false);
+    props.setName("Anonymous")
+    props.setProfileObj(
+      'username@ucsb.edu',
+      "Anonymous",
+      "Anonymous",
+      "Anonymous",
+      -1,
+      "");
   };
 
   return (

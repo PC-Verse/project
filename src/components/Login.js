@@ -24,9 +24,9 @@ function Login(props) {
       res.profileObj.googleId,
       res.profileObj.imageUrl
     );
+    // props.toggleComponent()
 
-
-    this.props.updateIntereactedPosts();
+    // this.props.updateIntereactedPosts();
 
 
   };

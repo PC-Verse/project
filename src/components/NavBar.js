@@ -29,8 +29,8 @@ const NavBar = (props) => {
             </button>
             {displayGoogleStuff &&
                 <div className="dropdownContent">
-                    {!props.loggedIn ? <Login updateIntereactedPosts={props.updateIntereactedPosts} loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} setName={(name) => props.setName(name)} setProfileObj={props.setProfileObj} />
-                        : <Logout loggedIn={props.loggedIn} setLoggedIn={(logged) => props.setLoggedIn(logged)} />
+                    {!props.loggedIn ? <Login updateIntereactedPosts={props.updateIntereactedPosts} loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} setName={props.setName} setProfileObj={props.setProfileObj} toggleComponent={props.toggleComponent}/>
+                        : <Logout loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} setName={props.setName} setProfileObj={props.setProfileObj} toggleComponent={props.toggleComponent}/>
                     }
                 </div>
             }

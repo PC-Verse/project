@@ -12,7 +12,8 @@ class Post extends Component {
         this.state = {
             swipes: 0,
             disALeft: false,
-            disARight: false
+            disARight: false,
+            shouldRunCheckInteracted : true
         }
     }
 
@@ -63,63 +64,63 @@ class Post extends Component {
     incrementSwipesFireBase = (key) => {
         let disALeft;
         let disARight;
-        if (this.state.disALeft== true) {
+        let interactedState = -1;
+        if (this.state.disALeft== true) {       // this means the post is disliked, so undo the like, by setting both btns to undisabled
             this.setState({
                 disALeft: false,
-                disARight: true
+                disARight: false,
             })
+            interactedState = -1;
         }
-        else {
+        else {      // the post is neutral, so like it and disable like btn
             this.setState({
                 disALeft: false,
                 disARight: true
             })
-
+            interactedState = 1;
         }
         database.ref('globalPosts/'+this.props.postKey).update({
             numLikes: this.props.numLikes+1,
-            // numSwipeRights: this.props.numSwipeRights+1
         });
-        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
         database.ref('userPosts/'+this.props.profileObj.googleId+"/"+this.props.postKey).update({
             numLikes: this.props.numLikes+1,
-            numSwipeRights: this.props.numSwipeRights+1
         });
         
         
         database.ref('userPosts/'+this.props.currUser + '/interactedPosts/'+ this.props.postKey+'/').set({
             //0 is disliked, 1 is liked, -1 is not interacted
-            interactedState: 1,
+            interactedState: interactedState,
         })
     }
 
     decrementSwipesFireBase = (key) => {
         let disALeft;
         let disARight;
-        if (this.state.disARight== true) {
+        let interactedState = -1;   // -1 for neutral, 0 for dislike, 1 for like
+        if (this.state.disARight == true) {     // this means the post is liked, so undo the like so set both btns to undisabled
             this.setState({
-                disALeft: true,
+                disALeft: false,
                 disARight: false
             })
+            interactedState = -1;
         }
-        else {
+        else {  // post is not liked, so just dislike it and set dislike btn to disabled
             this.setState({
                 disALeft: true,
                 disARight: false
             })
-            
+            interactedState = 0;
 
         }
         database.ref('globalPosts/'+key).update({
             numLikes: this.props.numLikes-1,
         });
-        // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
         database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
             numLikes: this.props.numLikes-1,
         });
         database.ref('userPosts/'+this.props.currUser + '/interactedPosts/'+ this.props.postKey+'/').set({
             //0 is disliked, 1 is liked, -1 is not interacted
-            interactedState: 0,
+            interactedState: interactedState,
             
         })
     }
