@@ -37,10 +37,10 @@ class Post extends Component {
             // numSwipeRights: this.props.numSwipeRights+1
         });
         // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
-        // database.ref('userPosts/'+this.props.profileObj.googleId+"/"+this.props.postKey).update({
-        //     numLikes: this.props.numLikes+1,
-        //     numSwipeRights: this.props.numSwipeRights+1
-        // });
+        database.ref('userPosts/'+this.props.profileObj.googleId+"/"+this.props.postKey).update({
+            numLikes: this.props.numLikes+1,
+            numSwipeRights: this.props.numSwipeRights+1
+        });
     }
 
     decrementSwipesFireBase = (key) => {
@@ -64,9 +64,9 @@ class Post extends Component {
             numLikes: this.props.numLikes-1,
         });
         // uncomment this after clean database, bc rn most posts don't have profile obj so this will cause an error
-        // database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
-        //     numLikes: this.props.numLikes-1,
-        // });
+        database.ref('userPosts/'+this.props.profileObj.googleId+'/'+this.props.postKey+'/').update({
+            numLikes: this.props.numLikes-1,
+        });
     }
     // incrementNumViews = () => {
     //     database.ref('globalPosts/'+this.props.postKey).update({
