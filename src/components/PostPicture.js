@@ -19,7 +19,7 @@ export function PostPicture(props) {
         multiple
         value={images}
         onChange={onChange}
-        maxNumber={maxNumber}
+        maxNumber={2}
         dataURLKey="data_url"
       >
         {({
