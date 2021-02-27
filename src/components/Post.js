@@ -20,7 +20,7 @@ class Post extends Component {
         this.checkInteracted();
     }
     componentDidUpdate(prevProps) {
-        // console.log("Component did update")
+        // console.log("Component did update from post.js")
         if (prevProps.currUser != this.props.currUser) {
             this.checkInteracted()
         }

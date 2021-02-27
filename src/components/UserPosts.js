@@ -30,33 +30,23 @@ class UserPosts extends Component {
     componentDidMount = () => {
         this.setUserPosts();
     }
-    compenentDidUpdate(prevProps) {
-        console.log("Running component did update")
+    componentDidUpdate(prevProps) {
+        // console.log("Running component did update from userPosts")
         if (prevProps.profileObj.googleId != this.props.profileObj.googleId) {
-            // constructor()
-            // this.setState({
-            //     userPosts : []
-            // })
-            // this.props.setUserPosts([])
+            // console.log("Changing user posts")
+            this.setState({
+                userPosts : []
+            })
+            this.props.setUserPosts([])
             this.setUserPosts();
         }
     }
     setUserPosts = () => {
-        // if (needToClearUserPosts) {
-        //     this.setState({userPosts : []})
-        //     this.props.setUserPosts([])
-        // }
-        console.log("Setting user posts")
+
+        // console.log("Setting user posts")
         if (this.props.profileObj.googleId != -1)   // only read from database if signed in
         {
-            // let newUserPosts;
-            // if (needToClearUserPosts) {
-            //     this.props.setUserPosts([])
-            //     newUserPosts = []
-            // }
-            // else
-                // newUserPosts = this.state.userPosts;
-            let newUserPosts = this.state.userPosts
+            // console.log("reading form database for userposts")
             database.ref('/userPosts/' + this.props.profileObj.googleId + '/').on("value", (snapshot) => {
                 snapshot.forEach(data => {
                     if (data.key != "interactedPosts") {
@@ -76,46 +66,28 @@ class UserPosts extends Component {
                             numSwipeRights: data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
                         }
 
-                        // let found = false;
-                        // for (let i = 0; i < this.state.userPosts.length; i++) {
-                        //     if (this.state.userPosts[i].postKey == post.postKey) {
-                        //         console.log(post.postKey);
-                        //         found = true;
-                        //         let userPostsCopy = this.state.userPosts;
-                        //         userPostsCopy[i] = post;
-                        //         this.setState({
-                        //             userPosts: userPostsCopy
-                        //         })
-                        //     }
-                        // }
-                        // if (!found) {
-                        //     this.addUserPost(post)      // adding it to state
-                        // }
-
                         let found = false;
-                        for (let i = 0; i < newUserPosts.length; i++) {
-                            if (newUserPosts[i].postKey == post.postKey) {
+                        for (let i = 0; i < this.state.userPosts.length; i++) {
+                            if (this.state.userPosts[i].postKey == post.postKey) {
                                 console.log(post.postKey);
                                 found = true;
-                                newUserPosts[i] = post;
+                                let userPostsCopy = this.state.userPosts;
+                                userPostsCopy[i] = post;
+                                this.setState({
+                                    userPosts: userPostsCopy
+                                })
                             }
                         }
                         if (!found) {
-                            newUserPosts.unshift(post)      // adding it to state
+                            this.addUserPost(post)      // adding it to state
                         }
+
                     }
                 })
             })
-            this.setState({
-                userPosts : newUserPosts
-            })
+
         }
-        // else if (needToClearUserPosts) {
-        //     this.props.setUserPosts([])
-        //     this.setState({
-        //         userPosts : []
-        //     })
-        // }
+
 
     }
     hideCard = () => {
