@@ -14,7 +14,7 @@ function Login(props) {
     //   `Logged in successfully! Welcome ${res.profileObj.name} 😍. \n See console for full profile object.`
     // );
     refreshTokenSetup(res);
-    props.setLoggedIn(true);
+    
     props.setName(res.profileObj.name)
     props.setProfileObj(
       res.profileObj.email,
@@ -24,7 +24,7 @@ function Login(props) {
       res.profileObj.googleId,
       res.profileObj.imageUrl
     );
-    // props.toggleComponent()
+    props.setLoggedIn(true);
 
     // this.props.updateIntereactedPosts();
 

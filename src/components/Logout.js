@@ -9,7 +9,7 @@ function Logout(props) {
   const onSuccess = () => {
     console.log('Logout made successfully');
     // alert('Logout made successfully ✌');
-    props.setLoggedIn(false);
+    
     props.setName("Anonymous")
     props.setProfileObj(
       'username@ucsb.edu',
@@ -18,6 +18,7 @@ function Logout(props) {
       "Anonymous",
       -1,
       "");
+      props.setLoggedIn(false);
   };
 
   return (

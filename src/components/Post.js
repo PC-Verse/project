@@ -13,27 +13,32 @@ class Post extends Component {
             swipes: 0,
             disALeft: false,
             disARight: false,
-            shouldRunCheckInteracted : true
         }
     }
 
     componentDidMount = () => {
         this.checkInteracted();
     }
+    componentDidUpdate(prevProps) {
+        // console.log("Component did update")
+        if (prevProps.currUser != this.props.currUser) {
+            this.checkInteracted()
+        }
+    }
 
     checkInteracted = () => {
-        console.log("in checkInteracted")
-        console.log(this.props.currUser)
+        // console.log("in checkInteracted")
+        // console.log(this.props.currUser)
         if (this.props.currUser != -1) {
             database.ref('userPosts/'+this.props.currUser + '/interactedPosts/').on("value", (snapshot) => {
             let interactedState = -1;
-            console.log("Started reading from database")
+            // console.log("Started reading from database")
             //    console.log(snapshot)
             snapshot.forEach(data => {
-                   console.log("data.key: " + data.key)
-                   console.log("this.props.postKey: " + this.props.postKey)
+                //    console.log("data.key: " + data.key)
+                //    console.log("this.props.postKey: " + this.props.postKey)
                     if(data.key == this.props.postKey) {
-                        console.log("from database: " + data.val().interactedState)
+                        // console.log("from database: " + data.val().interactedState)
                             if(data.val().interactedState == 0){
                                 this.setState({
                                     disALeft: true,
@@ -57,8 +62,8 @@ class Post extends Component {
                 disARight: true
             })
         }
-        console.log("disALeft: "+this.state.disALeft);
-        console.log("disAright: "+this.state.disARight);
+        // console.log("disALeft: "+this.state.disALeft);
+        // console.log("disAright: "+this.state.disARight);
     }
 
     incrementSwipesFireBase = (key) => {
@@ -200,7 +205,7 @@ class Post extends Component {
                         } 
                         <div className="numSwipes">Likes: {this.props.numLikes}</div>
                         { 
-                        this.props.isGlobalPost && 
+                        // this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">
                             {/* {console.log(this.props.currUser)} */}
                             
