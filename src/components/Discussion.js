@@ -4,7 +4,16 @@ import Post from './Post'
 import AddComment from './AddComment'
 import Comments from './Comments'
 import database from '../firebase'
+import LazyLoad from "react-lazyload"
+import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
 
+
+const Spinner = () => (
+    <div className="loadingPost">
+        {/* <h>loading...</h> */}
+        <img id="loadingIcon" src={BlueLoadingBar} alt="Loading icon" />
+    </div>
+);
 
 class Discussion extends Component {
     constructor(props) {
@@ -169,11 +178,17 @@ class Discussion extends Component {
                 {
                     
                 this.state.CommentsList.map(comment => {
-                    return <Comments
-                        commentObj={comment}
-                        removeComment={this.removeComment}
-                        currentProfileObj={this.props.profileObj}
-                    />
+                    return <LazyLoad
+                        height={50}
+                        offset={[-150, 150]}
+                        placeholder={<Spinner />}
+                    >
+                        <Comments
+                            commentObj={comment}
+                            removeComment={this.removeComment}
+                            currentProfileObj={this.props.profileObj}
+                        />
+                    </LazyLoad>
                 })}
 
                 <AddComment

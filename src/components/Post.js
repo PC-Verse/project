@@ -211,7 +211,7 @@ class Post extends Component {
                            
 
                         } 
-                        <div className="numSwipes">Likes: {this.props.numLikes}</div>
+                        <div className="numLikes">Likes: {this.props.numLikes}</div>
                         { 
                         // this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">

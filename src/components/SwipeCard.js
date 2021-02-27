@@ -46,10 +46,9 @@ class SwipeCard extends Component {
 
                         <div className="pictures">
                             {this.props.imageList &&
-                                    
-                                    this.props.imageList.map((image, index) => (
-                                        <img src={image['data_url']} className="picture"/>
-                                    ))
+                                this.props.imageList.map((image, index) => (
+                                    <img src={image['data_url']} className="picture"/>
+                                ))
                             }
                         </div>
 

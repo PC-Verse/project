@@ -19,12 +19,10 @@ class UserPosts extends Component {
         super(props)
         let date = new Date()
         this.state = {
-            // posts: [<Post title="No Posts Yet" content="Make a Post!" id={0} removePost={this.removePost} dateDay={date.toLocaleDateString()} dateTime={date.toLocaleTimeString()} isGlobalPost={false}/>],
             shouldClear: false,
             showAddPost: false,
-            // name: "Anonymous",
             userPosts: [],
-            profileObj : this.props.profileObj       // make a state for the prop, so component did update will run
+            // profileObj : this.props.profileObj       // make a state for the prop, so component did update will run
         }
     }
     componentDidMount = () => {
@@ -35,7 +33,7 @@ class UserPosts extends Component {
         if (prevProps.profileObj.googleId != this.props.profileObj.googleId) {
             // console.log("Changing user posts")
             this.setState({
-                userPosts : []
+                userPosts: []
             })
             this.props.setUserPosts([])
             this.setUserPosts();
@@ -106,10 +104,6 @@ class UserPosts extends Component {
         this.setState((prevState) => ({
             userPosts: posts
         }))
-        // this.setState((prevState) => ({
-        //   userPosts : prevState.userPosts.unshift(newPost)
-        // }))
-
     }
     createPost = (newTitle, newContent, newImageList, community) => {
 
@@ -170,10 +164,6 @@ class UserPosts extends Component {
             }
             this.props.addUserPost(post);
         }
-        else {
-            // this.addUserPost(post);
-        }
-        // this.props.addUserPost(post);
 
     }
 
@@ -182,7 +172,7 @@ class UserPosts extends Component {
 
     removePost = (postKey) => {
 
-        console.log("Atempting to remove post with key: " + postKey)
+        // console.log("Atempting to remove post with key: " + postKey)
         database.ref('userPosts/' + this.props.profileObj.googleId + "/" + postKey + '/').remove()
         database.ref('globalPosts/' + postKey + '/').remove()
 
@@ -242,6 +232,33 @@ class UserPosts extends Component {
                 />
             </LazyLoad>
         })
+        const userPostsFromState = this.state.userPosts.map((post) => {
+            return <LazyLoad    // these need to be on the same line as the return for some reason
+                height={50}
+                offset={[-150, 150]}
+                placeholder={<Spinner />}
+            >
+                <Post
+                    postKey={post.postKey}
+                    title={post.title}
+                    content={post.content}
+                    imageList={post.imageList}
+                    dateDay={post.dateDay}
+                    dateTime={post.dateTime}
+                    isGlobalPost={false}
+                    haveDiscussBtn={post.haveDiscussBtn}
+                    name={this.props.profileObj.name}
+                    profileObj={this.props.profileObj}
+                    numLikes={0}
+                    numViews={post.numViews}
+                    numSwipeRights={post.numSwipeRights}
+                    removePost={this.removePost}
+                    setPostObj={this.props.setPostObj}
+                    setPostKey={this.props.setPostKey}
+                    toggleComponent={this.props.toggleComponent}
+                />
+            </LazyLoad>
+        })
         // console.log(this.state.userPosts[0])
         return (
             <div>
@@ -254,37 +271,12 @@ class UserPosts extends Component {
                 }
 
                 {this.props.profileObj.googleId != -1 &&    // user is signed in
-                    this.state.userPosts.map((post) => {
-                        // return post;
-                        return <LazyLoad    // these need to be on the same line as the return for some reason
-                            height={50}
-                            offset={[-150, 150]}
-                            placeholder={<Spinner />}
-                        >
-                            <Post
-                                postKey={post.postKey}
-                                title={post.title}
-                                content={post.content}
-                                imageList={post.imageList}
-                                dateDay={post.dateDay}
-                                dateTime={post.dateTime}
-                                isGlobalPost={false}
-                                haveDiscussBtn={post.haveDiscussBtn}
-                                name={this.props.profileObj.name}
-                                profileObj={this.props.profileObj}
-                                numLikes={0}
-                                numViews={post.numViews}
-                                numSwipeRights={post.numSwipeRights}
-                                removePost={this.removePost}
-                                setPostObj={this.props.setPostObj}
-                                setPostKey={this.props.setPostKey}
-                                toggleComponent={this.props.toggleComponent}
-                            />
-                        </LazyLoad>
-                    })
+                    userPostsFromState
                 }
 
-                {((this.state.userPosts.length == 0 && this.props.profileObj.googleId != -1) || (this.props.userPosts.length == 0 && this.props.profileObj.googleId == -1)) && <div id="noPostYetMsg">No Posts Yet!</div>}
+                {((this.state.userPosts.length == 0 && this.props.profileObj.googleId != -1) || 
+                    (this.props.userPosts.length == 0 && this.props.profileObj.googleId == -1)) && 
+                    <div id="noPostYetMsg">No Posts Yet!</div>}
             </div>
         )
     }
