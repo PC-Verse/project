@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../App.css'
 import TinderCard from 'react-tinder-card'
+import PicturesList from './PicturesList'
 
 // import Pic from '../images/RGB.png'
 
@@ -46,11 +47,15 @@ class SwipeCard extends Component {
                         <div className="pictures">
                             {this.props.imageList &&
                                     
-                                    this.props.imageList.map((image, index) => (
-                                        <img src={image['data_url']} className="picture"/>
-                                    ))
+                                    
+                                    <PicturesList
+                                    images = {this.props.imageList}
+                                ></PicturesList>
                             }
                         </div>
+
+
+                        
                         
                 </TinderCard>
 
