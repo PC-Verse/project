@@ -47,6 +47,12 @@
 }
 #post-card-1{
 }
+
+#picture-wheel{
+
+    align-items: center;
+    display: flex;
+}
 html {
     font-size: 100%;
 }

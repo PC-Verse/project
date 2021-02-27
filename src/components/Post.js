@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import Picture from './Picture'
 import PostPicture from './PostPicture'
+import PicturesList from './PicturesList'
 import fire from '../images/fire.png'
 import database from '../firebase'
 
@@ -180,10 +181,17 @@ class Post extends Component {
 
 
                     {this.props.imageList &&
+
+
+
                     <div className="pictureContainer">
-                        {this.props.imageList.map((image, index) => (
+                        {/* {this.props.imageList.map((image, index) => (
                             <img src={image['data_url']} className="picture" id="postPic"/>
-                        ))}
+                        ))} */}
+
+                        <PicturesList
+                            images = {this.props.imageList}
+                        ></PicturesList>
                     </div>
                     }
                 </p>
