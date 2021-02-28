@@ -10,19 +10,36 @@ class PicturesList extends Component {
         super()
         this.state = {
             index: 0,
-            fade_in : true
+            fade_in : true,
+            timeouts : []
         }
         this.setFadeInFalse()
     }
 
     setFadeInFalse = () => {
-        setTimeout(() => {
+        let timeout = setTimeout(() => {
             this.setState({
                 fade_in: false
             })
         }, 1500)
+        let timeouts = this.state.timeouts;
+        timeouts.push(timeout)
+        this.setState({
+            timeouts : timeouts
+        })
+    }
+    clearAllTimeouts = () => {
+        let timeouts = this.state.timeouts
+        while (timeouts.length > 0) {
+            clearTimeout(timeouts[0]);  // stops the timeoutf
+            timeouts.shift(); // delete first elemnnt in array
+        }
+        this.setState({
+            timeouts : timeouts
+        })
     }
     goNext = (a) => {
+        this.clearAllTimeouts()
         this.setState({
             fade_in: false
         })

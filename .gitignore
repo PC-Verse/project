@@ -27,6 +27,8 @@ yarn-error.log*
 
 .firebase/
 .firebaserc
+
 src/components/*.js.swp
+src/components/*.swp
 
 .eslintcache
