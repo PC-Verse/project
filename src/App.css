@@ -313,7 +313,10 @@ body {
     border: none;
     background-color: inherit;
 }
-
+#profilePic {
+    height: 40px;
+    border-radius: 40px;
+}
 
 .dropdownContent {
     margin:auto;

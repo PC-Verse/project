@@ -16,16 +16,17 @@ const NavBar = (props) => {
         <div id="NavBar">
 
 
-            <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}><img id="userBtn" src={user} /></button>
+            <button id="postButton" className="headerStuff" onClick={() => { props.toggleComponent("showUserPosts") }}><img id="userBtn" src={user} alt="Posts"/></button>
 
-            <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}><img id="icon2" src={tinder} /></div>
+            <div id="swipeBtn" className="headerStuff" onClick={() => { props.toggleComponent("showSwipes") }}><img id="icon2" src={tinder} alt="Carousel Feature"/></div>
             {/* <button id="swipeBtn" onClick={() => { props.toggleComponent("showSwipes") }} ><img src={tinder} class="showSwipes"/></button> */}
 
-            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}><div id="textForLogoName">PC-Verse</div><img id="icon" src={BlueCube} /></div>
+            <div id="logoName" className="headerStuff" onClick={() => { props.toggleComponent("showGlobalPosts") }}><div id="textForLogoName">PC-Verse</div><img id="icon" src={BlueCube} alt="logo"/></div>
             <button onClick={() => setDisplayGoogleStuff(!displayGoogleStuff)}
                 id="loginBtn"
                 className="headerStuff">
-                {props.loggedIn ? <div>Logged In</div> : <div>Sign In</div>}
+                {/* {props.loggedIn ? <div>Logged In</div> : <div>Sign In</div>} */}
+                {props.loggedIn ? <img src={props.profileObj.imageUrl} id="profilePic" alt="Signed In"/> : <div>Sign In</div>}
             </button>
             {displayGoogleStuff &&
                 <div className="dropdownContent">

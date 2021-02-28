@@ -37,7 +37,7 @@ class PicturesList extends Component {
                 <div id="picture-wheel">
                     {this.props.images.length > 1 &&
                         <button id="leftTogglePicBtn" onClick={() => { this.goNext(-1) }}>&#8592;</button>}
-                    <img src={this.props.images[this.state.index]['data_url']} className="picture" id="postPic" />
+                    <img src={this.props.images[this.state.index]['data_url']} className="picture" id="postPic" alt="Post Picture"/>
                     {this.props.images.length > 1 &&
                         <button id="rightTogglePicBtn" onClick={() => { this.goNext(1) }}>&#8594;</button>}
                 </div>

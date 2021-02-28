@@ -17,7 +17,6 @@ const Spinner = () => (
 class UserPosts extends Component {
     constructor(props) {
         super(props)
-        let date = new Date()
         this.state = {
             shouldClear: false,
             showAddPost: false,

@@ -58,6 +58,7 @@ function Picture(props) {
               height: "60px",
               position: "absolute"
             }}
+            alt="uploaded image"
           />
         </div>{
 
