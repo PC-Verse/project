@@ -104,20 +104,24 @@ class Post extends Component {
         let disARight;
         let interactedState = -1;   // -1 for neutral, 0 for dislike, 1 for like
         if (this.state.disARight == true) {     // this means the post is liked, so undo the like so set both btns to undisabled
-            this.setState({
-                disALeft: false,
-                disARight: false
-            })
+            // this.setState({
+                disALeft= false;
+                disARight= false
+            // })
             interactedState = -1;
         }
         else {  // post is not liked, so just dislike it and set dislike btn to disabled
-            this.setState({
-                disALeft: true,
-                disARight: false
-            })
+            // this.setState({
+                disALeft= true;
+                disARight= false
+            // })
             interactedState = 0;
 
         }
+        this.setState({
+            disALeft : disALeft,
+            disARight : disARight
+        })
         database.ref('globalPosts/'+key).update({
             numLikes: this.props.numLikes-1,
         });
@@ -211,7 +215,7 @@ class Post extends Component {
                            
 
                         } 
-                        <div className="numSwipes">Likes: {this.props.numLikes}</div>
+                        <div className="numLikes">Likes: {this.props.numLikes}</div>
                         { 
                         // this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">
