@@ -483,17 +483,22 @@ button:hover {
 }
 #postPic {
     max-width: 50vw;
+    
+}
+.fade-in {
     animation-name : fade-in;
-    animation-duration: 1s;
+    animation-duration: 1.5s;
     animation-timing-function: linear;
-    animation-iteration-count: 1;
+    animation-iteration-count: infinite;
 }
 @keyframes fade-in {
     0% {
         opacity : 0;
+        transform: scale(0.9) translateY(-10px);
     }
     100% {
         opacity: 1;
+        transform : scale(1) translateY(0);
     }
 }
 
@@ -624,8 +629,8 @@ select {
     width: 70vw;
     height: 75vh;
     border-radius: 5%;
-    animation: slide_in;
-    animation-duration: 1.5s;
+    /* animation: slide_in;
+    animation-duration: 1.5s; */
 }
 
 #swipeIMG:hover {
@@ -702,12 +707,14 @@ select {
 .fade-exit.fade-exit-active {
     opacity: 0;
     transform: scale(0.95) translateX(5px) translateY(-5px);
-    transition: opacity 300ms linear, transform 150ms ease-out;
+    transition: opacity 300ms linear, transform 300ms ease-out;
 }
 
 .fade-exit-done {
     opacity: 0;
 }
+
+
 
 .item {
     width: 100px;
