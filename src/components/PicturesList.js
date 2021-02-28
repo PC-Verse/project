@@ -45,7 +45,7 @@ class PicturesList extends Component {
         if (this.state.renderAnimation != "")   // if they spam the button, won't change pic until done rendering this one
             return
 
-
+        // set variables to correct values
         let renderAnimation;
         let exit;
         if (a > 0) {
@@ -56,29 +56,32 @@ class PicturesList extends Component {
             renderAnimation = "slideToLeft"
             exit = "exitLeft"
         }
+
+        // stop other animations, this stuff is actually not needed anymore. But keep it just in case
         this.clearAllTimeouts()
         this.setState({
             renderAnimation : ""
         })
 
+        // calc newIndex
         let newIndex = (this.state.index == 0 && a == -1 ? this.props.images.length - 1 : this.state.index + a) % this.props.images.length
+        
+        // start exit animation
         this.setState({
             renderAnimation : exit    // takes 0.5s
         })
 
+        // run slide animation after exit function finishes
         let exitTime = 500;
-        let timeoutIndexChange = setTimeout(() => {     // don't ever want to cancel this timeout
-            this.setState({
-                index : newIndex
-            })
-        }, exitTime)
         let timeout = setTimeout(() => {
             this.setState({
+                index : newIndex,
                 renderAnimation : renderAnimation
             })
         }, exitTime)
         this.addTimeout(timeout);
         
+        // reset class name after aniamtion finishes
         this.setRenderAnimationFalse()
     }
 
