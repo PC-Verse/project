@@ -21,7 +21,7 @@ class PicturesList extends Component {
             this.setState({
                 renderAnimation : ""
             })
-        }, 2000)
+        }, 1000)        // time should be exit time + slideIn time
         this.addTimeout(timeout)
     }
     clearAllTimeouts = () => {
@@ -43,11 +43,15 @@ class PicturesList extends Component {
     }
     goNext = (a) => {
         let renderAnimation;
-        if (a > 0)
+        let exit;
+        if (a > 0) {
             renderAnimation = "slideToRight"
-        else    // a < 0
+            exit = "exitRight"
+        }
+        else  {  // a < 0
             renderAnimation = "slideToLeft"
-
+            exit = "exitLeft"
+        }
         this.clearAllTimeouts()
         this.setState({
             renderAnimation : ""
@@ -55,15 +59,20 @@ class PicturesList extends Component {
 
         let newIndex = (this.state.index == 0 && a == -1 ? this.props.images.length - 1 : this.state.index + a) % this.props.images.length
         this.setState({
-            renderAnimation : "exit"    // takes 1s
+            renderAnimation : exit    // takes 0.5s
         })
 
+        let exitTime = 500;
+        let timeoutIndexChange = setTimeout(() => {     // don't ever want to cancel this timeout
+            this.setState({
+                index : newIndex
+            })
+        }, exitTime)
         let timeout = setTimeout(() => {
             this.setState({
-                index: newIndex,
                 renderAnimation : renderAnimation
             })
-        }, 1000)
+        }, exitTime)
         this.addTimeout(timeout);
         
         this.setRenderAnimationFalse()
@@ -78,22 +87,20 @@ class PicturesList extends Component {
 
     render = () => {
         // console.log("HERE");
-        let picClasses = ['picture', this.state.renderAnimation].join(' ');
+        let picClasses = ['postPic', this.state.renderAnimation].join(' ');
         return (
             <div>
                 <div id="picture-wheel">
                     {this.props.images.length > 1 &&
                         <button id="leftTogglePicBtn" onClick={() => { this.goNext(-1) }}>&#8592;</button>}
-                    {/* <ReactCSSTransitionGroup
-                        transitionName="fade"
-                        transitionEnterTimeout={300}
-                        transitionLeaveTimeout={300}> */}
-                        <img src={this.props.images[this.state.index]['data_url']}
-                            key={this.props.images[this.state.index]['data_url']}
-                            className={picClasses}
-                            id="postPic"
-                            alt="Post Picture"/>
-                    {/* </ReactCSSTransitionGroup> */}
+                        <div id="picContainer" className={this.state.renderAnimation}>
+                            <img src={this.props.images[this.state.index]['data_url']}
+                                key={this.props.images[this.state.index]['data_url']}
+                                // className={picClasses}
+                                className="postPic"
+                                id="postPic"
+                                alt="Post Picture"/>
+                        </div>
                     {this.props.images.length > 1 &&
                         <button id="rightTogglePicBtn" onClick={() => { this.goNext(1) }}>&#8594;</button>}
                 </div>

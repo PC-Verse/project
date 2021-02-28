@@ -487,71 +487,71 @@ button:hover {
 }
 .slideToRight {
     animation-name: slideToRight;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
     animation-iteration-count: 1;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in-out;
 }
 @keyframes slideToRight {
     0% {
-        opacity: 0.1;
+        opacity: 0;
         transform: scale(0.95) translateX(-4%);
     }
-    75% {
+    /* 75% {
         transform: translateX(0%);
-    }
+    } */
     100% {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1) translateX(0%);
     }
 }
 .slideToLeft {
     animation-name: slideToLeft;
-    animation-duration: 2s;
+    animation-duration: 0.5s;
     animation-iteration-count: 1;
-    animation-timing-function: linear;
+    animation-timing-function: ease-in-out;
 }
 @keyframes slideToLeft {
         0% {
-            opacity: 0.1;
+            opacity: 0;
             transform: scale(0.95) translateX(4%);
         }
-        75% {
+        /* 75% {
             transform: translateX(0%);
-        }
+        } */
         100% {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(1) translateX(0%);
         }
 }
-.exit {
-    animation-name: exit;
-    animation-duration: 1s;
+.exitLeft {
+    animation-name: exitLeft;
+    animation-duration: 0.5s;
     animation-iteration-count: 1;
     animation-timing-function: linear;  
 }
-@keyframes exit {
+@keyframes exitLeft {
     0% {
         opacity: 1;
     }
     100% {
         opacity: 0;
-        transform: scale(0.9);
+        transform: scale(0.95) translateX(-4%);
     }
 }
-.fade-in {
-    animation-name : fade-in;
-    animation-duration: 1.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
+.exitRight {
+    animation-name: exitRight;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;  
 }
-@keyframes fade-in {
+
+@keyframes exitRight {
     0% {
-        opacity : 0;
-        transform: scale(0.9) translateY(-10px);
+        opacity: 1;
     }
     100% {
-        opacity: 1;
-        transform : scale(1) translateY(0);
+        opacity: 0;
+        transform: scale(0.95) translateX(4%);
     }
 }
 
@@ -573,6 +573,22 @@ button:hover {
     padding-top: 10px;
     padding-bottom: 10px;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+.postPic {
+    max-height: 35vh;
+    max-width: 45vw;
+    border-radius: 35px;
+    margin: auto;
+    display: flex;
+}
+#picContainer {
+    height: 40vh;
+    width : 50vw;
+    border-radius: 35px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .removeBtn {
