@@ -10,23 +10,19 @@ class PicturesList extends Component {
         super()
         this.state = {
             index: 0,
-            fade_in : true,
+            renderAnimation : "slideToLeft",
             timeouts : []
         }
-        this.setFadeInFalse()
+        this.setRenderAnimationFalse()
     }
 
-    setFadeInFalse = () => {
+    setRenderAnimationFalse = () => {
         let timeout = setTimeout(() => {
             this.setState({
-                fade_in: false
+                renderAnimation : ""
             })
-        }, 1500)
-        let timeouts = this.state.timeouts;
-        timeouts.push(timeout)
-        this.setState({
-            timeouts : timeouts
-        })
+        }, 2000)
+        this.addTimeout(timeout)
     }
     clearAllTimeouts = () => {
         let timeouts = this.state.timeouts
@@ -38,17 +34,39 @@ class PicturesList extends Component {
             timeouts : timeouts
         })
     }
+    addTimeout = (timeout) => {
+        let timeouts = this.state.timeouts;
+        timeouts.push(timeout)
+        this.setState({
+            timeouts : timeouts
+        })
+    }
     goNext = (a) => {
+        let renderAnimation;
+        if (a > 0)
+            renderAnimation = "slideToRight"
+        else    // a < 0
+            renderAnimation = "slideToLeft"
+
         this.clearAllTimeouts()
         this.setState({
-            fade_in: false
+            renderAnimation : ""
         })
+
         let newIndex = (this.state.index == 0 && a == -1 ? this.props.images.length - 1 : this.state.index + a) % this.props.images.length
         this.setState({
-            index: newIndex,
-            fade_in : true
+            renderAnimation : "exit"    // takes 1s
         })
-        this.setFadeInFalse()
+
+        let timeout = setTimeout(() => {
+            this.setState({
+                index: newIndex,
+                renderAnimation : renderAnimation
+            })
+        }, 1000)
+        this.addTimeout(timeout);
+        
+        this.setRenderAnimationFalse()
     }
 
 
@@ -60,7 +78,7 @@ class PicturesList extends Component {
 
     render = () => {
         // console.log("HERE");
-        let picClasses = ['picture', this.state.fade_in ? 'fade-in' : ''].join(' ');
+        let picClasses = ['picture', this.state.renderAnimation].join(' ');
         return (
             <div>
                 <div id="picture-wheel">
