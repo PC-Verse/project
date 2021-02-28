@@ -98,7 +98,8 @@ class PicturesList extends Component {
         return (
             <div>
                 <div id="picture-wheel">
-                    {this.props.images.length > 1 &&
+                    {/* {console.log("From pictures list" + this.props.images)} */}
+                    {this.props.images.length > 1 && this.props.images[this.state.index] != undefined &&        // don't think these checks work. Had tp add checks in Post.js
                         <button id="leftTogglePicBtn" onClick={() => { this.goNext(-1) }}>&#8592;</button>}
                         <div id="picContainer" className={this.state.renderAnimation}>
                             <img src={this.props.images[this.state.index]['data_url']}

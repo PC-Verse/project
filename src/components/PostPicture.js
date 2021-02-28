@@ -42,16 +42,18 @@ export function PostPicture(props) {
             </button>
             &nbsp;
             <button onClick={onImageRemoveAll}>Remove all images</button>
+            <div id="uploadedImagesContainer">
             {imageList.map((image, index) => (
               // <div key={index} className="image-item">
-              <div>
-                <img src={image['data_url']} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
+                <div className="uploadedImage">
+                  <img src={image['data_url']} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    <button onClick={() => onImageUpdate(index)} className="updateRemoveImgBtn">Update</button>
+                    <button onClick={() => onImageRemove(index)} className="updateRemoveImgBtn">Remove</button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </ImageUploading>

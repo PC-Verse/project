@@ -50,6 +50,7 @@
 
 #picture-wheel{
     margin:auto;
+    margin-top: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -712,7 +713,7 @@ select {
     cursor: pointer;
 }
 
-@keyframes slide_in {
+/* @keyframes slide_in {
     0% {
         opacity: 0;
         margin-top: 100vh;
@@ -721,7 +722,7 @@ select {
         opacity: 1;
         margin-top: 0vh;
     }
-}
+} */
 
 
 /* .dragging {
@@ -750,47 +751,6 @@ select {
     opacity: 1;
   }
 } */
-
-.fade-appear {
-    opacity: 0;
-    z-index: 1;
-}
-
-.fade-appear.fade-appear-active {
-    opacity: 1;
-    transition: opacity 300 ms linear;
-}
-
-.fade-enter {
-    opacity: 0;
-    z-index: 1;
-    transform: scale(0.95) translateX(5px) translateY(-5px);
-}
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transform: scale(1) translateX(0) translateY(0);
-    transition: opacity 300ms linear 300ms, transform 300ms ease-in-out 100ms;
-    /* second 300ms is delay time*/
-}
-
-.fade-exit {
-    opacity: 1;
-    transform: scale(1) translateY(0) translateX(0);
-}
-
-.fade-exit.fade-exit-active {
-    opacity: 0;
-    transform: scale(0.95) translateX(5px) translateY(-5px);
-    transition: opacity 300ms linear, transform 300ms ease-out;
-}
-
-.fade-exit-done {
-    opacity: 0;
-}
-
-
-
 .item {
     width: 100px;
     height: 50px;
@@ -828,4 +788,24 @@ i {
 .arrow1 {
     animation: slide1 1s ease-in-out infinite;
     margin-left: 9px;
+}
+
+#uploadedImagesContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.uploadedImage {
+    
+}
+.image-item__btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: fit-content;
+}
+.updateRemoveImgBtn {
+    width : fit-content;
+    height : fit-content;
 }

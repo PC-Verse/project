@@ -161,6 +161,7 @@ class UserPosts extends Component {
                 numSwipeRights: 0,
                 community: community
             }
+            
             this.props.addUserPost(post);
         }
 
@@ -228,6 +229,7 @@ class UserPosts extends Component {
                     setPostObj={this.props.setPostObj}
                     setPostKey={this.props.setPostKey}
                     toggleComponent={this.props.toggleComponent}
+                    currUser={this.props.profileObj.googleId}
                 />
             </LazyLoad>
         })
@@ -255,6 +257,7 @@ class UserPosts extends Component {
                     setPostObj={this.props.setPostObj}
                     setPostKey={this.props.setPostKey}
                     toggleComponent={this.props.toggleComponent}
+                    currUser={this.props.profileObj.googleId}
                 />
             </LazyLoad>
         })

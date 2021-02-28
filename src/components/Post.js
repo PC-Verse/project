@@ -31,30 +31,38 @@ class Post extends Component {
         // console.log("in checkInteracted")
         // console.log(this.props.currUser)
         if (this.props.currUser != -1) {
+            let postFound = false;
             database.ref('userPosts/'+this.props.currUser + '/interactedPosts/').on("value", (snapshot) => {
-            let interactedState = -1;
-            // console.log("Started reading from database")
-            //    console.log(snapshot)
-            snapshot.forEach(data => {
-                //    console.log("data.key: " + data.key)
-                //    console.log("this.props.postKey: " + this.props.postKey)
-                    if(data.key == this.props.postKey) {
-                        // console.log("from database: " + data.val().interactedState)
-                            if(data.val().interactedState == 0){
-                                this.setState({
-                                    disALeft: true,
-                                    disARight: false
-                                })
-                            }else if (data.val().interactedState ==1) {
-                                this.setState({
-                                    disARight: true,
-                                    disALeft : false
-                                })    
-                            }
-                    }
+                let interactedState = -1;
+                // console.log("Started reading from database")
+                //    console.log(snapshot)
+                snapshot.forEach(data => {
+                    //    console.log("data.key: " + data.key)
+                    //    console.log("this.props.postKey: " + this.props.postKey)
+                        if(data.key == this.props.postKey) {
+                            // console.log("from database: " + data.val().interactedState)
+                                if(data.val().interactedState == 0) {
+                                    this.setState({
+                                        disALeft: true,
+                                        disARight: false
+                                    })
+                                } else if (data.val().interactedState ==1) {
+                                    this.setState({
+                                        disARight: true,
+                                        disALeft : false
+                                    })    
+                                }
+                                postFound = true;
+                        }
 
+                })
             })
-            })
+            if (!postFound) {
+                this.setState({
+                    disALeft : false,
+                    disARight : false
+                })
+            }
         }
         if (this.props.currUser == -1)
         {
@@ -183,12 +191,13 @@ class Post extends Component {
                         </div>
                     }
 
+                    {console.log(this.props.imageList)}
+                    {this.props.imageList != undefined && this.props.imageList.length > 0 &&
 
-                    {this.props.imageList &&
 
 
-
-                    <div className="pictureContainer">
+                    
+                       <div className="pictureContainer">
                         {/* {this.props.imageList.map((image, index) => (
                             <img src={image['data_url']} className="picture" id="postPic"/>
                         ))} */}
