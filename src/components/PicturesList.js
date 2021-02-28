@@ -42,6 +42,10 @@ class PicturesList extends Component {
         })
     }
     goNext = (a) => {
+        if (this.state.renderAnimation != "")   // if they spam the button, won't change pic until done rendering this one
+            return
+
+
         let renderAnimation;
         let exit;
         if (a > 0) {
