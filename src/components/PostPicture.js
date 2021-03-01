@@ -46,7 +46,7 @@ export function PostPicture(props) {
             {imageList.map((image, index) => (
               // <div key={index} className="image-item">
                 <div className="uploadedImage">
-                  <img src={image['data_url']} alt="" width="100" />
+                  <img src={image['data_url']} alt="" width="150" />
                   <div className="image-item__btn-wrapper">
                     <button onClick={() => onImageUpdate(index)} className="updateRemoveImgBtn">Update</button>
                     <button onClick={() => onImageRemove(index)} className="updateRemoveImgBtn">Remove</button>

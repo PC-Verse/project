@@ -14,7 +14,13 @@ class Post extends Component {
             swipes: 0,
             disALeft: false,
             disARight: false,
+            animationClass : "postRender" // used for exit animation
         }
+        setTimeout(() => {
+            this.setState({
+                animationClass : ""
+            })
+        }, 1200)    // 1200 ms is time duration of postRender
     }
 
     componentDidMount = () => {
@@ -175,10 +181,22 @@ class Post extends Component {
         this.props.toggleComponent("showDiscussion");
     }
 
+    removePost = (postKey) => {
+        this.setState({
+            animationClass : "exitCard"
+        })
+        setTimeout(() => {
+            this.props.removePost(postKey);
+            this.setState({
+                animationClass : ""
+            })
+        }, 1000)    // 1000 ms is time of exitCard
+    }
 
     render = () => {
+        let postClasses = ['postCard', this.state.animationClass].join(' ');
         return (
-            <div className = "card" id= "post-card-1">
+            <div className ={postClasses} id= "post-card-1">
                 <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
@@ -246,7 +264,7 @@ class Post extends Component {
                 {!(this.props.isGlobalPost) && 
 
                 <div> 
-                    <button onClick={() => {this.props.removePost(this.props.postKey)}} className="removeBtn">Remove Post</button>
+                    <button onClick={() => {this.removePost(this.props.postKey)}} className="removeBtn">Remove Post</button>
                 </div>}
 
             </div>

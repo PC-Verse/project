@@ -94,7 +94,7 @@ class PicturesList extends Component {
 
     render = () => {
         // console.log("HERE");
-        let picClasses = ['postPic', this.state.renderAnimation].join(' ');
+        // let picClasses = ['postPic', this.state.renderAnimation].join(' ');
         return (
             <div>
                 <div id="picture-wheel">

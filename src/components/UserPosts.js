@@ -21,6 +21,7 @@ class UserPosts extends Component {
             shouldClear: false,
             showAddPost: false,
             userPosts: [],
+            animationExit : ""
             // profileObj : this.props.profileObj       // make a state for the prop, so component did update will run
         }
     }
@@ -265,7 +266,7 @@ class UserPosts extends Component {
         return (
             <div>
                 {/* {this.props.showAddPostBTN && */}
-                <AddPost hideCard={this.hideCard} showPost={this.state.showAddPost} createPost={this.createPost} />
+                <AddPost hideCard={this.hideCard} showPost={this.state.showAddPost} createPost={this.createPost} />     {/* thidecard and showPost arent used*/}
                 {/* } */}
 
                 {this.props.profileObj.googleId == -1 &&    // user not signed in
@@ -274,6 +275,67 @@ class UserPosts extends Component {
 
                 {this.props.profileObj.googleId != -1 &&    // user is signed in
                     userPostsFromState
+                }
+                {/* {this.props.profileObj.googleId == -1 &&    // user not signed in
+                    this.props.userPosts.map((post) => {
+                        // return post;
+                        return <LazyLoad    // these need to be on the same line as the return for some reason
+                            height={50}
+                            offset={[-150, 150]}
+                            placeholder={<Spinner />}
+                        >
+                            <Post
+                                title={post.title}
+                                postKey={post.postKey}
+                                content={post.content}
+                                imageList={post.imageList}
+                                dateDay={post.dateDay}
+                                dateTime={post.dateTime}
+                                isGlobalPost={false}
+                                haveDiscussBtn={post.haveDiscussBtn}
+                                name={this.props.profileObj.name}
+                                profileObj={this.props.profileObj}
+                                numLikes={0}
+                                numViews={post.numViews}
+                                numSwipeRights={post.numSwipeRights}
+                                removePost={this.removePost}
+                                setPostObj={this.props.setPostObj}
+                                setPostKey={this.props.setPostKey}
+                                toggleComponent={this.props.toggleComponent}
+                                currUser={this.props.profileObj.googleId}
+                            />
+                        </LazyLoad>
+                    })
+                }
+                {this.props.profileObj.googleId != -1 &&    // user is signed in
+                    this.state.userPosts.map((post) => {
+                        return <LazyLoad    // these need to be on the same line as the return for some reason
+                            height={50}
+                            offset={[-150, 150]}
+                            placeholder={<Spinner />}
+                        >
+                            <Post
+                                postKey={post.postKey}
+                                title={post.title}
+                                content={post.content}
+                                imageList={post.imageList}
+                                dateDay={post.dateDay}
+                                dateTime={post.dateTime}
+                                isGlobalPost={false}
+                                haveDiscussBtn={post.haveDiscussBtn}
+                                name={this.props.profileObj.name}
+                                profileObj={this.props.profileObj}
+                                numLikes={0}
+                                numViews={post.numViews}
+                                numSwipeRights={post.numSwipeRights}
+                                removePost={this.removePost}
+                                setPostObj={this.props.setPostObj}
+                                setPostKey={this.props.setPostKey}
+                                toggleComponent={this.props.toggleComponent}
+                                currUser={this.props.profileObj.googleId}
+                            />
+                        </LazyLoad>
+                    }) */}
                 }
 
                 {((this.state.userPosts.length == 0 && this.props.profileObj.googleId != -1) || 
