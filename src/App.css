@@ -50,6 +50,7 @@
 
 #picture-wheel{
     margin:auto;
+    margin-top: 10px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -132,7 +133,7 @@ body {
     transition: transform .3s;
 }
 #gloablBtnSwitch:hover {
-    transform: scale(1.3)
+    transform: scale(1.4)
 }
 #userBtn{
     margin-top: -15px;
@@ -219,7 +220,7 @@ body {
     font-size: 1.5rem;
     display: flex;
     justify-self: center;
-    grid-colum: 3/4;
+    grid-column: 3/4;
 }
 #textForLogoName {
     display: inline;
@@ -247,14 +248,13 @@ body {
 }
 @keyframes spin2 {
     0% {
-       transform: rotate(0deg);
+       transform: rotate(-10deg);
     }
     50% {
-        transform: rotate(-10deg);
+        transform: rotate(0deg);
     }
-    100%{
+    100% {
         transform: rotate(10deg);
-
     }
 }
 
@@ -428,7 +428,20 @@ button:hover {
     animation-duration: 1.2s;
     animation-timing-function: linear;
 }
-
+.postCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 1%;
+}
+.postRender {
+    animation: postRender;
+    animation-duration: 1.2s;
+    animation-timing-function: linear;
+}
 @keyframes postRender {
     0% {
         opacity: 0;
@@ -483,17 +496,97 @@ button:hover {
 }
 #postPic {
     max-width: 50vw;
-    animation-name : fade-in;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: 1;
+    
 }
-@keyframes fade-in {
+.slideToRight {
+    animation-name: slideToRight;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+@keyframes slideToRight {
     0% {
-        opacity : 0;
+        opacity: 0;
+        transform: scale(0.95) translateX(-4%);
+    }
+    25% {
+        opacity : 0.1;
     }
     100% {
         opacity: 1;
+        transform: scale(1) translateX(0%);
+    }
+}
+.slideToLeft {
+    animation-name: slideToLeft;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+@keyframes slideToLeft {
+        0% {
+            opacity: 0;
+            transform: scale(0.95) translateX(4%);
+        }
+        25% {
+            opacity : 0.1;
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateX(0%);
+        }
+}
+.exitLeft {
+    animation-name: exitLeft;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;  
+}
+@keyframes exitLeft {
+    0% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.1
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.95) translateX(-4%);
+    }
+}
+.exitRight {
+    animation-name: exitRight;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;  
+}
+
+@keyframes exitRight {
+    0% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.1
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.95) translateX(4%);
+    }
+}
+.exitCard {
+    animation-name: exitCard;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+}
+@keyframes exitCard {
+    0% {
+        opacity : 1;
+        transform : scale(1);
+    }
+    100% {
+        opacity : 0;
+        transform : scale(0);
     }
 }
 
@@ -515,6 +608,22 @@ button:hover {
     padding-top: 10px;
     padding-bottom: 10px;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+.postPic {
+    max-height: 35vh;
+    max-width: 45vw;
+    border-radius: 35px;
+    margin: auto;
+    display: flex;
+}
+#picContainer {
+    height: 40vh;
+    width : 50vw;
+    border-radius: 35px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .removeBtn {
@@ -624,15 +733,15 @@ select {
     width: 70vw;
     height: 75vh;
     border-radius: 5%;
-    animation: slide_in;
-    animation-duration: 1.5s;
+    /* animation: slide_in;
+    animation-duration: 1.5s; */
 }
 
 #swipeIMG:hover {
     cursor: pointer;
 }
 
-@keyframes slide_in {
+/* @keyframes slide_in {
     0% {
         opacity: 0;
         margin-top: 100vh;
@@ -641,7 +750,7 @@ select {
         opacity: 1;
         margin-top: 0vh;
     }
-}
+} */
 
 
 /* .dragging {
@@ -670,45 +779,6 @@ select {
     opacity: 1;
   }
 } */
-
-.fade-appear {
-    opacity: 0;
-    z-index: 1;
-}
-
-.fade-appear.fade-appear-active {
-    opacity: 1;
-    transition: opacity 300 ms linear;
-}
-
-.fade-enter {
-    opacity: 0;
-    z-index: 1;
-    transform: scale(0.95) translateX(5px) translateY(-5px);
-}
-
-.fade-enter.fade-enter-active {
-    opacity: 1;
-    transform: scale(1) translateX(0) translateY(0);
-    transition: opacity 300ms linear 300ms, transform 300ms ease-in-out 100ms;
-    /* second 300ms is delay time*/
-}
-
-.fade-exit {
-    opacity: 1;
-    transform: scale(1) translateY(0) translateX(0);
-}
-
-.fade-exit.fade-exit-active {
-    opacity: 0;
-    transform: scale(0.95) translateX(5px) translateY(-5px);
-    transition: opacity 300ms linear, transform 150ms ease-out;
-}
-
-.fade-exit-done {
-    opacity: 0;
-}
-
 .item {
     width: 100px;
     height: 50px;
@@ -746,4 +816,24 @@ i {
 .arrow1 {
     animation: slide1 1s ease-in-out infinite;
     margin-left: 9px;
+}
+
+#uploadedImagesContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.uploadedImage {
+    
+}
+.image-item__btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 150px;
+}
+.updateRemoveImgBtn {
+    width : fit-content;
+    height : fit-content;
 }

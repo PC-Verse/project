@@ -19,7 +19,7 @@ class Swipe extends Component {
     }
 
     componentDidMount = () => {
-        database.ref('/globalPosts/').on("value", (snapshot) => {
+        database.ref('/globalPosts/').orderByChild("numSwipeRights").on("value", (snapshot) => {
             snapshot.forEach(data => {
                 if (data.val().imageList !== undefined) {
                     // console.log(data.key);
@@ -37,20 +37,35 @@ class Swipe extends Component {
     }
     swipeRight = () => {
         console.log("going right");
+        // get data from database
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
-        });
-        database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
-            numViews: num + 1
         });
         let right = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numSwipeRights').on("value", (snapshot) => {
             right = snapshot.val()
         });
+        let postersGoogleId;
+        database.ref('globalPosts' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
+            postersGoogleId = snapshot.val()
+        })
+
+        // update data in database
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
+            numViews: num + 1,
             numSwipeRights: right + 1
         });
+        // database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
+        //     numSwipeRights: right + 1
+        // });
+        database.ref('userPosts' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
+            numSwipeRights: right + 1,
+            numViews : num+1
+        })
+        // database.ref('userPosts' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
+        //     numViews : num+1
+        // })
 
         if (this.state.index >= this.state.imageList.length - 1) {
             this.setState({
@@ -68,13 +83,23 @@ class Swipe extends Component {
     swipeLeft = () => {
         console.log("going left");
 
+        // get data from database
         let num = 0;
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index] + '/numViews').on("value", (snapshot) => {
             num = snapshot.val()
         });
+        let postersGoogleId;
+        database.ref('globalPosts' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
+            postersGoogleId = snapshot.val()
+        })
+
+        // update data in database
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
             numViews: num + 1
         });
+        database.ref('userPosts' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
+            numViews : num + 1
+        })
 
         if (this.state.index >= this.state.imageList.length - 1) {
             this.setState({

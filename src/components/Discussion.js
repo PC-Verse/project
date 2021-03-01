@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../App.css'
 import Post from './Post'
 import AddComment from './AddComment'
-import Comments from './Comments'
+import Comment from './Comment'
 import database from '../firebase'
 import LazyLoad from "react-lazyload"
 import BlueLoadingBar from '../images/BlueLoadingBarSmaller.svg'
@@ -26,8 +26,6 @@ class Discussion extends Component {
     }
 
     createPost = (newContent) => {
-
-
         let dateObj = new Date();
         let dateDay = dateObj.toLocaleDateString()
         let dateTime = dateObj.toLocaleTimeString();
@@ -38,14 +36,6 @@ class Discussion extends Component {
             dateDay: dateDay,
             dateTime: dateTime
         });
-
-        // database.ref('userPosts/' + this.props.profileObj.googleId + '/' + this.props.postObj.postKey + '/comments/').push({
-        //     content: newContent,
-        //     numLikes: 0,
-        //     profileObj: this.props.profileObj,
-        //     dateDay: dateDay,
-        //     dateTime: dateTime
-        // });
     }
 
     removeComment = (commentKey) => {
@@ -183,7 +173,7 @@ class Discussion extends Component {
                         offset={[-150, 150]}
                         placeholder={<Spinner />}
                     >
-                        <Comments
+                        <Comment
                             commentObj={comment}
                             removeComment={this.removeComment}
                             currentProfileObj={this.props.profileObj}
