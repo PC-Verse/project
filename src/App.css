@@ -250,12 +250,15 @@ body {
     0% {
        transform: rotate(0deg);
     }
-    50% {
+    33% {
         transform: rotate(-10deg);
     }
-    100%{
+    67%{
         transform: rotate(10deg);
 
+    }
+    100% {
+        transform: rotate(0deg);
     }
 }
 
