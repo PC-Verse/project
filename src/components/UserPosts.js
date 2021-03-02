@@ -336,7 +336,7 @@ class UserPosts extends Component {
                             />
                         </LazyLoad>
                     }) */}
-                }
+                {/* } */}
 
                 {((this.state.userPosts.length == 0 && this.props.profileObj.googleId != -1) || 
                     (this.props.userPosts.length == 0 && this.props.profileObj.googleId == -1)) && 
