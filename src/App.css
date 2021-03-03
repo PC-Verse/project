@@ -103,11 +103,11 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     background-image: linear-gradient(to right, 
-        rgba(5, 33, 126, 0.87), 
+        rgba(164, 182, 239, 0.87), 
         /* rgba(21, 238, 195,0.94), */
         /* rgba(115,238,21,0.94), */
         /* rgba(238,21,24,0.94) */
-        rgba(186, 11, 175, 0.55)
+        rgba(221, 152, 216, 0.55)
         );
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
