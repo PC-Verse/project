@@ -162,7 +162,7 @@ body {
 #communityswitch1{
     border-radius: 25px;
     /* background-color: transparent; */
-    background: rgb(230, 229, 236);
+    background: rgb(249, 249, 253);
     /* margin-top: 100px; */
     display: flex;
     flex-wrap: wrap;
@@ -176,7 +176,7 @@ body {
     /* margin-top: 100px; */
     border-radius: 25px;
     /* background-color: transparent; */
-    background: rgb(230, 229, 236);
+    background: rgb(249, 249, 253);
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
@@ -442,7 +442,7 @@ button:hover {
 .card {
     /* font-family: 'Courier New', Courier, monospace; */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    background: rgb(230, 229, 236);
+    background: rgb(249, 249, 253);
     border-radius : 10px;
     transition: 0.3s;
     width: 70%;
@@ -457,7 +457,7 @@ button:hover {
 .postCard {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background: rgb(230, 229, 236);
+    background: rgb(249, 249, 253);
     transition: 0.3s;
     width: 70%;
     justify-content: center;
