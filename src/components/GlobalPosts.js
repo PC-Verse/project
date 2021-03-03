@@ -107,8 +107,8 @@ class GlobalPosts extends Component {
                     this.state.globalPosts.map(post => {
 
                         return <LazyLoad        // these need to be on the same line as the return for some reason
-                            height={50}
-                            offset={[-150, 150]}
+                            height={100}
+                            offset={[-150, -150]}
                             placeholder={<Spinner />}
                         >
                             <Post

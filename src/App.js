@@ -215,7 +215,7 @@ class App extends Component {
     return (
       <div className= {this.state.lightMode} id = "complete">
         {/* <header className="App-header"> */}
-      <div id="background"></div>
+      {/* <div id="background"></div> */}
 
         <NavBar updateIntereactedPosts={this.updateIntereactedPosts}
           toggleComponent={this.toggleComponent}
