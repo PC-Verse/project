@@ -205,7 +205,7 @@ body {
 #communityswitch1{
     border-radius: 25px;
     /* background-color: transparent; */
-    background: var(--grey-white);
+    background: var(--card-background-color);
     /* margin-top: 100px; */
     display: flex;
     flex-wrap: wrap;
@@ -219,7 +219,7 @@ body {
     /* margin-top: 100px; */
     border-radius: 25px;
     /* background-color: transparent; */
-    background: var(--grey-white);
+    background: var(--card-background-color);
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
@@ -485,7 +485,7 @@ button:hover {
 .card {
     /* font-family: 'Courier New', Courier, monospace; */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    background: var(--grey-white);
+    background: var(--card-background-color);
     border-radius : 10px;
     transition: 0.3s;
     width: 70%;
@@ -500,7 +500,7 @@ button:hover {
 .postCard {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background: var(--grey-white);
+    background: var(--card-background-color);
     transition: 0.3s;
     width: 70%;
     justify-content: center;
@@ -677,7 +677,7 @@ button:hover {
     justify-content: space-around;
     max-width: 85vw;
     margin: auto;
-    background-color: var(--dark-blue);
+    background-color: var(--background-color);
 }
 .picture {
     /* width: 40vw; */
@@ -700,7 +700,7 @@ button:hover {
     width : 50vw;
     border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: var(--dark-blue);
+    background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     justify-content: center;
