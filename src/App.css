@@ -45,7 +45,17 @@
 }
     #complete{
 }
+#text2{
+    color: white;
+}
+#text1{
+    color: black;
+}
 #post-card-1{
+    background-color: rgb(255, 255, 255);
+}
+#post-card-2{
+    background-color: black;
 }
 
 #picture-wheel{

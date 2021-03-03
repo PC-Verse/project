@@ -239,7 +239,9 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              /> 
           </div>
         }
 
@@ -253,7 +255,10 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              /> 
+         
           </div>
         }
         {this.state.showNvidia &&
@@ -266,7 +271,10 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              />
+          
           </div>
         }
         {this.state.showAMD &&
@@ -279,7 +287,9 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              />          
           </div>
         }
               {this.state.showMicrosoft &&
@@ -292,7 +302,9 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              />          
           </div>
         }
                       {this.state.showHP &&
@@ -305,7 +317,9 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              />          
           </div>
         }
                       {this.state.showIntel &&
@@ -318,7 +332,9 @@ class App extends Component {
               database={this.state.database}
               profileObj={this.state.profileObj}
               setPostObj={this.setPostObj}
-              setPostKey={this.setPostKey}/>          
+              setPostKey={this.setPostKey}
+              lightMode={this.state.lightMode}         
+              />          
           </div>
         }
 
