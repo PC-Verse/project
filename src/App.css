@@ -57,10 +57,13 @@
 }
 #leftTogglePicBtn {
     margin-right: 1vw;
+    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
+    /* box-shadow: ; */
     /* float: left; */
 }
 #rightTogglePicBtn {
     margin-left: 1vw;
+    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
     /* float: right; */
 }
 html {
@@ -99,7 +102,24 @@ html {
 
 body {
     font-family: 'Nunito', sans-serif;
+    background-image: linear-gradient(to right, 
+        rgba(5, 33, 126, 0.87), 
+        /* rgba(21, 238, 195,0.94), */
+        /* rgba(115,238,21,0.94), */
+        /* rgba(238,21,24,0.94) */
+        rgba(186, 11, 175, 0.55)
+        );
+    /* background-image: conic-gradient(red, purple, blue, green, pink); */
+    overflow-x: hidden;
 }
+
+/* #background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+    background-image: linear-gradient(rgba(62, 52, 196, 0.356), rgba(114, 23, 218, 0.548), rgba(175, 39, 187, 0.589), rgba(30, 42, 219, 0.548));
+} */
 
 
 /* .App-header {
@@ -141,19 +161,22 @@ body {
 }
 #communityswitch1{
     border-radius: 25px;
-    background-color: transparent;
+    /* background-color: transparent; */
+    background: rgb(230, 229, 236);
     /* margin-top: 100px; */
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
     width: 50vw;
-    height: 5vw;
+    /* height: 5vw; */
+
     justify-content: space-evenly;
 }
 #communityswitch{
     /* margin-top: 100px; */
     border-radius: 25px;
-    background-color: transparent;
+    /* background-color: transparent; */
+    background: rgb(230, 229, 236);
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
@@ -208,6 +231,7 @@ body {
 
 .Discussion{
     margin-top: 10%;
+    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
 }
 
 .headerStuff:hover {
@@ -417,7 +441,9 @@ button:hover {
 
 .card {
     /* font-family: 'Courier New', Courier, monospace; */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    background: rgb(230, 229, 236);
+    border-radius : 10px;
     transition: 0.3s;
     width: 70%;
     justify-content: center;
@@ -429,12 +455,16 @@ button:hover {
     animation-timing-function: linear;
 }
 .postCard {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: rgb(230, 229, 236);
     transition: 0.3s;
     width: 70%;
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
     padding: 1%;
 }
 .postRender {
@@ -455,6 +485,9 @@ button:hover {
 
 #commentBox {
     /* box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2); */
+}
+#addComment {
+    margin-bottom: 5vh;
 }
 
 .postTitle {
@@ -495,7 +528,7 @@ button:hover {
     border-radius: 15px;
 }
 #postPic {
-    max-width: 50vw;
+    /* max-width: 50vw; */
     
 }
 .slideToRight {
@@ -592,13 +625,16 @@ button:hover {
 
 .pictures {
     border-radius: 15px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     max-width: 85vw;
     margin: auto;
+    background-color: rgb(7, 4, 41);
 }
 .picture {
     /* width: 40vw; */
@@ -621,6 +657,7 @@ button:hover {
     width : 50vw;
     border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgb(7, 4, 41);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -741,44 +778,10 @@ select {
     cursor: pointer;
 }
 
-/* @keyframes slide_in {
-    0% {
-        opacity: 0;
-        margin-top: 100vh;
-    }
-    100% {
-        opacity: 1;
-        margin-top: 0vh;
-    }
-} */
-
-
-/* .dragging {
-  animation: dragging;
-  animation-duration: 5s;;
+.spaceAtBottomOfPage {
+    height: 5vh;
 }
 
-@keyframe dragging {
-  0% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.loading {
-  animation: load;
-  animation-duration: 2s;
-}
-@keyframse load {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
 .item {
     width: 100px;
     height: 50px;

@@ -134,7 +134,7 @@ class GlobalPosts extends Component {
                             />
                         </LazyLoad>
                     })}
-
+                <div className="spaceAtBottomOfPage"></div>
             </div>
         )
     }

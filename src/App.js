@@ -201,7 +201,7 @@ class App extends Component {
     return (
       <div className="body" id = "complete">
         {/* <header className="App-header"> */}
-
+      <div id="background"></div>
 
         <NavBar updateIntereactedPosts={this.updateIntereactedPosts}
           toggleComponent={this.toggleComponent}

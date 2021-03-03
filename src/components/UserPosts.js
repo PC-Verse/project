@@ -341,6 +341,7 @@ class UserPosts extends Component {
                 {((this.state.userPosts.length == 0 && this.props.profileObj.googleId != -1) || 
                     (this.props.userPosts.length == 0 && this.props.profileObj.googleId == -1)) && 
                     <div id="noPostYetMsg">No Posts Yet!</div>}
+                <div className="spaceAtBottomOfPage"></div>
             </div>
         )
     }
