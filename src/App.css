@@ -103,11 +103,11 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     background-image: linear-gradient(to right, 
-        rgba(164, 182, 239, 0.87), 
+        rgba(157, 171, 217, 0.87), 
         /* rgba(21, 238, 195,0.94), */
         /* rgba(115,238,21,0.94), */
         /* rgba(238,21,24,0.94) */
-        rgba(221, 152, 216, 0.55)
+        rgba(211, 160, 222, 0.55)
         );
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
@@ -231,6 +231,7 @@ body {
 
 .Discussion{
     margin-top: 10%;
+    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
 }
 
 .headerStuff:hover {
@@ -264,7 +265,6 @@ body {
     display: inline;
     margin-top: -20px;
     height: 80px;
-    width: 65px;
     animation-name: spin2;
     animation-duration: 5s;
     animation-timing-function: linear;
@@ -687,7 +687,6 @@ button:hover {
 #discussBtn {
     display: flex;
     margin: auto;
-    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
 }
 
 .description {
