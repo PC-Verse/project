@@ -265,6 +265,7 @@ body {
     display: inline;
     margin-top: -20px;
     height: 80px;
+    width: 65px;
     animation-name: spin2;
     animation-duration: 5s;
     animation-timing-function: linear;
