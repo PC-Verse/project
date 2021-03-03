@@ -8,8 +8,13 @@ class Comment extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      animationClass : ''
+      animationClass : 'postRender'
     }
+    setTimeout(() => {
+      this.setState({
+          animationClass : ""
+      })
+    }, 1200)    // 1200 ms is time duration of postRender
   }
 
   removeComment = (commentKey) => {

@@ -33,7 +33,7 @@ class AddComment extends Component {
             <div>
 
                 
-                 <div className = "card">
+                 <div className = "card" id="addComment">
                         <form className = "container" onSubmit={this.handleSubmit} >
                             <div>
                                 <span>Leave a comment: </span>
