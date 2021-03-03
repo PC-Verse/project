@@ -140,6 +140,8 @@ body {
 #mode{
     position: fixed;
     margin-top: 43%;
+    bottom: 10px;
+    left: 5px;
 }
 
 /* #background {
