@@ -103,7 +103,7 @@ html {
 body {
     font-family: 'Nunito', sans-serif;
     background-image: linear-gradient(to right, 
-        rgba(157, 171, 217, 0.87), 
+        rgba(145, 157, 197, 0.87), 
         /* rgba(21, 238, 195,0.94), */
         /* rgba(115,238,21,0.94), */
         /* rgba(238,21,24,0.94) */
@@ -111,6 +111,35 @@ body {
         );
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
+}
+.body {
+    font-family: 'Nunito', sans-serif;
+    background-image: linear-gradient(to right, 
+        rgba(124, 131, 198, 0.909), 
+        /* rgba(21, 238, 195,0.94), */
+        /* rgba(115,238,21,0.94), */
+        /* rgba(238,21,24,0.94) */
+        rgba(211, 160, 222, 0.55)
+        );
+    /* background-image: conic-gradient(red, purple, blue, green, pink); */
+    overflow-x: hidden;
+}
+.body1 {
+    font-family: 'Nunito', sans-serif;
+    background-image: linear-gradient(to right, 
+        rgba(0, 0, 0, 0.87), 
+        /* rgba(21, 238, 195,0.94), */
+        /* rgba(115,238,21,0.94), */
+        /* rgba(238,21,24,0.94) */
+        rgba(0, 0, 0, 0.895)
+        );
+    /* background-image: conic-gradient(red, purple, blue, green, pink); */
+    overflow-x: hidden;
+}
+
+#mode{
+    position: fixed;
+    margin-top: 43%;
 }
 
 /* #background {
