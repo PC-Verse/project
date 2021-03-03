@@ -47,7 +47,7 @@ class Swipe extends Component {
             right = snapshot.val()
         });
         let postersGoogleId;
-        database.ref('globalPosts' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
+        database.ref('globalPosts/' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
             postersGoogleId = snapshot.val()
         })
 
@@ -59,7 +59,7 @@ class Swipe extends Component {
         // database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
         //     numSwipeRights: right + 1
         // });
-        database.ref('userPosts' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
+        database.ref('userPosts/' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
             numSwipeRights: right + 1,
             numViews : num+1
         })
@@ -89,7 +89,7 @@ class Swipe extends Component {
             num = snapshot.val()
         });
         let postersGoogleId;
-        database.ref('globalPosts' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
+        database.ref('globalPosts/' + this.state.postKeys[this.state.index] +'/profileObj/googleId/').on("value", (snapshot) => {
             postersGoogleId = snapshot.val()
         })
 
@@ -97,7 +97,7 @@ class Swipe extends Component {
         database.ref('/globalPosts/' + this.state.postKeys[this.state.index]).update({
             numViews: num + 1
         });
-        database.ref('userPosts' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
+        database.ref('userPosts/' + postersGoogleId + '/'+ this.state.postKeys[this.state.index]).update({
             numViews : num + 1
         })
 
