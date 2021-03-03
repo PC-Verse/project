@@ -231,7 +231,6 @@ body {
 
 .Discussion{
     margin-top: 10%;
-    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
 }
 
 .headerStuff:hover {
@@ -688,6 +687,7 @@ button:hover {
 #discussBtn {
     display: flex;
     margin: auto;
+    box-shadow: 0 4px 20px 6px rgba(0, 0, 0, 0.2);
 }
 
 .description {
