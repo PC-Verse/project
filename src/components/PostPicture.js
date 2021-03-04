@@ -37,11 +37,12 @@ export function PostPicture(props) {
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
               {...dragProps}
+              className="addRemoveImageBtn"
             >
               Click or Drop here
             </button>
             &nbsp;
-            <button onClick={onImageRemoveAll}>Remove all images</button>
+            <button onClick={onImageRemoveAll} className="addRemoveImageBtn">Remove all images</button>
             <div id="uploadedImagesContainer">
             {imageList.map((image, index) => (
               // <div key={index} className="image-item">

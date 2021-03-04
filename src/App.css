@@ -9,6 +9,7 @@
     --grey-white: rgb(249, 249, 253);   /* for cards in light mode*/
     --grey-black: rgb(29, 26, 26);     /* for cards in dark mode */
     --dark-blue: rgb(7, 3, 51);     /* for picture cards*/
+    --dark-grey : rgb(49, 45, 45);      /* for input text background*/
 
     /* for linear gradient background*/
     --light-linear-gradient: linear-gradient(to right, 
@@ -25,11 +26,15 @@
     --dark-btn-background: rgb(0,0,0);
     --light-btn-background: rgb(255,255,255);
 
+    --dark-textinput-background-color : var(--dark-grey);
+    --light-textinput-background-color : white;
+
     --card-background-color : var(--grey-white);
     --background-color-pictures: var(--dark-blue);
     --background-linear-gradient: var(--light-linear-gradient);
     --text-color: var(--dark-text-color);
-    --btn-background-color : var(var(--light-btn-background));
+    --btn-background-color : var(--light-btn-background);
+    --textinput-background-color : var(--dark-grey);
 }
 
 /* .App-logo {
@@ -733,6 +738,7 @@ button:hover {
 
 .removeBtn {
     background-color: rgba(230, 47, 47, 0.6);
+    color : var(--text-color);
 }
 
 .title {
@@ -747,8 +753,8 @@ button:hover {
 
 .postBtn {
     float: bottom;
-    background-color: var(--card-background-color);
-    color: var(--text-color);
+    background-color: green;
+    color: var(--light-text-color);
     margin: 0;
 }
 
@@ -768,6 +774,14 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+input.description, textarea {
+    background: var(--textinput-background-color);
+    color: var(--text-color);
+}
+input#fname, textarea {
+    background: var(--textinput-background-color);
+    color: var(--text-color);
 }
 
 input[type=text],
@@ -910,4 +924,11 @@ i {
 .updateRemoveImgBtn {
     width : fit-content;
     height : fit-content;
+    padding : 10px;
+    color : var(--text-color);
+    background-color: var(--btn-background-color);
 }
+ .addRemoveImageBtn {
+     color : var(--text-color);
+     background-color: var(--btn-background-color);
+ }

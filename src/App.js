@@ -161,6 +161,10 @@ class App extends Component {
         "--btn-background-color",
         "var(--dark-btn-background)"
       );
+      document.body.style.setProperty(
+        "--textinput-background-color",
+        "var(--dark-textinput-background-color)"
+      );
 
       // upload state used for if statement
       this.setState({
@@ -188,6 +192,10 @@ class App extends Component {
       document.body.style.setProperty(
         "--btn-background-color",
         "var(--light-btn-background)"
+      );
+      document.body.style.setProperty(
+        "--textinput-background-color",
+        "var(--light-textinput-background-color)"
       );
 
       // upload state used for if statement
