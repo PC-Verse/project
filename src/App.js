@@ -125,8 +125,6 @@ class App extends Component {
   }
 
 
-<<<<<<< HEAD
-=======
   toggleMode = () =>{
     console.log("made changing")
     // if(this.state.lightMode == "body"){
@@ -204,8 +202,8 @@ class App extends Component {
         mode : 'light'
       })
     }
->>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
 
+  }
   updateIntereactedPosts = () =>{
       database.ref('userPosts/' + this.state.profileObj.googleId + '/interacted').on("value", (snapshot) => {
           this.setState({
@@ -280,13 +278,9 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="body" id = "complete">
-=======
       <div id = "complete">
->>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
         {/* <header className="App-header"> */}
-      <div id="background"></div>
+      {/* <div id="background"></div> */}
 
         <NavBar updateIntereactedPosts={this.updateIntereactedPosts}
           toggleComponent={this.toggleComponent}
@@ -294,15 +288,14 @@ class App extends Component {
           setLoggedIn={(logged) => this.setLoggedIn(logged)}
           setName={(name) => this.setName(name)}
           setProfileObj={this.setProfileObj} profileObj={this.state.profileObj}/>
-<<<<<<< HEAD
-=======
           
         <button id="mode" onClick = {()=> this.toggleMode()} >{/*&#127767;*/}{this.state.mode =="light" ? '🌗' : '🌓' }</button>
 
->>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
 
         {this.state.showGlobalPosts &&
+        
           <div>
+
             <GlobalPosts
               toggleComponent = {this.toggleComponent}
               switchCommunity ={this.switchCommunity}
