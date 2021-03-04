@@ -62,7 +62,8 @@ class App extends Component {
       items: [],
       postObj : null,
       postKey : -1,
-      community: 'Global'
+      community: 'Global',
+      mode: 'light'
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -124,6 +125,86 @@ class App extends Component {
   }
 
 
+<<<<<<< HEAD
+=======
+  toggleMode = () =>{
+    console.log("made changing")
+    // if(this.state.lightMode == "body"){
+    //   this.setState({
+    //     lightMode: "body1",
+    //   })
+    // }
+    // else{
+    //   this.setState({
+    //     lightMode: "body",
+    //   })
+    // }
+
+    if (this.state.mode == 'light') {   // turn on dark mode
+      //set variables in css to different colors
+      document.body.style.setProperty(
+        "--card-background-color",
+        "var(--grey-black)"
+      );
+      document.body.style.setProperty(
+        "--background-color-pictures",
+        "var(--dark-blue)"
+      );
+      document.body.style.setProperty(
+        "--background-linear-gradient",
+        "var(--dark-linear-gradient)"
+      );
+      document.body.style.setProperty(
+        "--text-color",
+        "var(--light-text-color)"
+      );
+      document.body.style.setProperty(
+        "--btn-background-color",
+        "var(--dark-btn-background)"
+      );
+      document.body.style.setProperty(
+        "--textinput-background-color",
+        "var(--dark-textinput-background-color)"
+      );
+
+      // upload state used for if statement
+      this.setState({
+        mode : 'dark'
+      })
+    }
+    else {  // turn on light mode
+      //set variables in css to different colors
+      document.body.style.setProperty(
+        "--card-background-color",
+        "var(--grey-white)"
+      );
+      document.body.style.setProperty(
+        "--background-color-pictures",
+        "var(--dark-blue)"
+      );
+      document.body.style.setProperty(
+        "--background-linear-gradient",
+        "var(--light-linear-gradient)"
+      );
+      document.body.style.setProperty(
+        "--text-color",
+        "var(--dark-text-color)"
+      );
+      document.body.style.setProperty(
+        "--btn-background-color",
+        "var(--light-btn-background)"
+      );
+      document.body.style.setProperty(
+        "--textinput-background-color",
+        "var(--light-textinput-background-color)"
+      );
+
+      // upload state used for if statement
+      this.setState({
+        mode : 'light'
+      })
+    }
+>>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
 
   updateIntereactedPosts = () =>{
       database.ref('userPosts/' + this.state.profileObj.googleId + '/interacted').on("value", (snapshot) => {
@@ -199,7 +280,11 @@ class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <div className="body" id = "complete">
+=======
+      <div id = "complete">
+>>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
         {/* <header className="App-header"> */}
       <div id="background"></div>
 
@@ -209,6 +294,12 @@ class App extends Component {
           setLoggedIn={(logged) => this.setLoggedIn(logged)}
           setName={(name) => this.setName(name)}
           setProfileObj={this.setProfileObj} profileObj={this.state.profileObj}/>
+<<<<<<< HEAD
+=======
+          
+        <button id="mode" onClick = {()=> this.toggleMode()} >{/*&#127767;*/}{this.state.mode =="light" ? '🌗' : '🌓' }</button>
+
+>>>>>>> 1c097f4c12fa10483805cee13b027aa67fce192a
 
         {this.state.showGlobalPosts &&
           <div>
