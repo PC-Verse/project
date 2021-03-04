@@ -6,10 +6,30 @@
 }
 
 :root {
-    --grey-white: rgb(249, 249, 253);
-    --dark-blue: rgb(7, 3, 51);
-    --card-background-color : rgb(249, 249, 253);
-    --background-color: rgb(7, 3, 51);
+    --grey-white: rgb(249, 249, 253);   /* for cards in light mode*/
+    --grey-black: rgb(29, 26, 26);     /* for cards in dark mode */
+    --dark-blue: rgb(7, 3, 51);     /* for picture cards*/
+
+    /* for linear gradient background*/
+    --light-linear-gradient: linear-gradient(to right, 
+                            rgba(145, 157, 197, 0.87),
+                            rgba(211, 160, 222, 0.55));
+    --dark-linear-gradient: linear-gradient(to right, 
+                            rgba(1, 9, 34, 0.979),
+                            rgb(39, 2, 48));
+    /* for text */
+    --dark-text-color: black;
+    --light-text-color: rgb(243, 243, 233);
+
+    /* for some btns*/
+    --dark-btn-background: rgb(0,0,0);
+    --light-btn-background: rgb(255,255,255);
+
+    --card-background-color : var(--grey-white);
+    --background-color-pictures: var(--dark-blue);
+    --background-linear-gradient: var(--light-linear-gradient);
+    --text-color: var(--dark-text-color);
+    --btn-background-color : var(var(--light-btn-background));
 }
 
 /* .App-logo {
@@ -29,7 +49,7 @@
 
 .compName{
     font-size: 1.3rem;
-    color: rgb(36, 26, 28);
+    color: var(--text-color);
     text-shadow: 1px 1px #000000;
 
 }
@@ -65,12 +85,16 @@
 #leftTogglePicBtn {
     margin-right: 1vw;
     box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.2);
+    color : var(--text-color);
+    background-color: var(--btn-background-color);
     /* box-shadow: ; */
     /* float: left; */
 }
 #rightTogglePicBtn {
     margin-left: 1vw;
     box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.2);
+    color : var(--text-color);
+    background-color: var(--btn-background-color);
     /* float: right; */
 }
 html {
@@ -109,13 +133,8 @@ html {
 
 body {
     font-family: 'Nunito', sans-serif;
-    background-image: linear-gradient(to right, 
-        rgba(145, 157, 197, 0.87), 
-        /* rgba(21, 238, 195,0.94), */
-        /* rgba(115,238,21,0.94), */
-        /* rgba(238,21,24,0.94) */
-        rgba(211, 160, 222, 0.55)
-        );
+    background-image: var(--background-linear-gradient);
+    color: var(--text-color);
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
 }
@@ -147,8 +166,12 @@ body {
 }
 
 #mode{
-    position: absolute;
+    position: fixed;
     z-index : 1;
+    font-size : 3rem;
+    /* padding: 0; */
+    /* width : 10vw; */
+    background-color: var(--btn-background-color);
     /* margin-top: 43%; */
     bottom: 10px;
     left: 5px;
@@ -192,6 +215,8 @@ body {
 }
 #globalBtnSwitch {
     font-size: 1.8rem;
+    color : var(--text-color);
+    background-color: var(--btn-background-color);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: transform .3s;
 }
@@ -677,7 +702,7 @@ button:hover {
     justify-content: space-around;
     max-width: 85vw;
     margin: auto;
-    background-color: var(--background-color);
+    background-color: var(--background-color-pictures);
 }
 .picture {
     /* width: 40vw; */
@@ -700,7 +725,7 @@ button:hover {
     width : 50vw;
     border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: var(--background-color);
+    background-color: var(--background-color-pictures);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -722,14 +747,16 @@ button:hover {
 
 .postBtn {
     float: bottom;
-    background-color: green;
-    color: white;
+    background-color: var(--card-background-color);
+    color: var(--text-color);
     margin: 0;
 }
 
 #discussBtn {
     display: flex;
     margin: auto;
+    color : var(--text-color);
+    background-color: var(--btn-background-color);
     box-shadow: 0 4px 8px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -788,7 +815,7 @@ select {
     float: right;
     clear: both;
     font-weight: 700;
-    color: darkblue;
+    color: var(--text-color);
 }
 
 #noPostYetMsg {

@@ -63,7 +63,8 @@ class App extends Component {
       items: [],
       postObj : null,
       postKey : -1,
-      community: 'Global'
+      community: 'Global',
+      mode: 'light'
     };
     this.toggleComponent = this.toggleComponent.bind(this);
     this.setState = this.setState.bind(this)
@@ -127,14 +128,71 @@ class App extends Component {
 
   toggleMode = () =>{
     console.log("made changing")
-    if(this.state.lightMode == "body"){
+    // if(this.state.lightMode == "body"){
+    //   this.setState({
+    //     lightMode: "body1",
+    //   })
+    // }
+    // else{
+    //   this.setState({
+    //     lightMode: "body",
+    //   })
+    // }
+
+    if (this.state.mode == 'light') {   // turn on dark mode
+      //set variables in css to different colors
+      document.body.style.setProperty(
+        "--card-background-color",
+        "var(--grey-black)"
+      );
+      document.body.style.setProperty(
+        "--background-color-pictures",
+        "var(--dark-blue)"
+      );
+      document.body.style.setProperty(
+        "--background-linear-gradient",
+        "var(--dark-linear-gradient)"
+      );
+      document.body.style.setProperty(
+        "--text-color",
+        "var(--light-text-color)"
+      );
+      document.body.style.setProperty(
+        "--btn-background-color",
+        "var(--dark-btn-background)"
+      );
+
+      // upload state used for if statement
       this.setState({
-        lightMode: "body1",
+        mode : 'dark'
       })
     }
-    else{
+    else {  // turn on light mode
+      //set variables in css to different colors
+      document.body.style.setProperty(
+        "--card-background-color",
+        "var(--grey-white)"
+      );
+      document.body.style.setProperty(
+        "--background-color-pictures",
+        "var(--dark-blue)"
+      );
+      document.body.style.setProperty(
+        "--background-linear-gradient",
+        "var(--light-linear-gradient)"
+      );
+      document.body.style.setProperty(
+        "--text-color",
+        "var(--dark-text-color)"
+      );
+      document.body.style.setProperty(
+        "--btn-background-color",
+        "var(--light-btn-background)"
+      );
+
+      // upload state used for if statement
       this.setState({
-        lightMode: "body",
+        mode : 'light'
       })
     }
 
@@ -213,7 +271,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className= {this.state.lightMode} id = "complete">
+      <div id = "complete">
         {/* <header className="App-header"> */}
       {/* <div id="background"></div> */}
 
@@ -224,7 +282,7 @@ class App extends Component {
           setName={(name) => this.setName(name)}
           setProfileObj={this.setProfileObj} profileObj={this.state.profileObj}/>
           
-        <button id="mode" onClick = {()=> this.toggleMode()} >&#127767;</button>
+        <button id="mode" onClick = {()=> this.toggleMode()} >{/*&#127767;*/}{this.state.mode =="light" ? '🌗' : '🌓' }</button>
 
 
         {this.state.showGlobalPosts &&

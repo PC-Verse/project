@@ -196,7 +196,7 @@ class Post extends Component {
     render = () => {
         let postClasses = ['postCard', this.state.animationClass].join(' ');
         return (
-            <div className ={postClasses} id= "post-card-1">
+            <div className ={postClasses} >
                 <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
