@@ -49,8 +49,7 @@ class GlobalPosts extends Component {
                     profileObj: data.val().profileObj,
                     numLikes: data.val().numLikes == undefined ? 0 : data.val().numLikes,
                     numViews: data.val().numViews == undefined ? 1 : data.val().numViews,
-                    numSwipeRights: data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights,
-                    lightMode: this.props.lightMode
+                    numSwipeRights: data.val().numSwipeRights == undefined ? 0 : data.val().numSwipeRights
                 }
 
                 let found = false;
@@ -132,11 +131,10 @@ class GlobalPosts extends Component {
                                 numViews={post.numViews}
                                 numSwipeRights={post.numSwipeRights}
                                 currUser={this.props.profileObj.googleId}
-                                lightMode = {this.props.lightMode}
                             />
                         </LazyLoad>
                     })}
-                <div className="spaceAtBottomOfPage"></div>
+
             </div>
         )
     }

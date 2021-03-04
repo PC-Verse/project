@@ -170,7 +170,7 @@ class Discussion extends Component {
                 this.state.CommentsList.map(comment => {
                     return <LazyLoad
                         height={50}
-                        offset={[-150, 150]}
+                        offset={[-50, -50]}
                         placeholder={<Spinner />}
                     >
                         <Comment

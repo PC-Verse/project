@@ -5,6 +5,13 @@
 .everything {
 }
 
+:root {
+    /* --grey-white: rgb(249, 249, 253);
+    --dark-blue: rgb(7, 3, 51);
+    --card-background-color : rgb(249, 249, 253);
+    --background-color: rgb(7, 3, 51); */
+}
+
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -133,6 +140,7 @@ body {
         );
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
+    height: 100vh;
 }
 .body1 {
     font-family: 'Nunito', sans-serif;
@@ -145,11 +153,13 @@ body {
         );
     /* background-image: conic-gradient(red, purple, blue, green, pink); */
     overflow-x: hidden;
+    height: 100vh;
 }
 
 #mode{
-    position: fixed;
-    margin-top: 43%;
+    position: absolute;
+    z-index : 1;
+    /* margin-top: 43%; */
     bottom: 10px;
     left: 5px;
 }
@@ -205,7 +215,7 @@ body {
 #communityswitch1{
     border-radius: 25px;
     /* background-color: transparent; */
-    background: rgb(249, 249, 253);
+    background: var(--grey-white);
     /* margin-top: 100px; */
     display: flex;
     flex-wrap: wrap;
@@ -219,7 +229,7 @@ body {
     /* margin-top: 100px; */
     border-radius: 25px;
     /* background-color: transparent; */
-    background: rgb(249, 249, 253);
+    background: var(--grey-white);
     display: flex;
     flex-wrap: wrap;
     /* justify-content: center; */
@@ -485,7 +495,7 @@ button:hover {
 .card {
     /* font-family: 'Courier New', Courier, monospace; */
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-    background: rgb(249, 249, 253);
+    background: var(--grey-white);
     border-radius : 10px;
     transition: 0.3s;
     width: 70%;
@@ -500,7 +510,7 @@ button:hover {
 .postCard {
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    background: rgb(249, 249, 253);
+    background: var(--grey-white);
     transition: 0.3s;
     width: 70%;
     justify-content: center;
@@ -677,7 +687,7 @@ button:hover {
     justify-content: space-around;
     max-width: 85vw;
     margin: auto;
-    background-color: rgb(7, 3, 51);
+    background-color: var(--dark-blue);
 }
 .picture {
     /* width: 40vw; */
@@ -700,7 +710,7 @@ button:hover {
     width : 50vw;
     border-radius: 35px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    background-color: rgb(7, 3, 51);
+    background-color: var(--dark-blue);
     display: flex;
     flex-direction: column;
     justify-content: center;

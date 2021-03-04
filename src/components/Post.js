@@ -196,8 +196,8 @@ class Post extends Component {
     render = () => {
         let postClasses = ['postCard', this.state.animationClass].join(' ');
         return (
-            <div className ={postClasses} id= {this.props.lightMode == "body" ? "post-card-1" : "post-card-2"}>
-                <p class = "text-card" id= {this.props.lightMode == "body" ? "text1" : "text2"}>
+            <div className ={postClasses} id= "post-card-1">
+                <p class = "text-card">
                     <div className="postTitle">{this.props.title}</div>
                     <div id="nameOfPoster">{this.props.name}</div>
                     <div className="timeStamp">{this.props.dateDay} {this.props.dateTime}</div>
@@ -205,7 +205,7 @@ class Post extends Component {
                     {this.props.haveDiscussBtn && this.props.community != undefined && 
                         <div class = "compName">
                         <img src = ""></img>
-                        <li id= {this.props.lightMode == "body" ? "text1" : "text2"}>{this.props.community.toString().toUpperCase()} </li>
+                        <li>{this.props.community.toString().toUpperCase()} </li>
                         </div>
                     }
 
@@ -228,7 +228,7 @@ class Post extends Component {
                 </p>
                 <br/>
                 {/* {this.props.isGlobalPost && */}
-                    <div id= {this.props.lightMode == "body" ? "text1" : "text2"}>
+                    <div>
                         {/* this.props.isGlobalPost && */
                            <div>
                             <p>PC-RATING: {(this.props.numSwipeRights / this.props.numViews * 10).toFixed(2)}</p>
@@ -242,7 +242,7 @@ class Post extends Component {
                            
 
                         } 
-                        <div id= {this.props.lightMode == "body" ? "text1" : "text2"} className="numLikes">Likes: {this.props.numLikes}</div>
+                        <div className="numLikes">Likes: {this.props.numLikes}</div>
                         { 
                         // this.props.isGlobalPost && 
                             <div className="swipeBtnContainer">
