@@ -34,7 +34,7 @@
     --background-linear-gradient: var(--light-linear-gradient);
     --text-color: var(--dark-text-color);
     --btn-background-color : var(--light-btn-background);
-    --textinput-background-color : var(--dark-grey);
+    --textinput-background-color : var(--light-textinput-background-color);
 }
 
 /* .App-logo {
