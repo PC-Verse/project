@@ -1,3 +1,30 @@
+# **PC-Verse**
+- A website for sharing your PC builds.   [pc-verse.web.app](https://pc-verse.web.app)
+    - By Kevin Zhang & Benjamin Yang
+
+# Overview
+- Provides a unique way of sharing PC builds among tech enthusiasts
+    - Combination of reddit and tinder features
+    - Interactive components for sharing and interacting with other users’ posts
+# Cool Features
+- Tinder Carousel Swiping Feature
+- Light & Dark Mode
+# Competition
+- Was Scored *3rd* place out of 12 teams
+    - by judges from Google, Novacast, Invoca, Rigdeline, Appfolio, & a UCSB Professor
+    - scored in Technology, Design, Completion, & Learning
+
+<div style="flex-wrap:wrap; display:flex; justify-content: space-around">
+    <img src="src/images/PCVerse.jpg" alt="PC Verse Global Page" style="width: 400; margin: auto; margin-bottom: 10px; border-radius:35px;">
+    <img src="src/images/PCVerseDarkMode.jpg" alt="PC Verse Dark Mode" style="width: 400; margin: auto; margin-bottom: 10px; border-radius:35px;">
+    <img src="src/images/PCVerseTinder.jpg" alt="PC Verse Tinder Feature" style="width: 400; margin:auto; margin-bottom: 10px; border-radius:35px;">
+</div>
+
+# Technologies
+- Built with React
+- For more info:
+    - Check out PC-Verse.pdf in this repo
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
