@@ -1,5 +1,6 @@
 # **PC-Verse**
-- A website for sharing your PC builds.   [pc-verse.web.app](https://pc-verse.web.app)
+- A website for sharing your PC builds.
+    - [pc-verse.web.app](https://pc-verse.web.app)
     - By Kevin Zhang & Benjamin Yang
 
 # Overview
