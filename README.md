@@ -24,7 +24,7 @@
 # Technologies
 - Built with React
 - For more info:
-    - Check out PC-Verse.pdf in this repo
+    - Check out [slides](/PC-Verse.pdf) in this repo
 
 # Getting Started with Create React App
 
